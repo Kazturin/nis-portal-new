@@ -1,0 +1,46 @@
+{
+    frankenphp {
+        worker /var/www/public/frankenphp-worker.php {$MAX_WORKERS:16}
+    }
+    order php_server before file_server
+    auto_https off
+}
+
+:8000 {
+    log {
+        output stdout
+    }
+
+    encode zstd gzip
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options SAMEORIGIN
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+
+    @app {
+        path /api/* /sanctum/* /admin/* /filament/* /livewire/* /livewire-*
+    }
+
+    handle @app {
+        root * /var/www/public
+        php_server
+    }
+
+    @storage_php {
+        path "/storage/*.php" "/storage/**/*.php"
+    }
+    respond @storage_php 403
+
+    handle /storage/* {
+        root * /var/www/public
+        file_server
+    }
+
+    handle {
+        root * /var/www/public
+        php_server
+    }
+}

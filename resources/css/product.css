@@ -1,0 +1,42 @@
+.product h1 {
+    font-family: "Inter";
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.product h2 {
+    font-family: "Inter";
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.product h3 {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.product h4 {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.product p {
+    font-family: "SF-Pro-Display-Regular";
+    font-size: 1.5rem;
+    line-height: 2rem;
+    min-height: 20px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.product img {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 25px;
+}
+
+.product .grid-layout-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

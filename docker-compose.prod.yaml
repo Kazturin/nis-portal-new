@@ -1,0 +1,135 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: production
+        image: robotics-app:${APP_VERSION:-latest}
+        container_name: robotics-app
+        restart: unless-stopped
+        ports:
+            - "8000:8000"
+        env_file:
+            - .env
+        environment:
+            - APP_ENV=${APP_ENV:-production}
+            - APP_DEBUG=${APP_DEBUG:-false}
+            - OCTANE_SERVER=${OCTANE_SERVER:-frankenphp}
+            - DB_HOST=${DB_HOST:-db}
+            - DB_DATABASE=${DB_DATABASE:-app_db}
+            - DB_USERNAME=${DB_USERNAME:-developer}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - DB_PORT=${DB_PORT:-3306}
+            - REDIS_HOST=${REDIS_HOST:-redis}
+            - REDIS_PORT=${REDIS_PORT:-6379}
+            - REDIS_DB=${REDIS_DB:-0}
+        volumes:
+            - ./storage:/var/www/storage
+            - caddy_data:/data
+            - caddy_config:/config
+        networks:
+            - backend
+        depends_on:
+            db:
+                condition: service_healthy
+            redis:
+                condition: service_healthy
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:8000/up" ]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        deploy:
+            resources:
+                limits:
+                    cpus: "2.0"
+                    memory: 1024M
+                reservations:
+                    cpus: "0.5"
+                    memory: 512M
+        logging:
+            driver: json-file
+            options:
+                max-size: "10m"
+                max-file: "5"
+
+    db:
+        image: mysql:8.4
+        container_name: robotics-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-robotics_prod}
+            MYSQL_USER: ${DB_USERNAME:-robotics_user}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-${DB_PASSWORD}}
+
+        volumes:
+            - db_data:/var/lib/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/conf.d/custom.cnf:ro
+        networks:
+            - backend
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD" ]
+            interval: 15s
+            timeout: 5s
+            retries: 5
+            start_period: 30s
+        deploy:
+            resources:
+                limits:
+                    cpus: "2.0"
+                    memory: 1024M
+                reservations:
+                    cpus: "0.5"
+                    memory: 512M
+        logging:
+            driver: json-file
+            options:
+                max-size: "10m"
+                max-file: "3"
+
+    redis:
+        image: redis:7-alpine
+        container_name: robotics-redis
+        restart: unless-stopped
+        command: redis-server --appendonly yes
+        volumes:
+            - redis_data:/data
+        networks:
+            - backend
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            interval: 10s
+            timeout: 5s
+            retries: 3
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.5"
+                    memory: 192M
+                reservations:
+                    cpus: "0.1"
+                    memory: 64M
+        logging:
+            driver: json-file
+            options:
+                max-size: "5m"
+                max-file: "3"
+
+networks:
+    backend:
+        driver: bridge
+        name: robotics-network
+
+volumes:
+    db_data:
+        driver: local
+        name: robotics-db-data
+    redis_data:
+        driver: local
+        name: robotics-redis-data
+    caddy_data:
+        name: robotics-caddy-data
+    caddy_config:
+        name: robotics-caddy-config

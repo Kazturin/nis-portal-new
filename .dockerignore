@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+.gitattributes
+.github
+
+# Docker
+Dockerfile
+docker-compose*.yaml
+.dockerignore
+
+# Laravel
+.env
+.env.*
+storage/*.key
+storage/logs/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/app/public/*
+/public/storage
+/public/hot
+
+# Dependencies
+/node_modules
+/vendor
+
+# Frontend
+/public/build
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+.phpunit.result.cache
+.phpunit.cache/
+
+# FrankenPHP / Caddy
+**/caddy
+frankenphp
+frankenphp-worker.php

@@ -1,0 +1,397 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-inter: 'Inter', sans-serif;
+    --font-inter-medium: 'Inter Medium', sans-serif;
+    --font-inter-regular: 'Inter Regular', sans-serif;
+    --font-sf: 'SF-Pro-Display-Regular', sans-serif;
+    --font-sfBold: 'SF-Pro-Display-Bold', sans-serif;
+    --font-nunitoExtraBold: 'Nunito-ExtraBold', sans-serif;
+    --font-nunitoSemiBold: 'Nunito-SemiBold', sans-serif;
+    --color-primary: #80C342;
+    --color-secondary: #F0F2F5;
+    --color-rich-primary: #52C32F;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/Inter_Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Inter Regular';
+    font-style: normal;
+    font-display: swap;
+    src: url("../fonts/Inter_Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Inter Medium';
+    font-style: normal;
+    font-display: swap;
+    src: url("../fonts/Inter-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'SF-Pro-Display-Regular';
+    font-style: normal;
+    font-display: swap;
+    src: url("../fonts/SF-Pro-Display-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'SF-Pro-Display-Bold';
+    font-style: normal;
+    font-display: swap;
+    src: url("../fonts/SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Nunito-SemiBold";
+    src: url("../fonts/Nunito-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Nunito-ExtraBold";
+    src: url("../fonts/Nunito-ExtraBold.ttf") format('truetype');
+}
+
+.slider {
+    position: relative;
+}
+
+/* .swiper-pagination-bullet{
+    background: #e9e2e2;
+ } */
+
+.swiper-pagination-bullet-active {
+    background: #ffffff;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #787f87 !important;
+}
+
+.container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.resource-slider .swiper-slide-active {
+    padding-top: 0 !important;
+}
+
+@media (min-width: 1024px) {
+    .resource-slider .swiper-slide {
+        padding-top: 70px;
+        transition: padding-top 0.3s ease;
+    }
+}
+
+
+.swiper-button-disabled {
+    color: #BFC3C9 !important;
+}
+
+iframe {
+    /* max-height: 500px; */
+    width: 100%;
+}
+
+.list iframe {
+    height: 540px;
+}
+
+.hero-gradient {
+    background: linear-gradient(90deg, #F0F2F5 30%, rgba(255, 255, 255, 0) 100%);
+}
+
+.short-gradient {
+    background: linear-gradient(90deg, #F0F2F5 24%, rgba(255, 255, 255, 0) 60%);
+}
+
+.before-enter {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 1s ease-out;
+}
+
+details img {
+    border: unset !important;
+    border-radius: 0 !important;
+}
+
+.prose .lead {
+    font-size: 1.375rem;
+}
+
+.prose small {
+    font-size: 0.75rem;
+}
+
+.prose ul,
+.prose ol {
+    padding-inline-start: 1rem;
+    margin-inline-start: 1rem;
+}
+
+.prose ul ul,
+.prose ul ol,
+.prose ol ul,
+.prose ol ol {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-inline-start: 0.5rem;
+}
+
+.prose ul {
+    list-style: disc !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.prose ol {
+    list-style: decimal !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.prose ul.checked-list {
+    list-style-type: none;
+    margin-inline-start: 0;
+}
+
+.prose ul.checked-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375em;
+}
+
+.prose ul.checked-list li::before {
+    content: '✓';
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.prose blockquote {
+    border-inline-start-width: .25rem;
+    border-inline-start-color: #d8d3d4;
+    padding-inline-start: calc(var(--spacing) * 4);
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.prose p,
+.list p {
+    min-height: 8px;
+    /* font-family: "SF-Pro-Display-Regular" !important; */
+    margin-top: 7px !important;
+    margin-bottom: 7px !important;
+    color: #000;
+}
+
+.prose a {
+    /* color: #e17100 */
+    text-decoration: underline;
+}
+
+.prose h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.prose h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* .prose h3 {
+    font-family: 'Inter Regular', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+} */
+
+/* Стили для сетки из Rich Editor */
+.grid-layout {
+    display: grid;
+    gap: 1.5rem;
+    /* Настройте отступ под ваш дизайн */
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    /* По умолчанию 1 колонка (mobile first) */
+
+    /* Активируем сетку из переменной только при достижении брейкпоинта lg */
+    &[data-from-breakpoint="lg"] {
+        @media (width >=theme(--breakpoint-lg)) {
+            grid-template-columns: var(--cols);
+        }
+    }
+}
+
+/* 
+.grid-layout {
+    margin-bottom: 1.5rem;
+} */
+
+.grid-layout-col {
+    /* Используем переменную для объединения колонок */
+    grid-column: var(--col-span);
+    height: 100%;
+}
+
+.prose .grid-layout>.grid-layout-col>p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.prose .grid-layout-col {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.prose table {
+    border-collapse: collapse;
+    overflow: hidden;
+    width: 100% !important;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.prose table td,
+table th {
+    border: 1px solid theme("colors.gray.400");
+    min-width: 1em;
+    padding: 3px 5px;
+    vertical-align: top;
+    background-clip: padding-box
+}
+
+.prose table td>*,
+table th>* {
+    margin-bottom: 0;
+}
+
+.prose table th {
+    background-color: theme("colors.gray.200");
+    color: theme("colors.gray.700");
+    font-weight: 700;
+    text-align: left;
+}
+
+.prose table .selectedCell {
+    position: relative;
+}
+
+.prose table .selectedCell:after {
+    background: rgba(200, 200, 255, 0.4);
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+}
+
+.prose table .column-resize-handle {
+    background-color: #adf;
+    bottom: -2px;
+    position: absolute;
+    right: -2px;
+    pointer-events: none;
+    top: 0;
+    width: 4px;
+}
+
+.prose table p {
+    margin: 0;
+}
+
+.prose h1 {
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Inter' !important;
+}
+
+blockquote {
+    background-color: #f0f2f5;
+    border-radius: 1.5rem;
+    padding: 25px;
+}
+
+.card h3 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+    font-family: 'Inter Regular', sans-serif;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    line-height: 1.2 !important;
+}
+
+.not-prose ul {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.not-prose ul li {
+    opacity: 60%;
+}
+
+.not-prose p {
+    padding: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.ornament-card h2 {
+    margin-bottom: 0 !important;
+}
+
+[style*="--color"] {
+    color: var(--color);
+}
+
+.dark [style*="--dark-color"] {
+    color: var(--dark-color);
+}
+
+.prose h6 {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.prose h4 {
+    font-family: "Inter Medium";
+}
