@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AnimatedNumbersBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ColoredBackgroundBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ContactBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumCardBlock;
@@ -150,6 +151,7 @@ class Page extends Model
                 CurriculumResultBlock::class,
                 ColoredBackgroundBlock::class,
                 FixedButtonBlock::class,
+                BookAccordionBlock::class,
             ]);
 
         $this->registerRichContent('content_ru')
@@ -170,6 +172,7 @@ class Page extends Model
                 CurriculumResultBlock::class,
                 ColoredBackgroundBlock::class,
                 FixedButtonBlock::class,
+                BookAccordionBlock::class,
             ]);
 
         $this->registerRichContent('content_en')
@@ -190,6 +193,7 @@ class Page extends Model
                 CurriculumResultBlock::class,
                 ColoredBackgroundBlock::class,
                 FixedButtonBlock::class,
+                BookAccordionBlock::class,
             ]);
     }
 

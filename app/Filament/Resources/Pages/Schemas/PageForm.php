@@ -18,6 +18,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderB
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Models\Menu;
 use App\Models\Page;
 use Filament\Forms\Components\RichEditor;
@@ -82,6 +83,7 @@ class PageForm
                                                 CurriculumResultBlock::class,
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
+                                                BookAccordionBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -124,6 +126,7 @@ class PageForm
                                                 CurriculumResultBlock::class,
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
+                                                BookAccordionBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -168,6 +171,7 @@ class PageForm
                                                 CurriculumResultBlock::class,
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
+                                                BookAccordionBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
