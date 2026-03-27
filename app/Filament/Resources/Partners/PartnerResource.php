@@ -9,10 +9,12 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -21,6 +23,13 @@ class PartnerResource extends Resource
     protected static ?string $model = Partner::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?int $navigationSort = 7;
+
+    protected static ?string $navigationLabel = 'Партнеры';
+
+    protected static ?string $modelLabel = 'Партнер';
+
+    protected static ?string $pluralModelLabel = 'Партнеры';
 
     protected static ?string $recordTitleAttribute = 'link';
 
@@ -28,9 +37,15 @@ class PartnerResource extends Resource
     {
         return $schema
             ->components([
-                TextInput::make('logo')
-                    ->required(),
-                TextInput::make('link'),
+                TextInput::make('link')
+                    ->label('Ссылка')
+                    ->maxLength(255)
+                    ->columnSpanFull(),
+                FileUpload::make('logo')
+                    ->label('Логотип')
+                    ->required()
+                    ->disk('public')
+                    ->directory('partners_logo'),
             ]);
     }
 
@@ -39,10 +54,15 @@ class PartnerResource extends Resource
         return $table
             ->recordTitleAttribute('link')
             ->columns([
-                TextColumn::make('logo')
+                ImageColumn::make('logo')
+                    ->label('Логотип')
+                    ->disk('public')
                     ->searchable(),
                 TextColumn::make('link')
-                    ->searchable(),
+                    ->label('Ссылка')
+                    ->url(function (Partner $partner) {
+                        return $partner->link ?? '#';
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

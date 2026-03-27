@@ -14,10 +14,21 @@ class Role extends Model
      *
      * @var list<string>
      */
-    protected $fillable = ['name','guard_name'];
+    protected $fillable = ['name', 'guard_name'];
 
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class,'role_has_permissions');
+        return $this->belongsToMany(Permission::class, 'role_has_permissions');
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($role) {
+            if (empty($role->guard_name)) {
+                $role->guard_name = 'web';
+            }
+        });
     }
 }

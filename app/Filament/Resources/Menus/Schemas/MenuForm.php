@@ -40,12 +40,15 @@ class MenuForm
                             ->default(0)
                             ->required(),
                         TextInput::make('title_kk')
+                            ->label('Название(kk)')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('title_ru')
+                            ->label('Название(ru)')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('title_en')
+                            ->label('Название(en)')
                             ->required()
                             ->maxLength(255)
                             ->reactive()
@@ -59,10 +62,13 @@ class MenuForm
                             'lg' => 3,
                         ])->schema([
                                     TextInput::make('link_kk')
+                                        ->label('Ссылка(kk)')
                                         ->maxLength(255),
                                     TextInput::make('link_ru')
+                                        ->label('Ссылка(ru)')
                                         ->maxLength(255),
                                     TextInput::make('link_en')
+                                        ->label('Ссылка(en)')
                                         ->maxLength(255),
                                 ]),
                         Grid::make([
@@ -79,18 +85,16 @@ class MenuForm
                                         ->default(false),
                                 ]),
                         TextInput::make('sort')
+                            ->label('Позиция')
                             ->required()
                             ->numeric()
                             ->default(0),
                         Select::make('parent_id')
+                            ->label('Родитель')
                             ->options(Menu::query()->pluck('title_ru', 'id'))
                             ->searchable(),
                         Toggle::make('active')
                             ->default(1),
-                        Toggle::make('is_product')
-                            ->default(false),
-                        Toggle::make('is_alumni')
-                            ->default(false),
 
                     ])->columnSpan(8),
 

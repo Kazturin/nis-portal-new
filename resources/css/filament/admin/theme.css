@@ -1,0 +1,56 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+.fi-sidebar {
+    background-color: #2e363e !important;
+}
+
+.fi-sidebar-item.fi-active>.fi-sidebar-item-btn {
+    background-color: #80C342 !important;
+}
+
+.fi-sidebar-item>.fi-sidebar-item-btn:hover {
+    background-color: #80C342 !important;
+}
+
+.fi-sidebar-item-icon {
+    color: white;
+}
+
+.fi-sidebar-item-label {
+    color: white;
+}
+
+.fi-sidebar-group-label {
+    color: gray !important;
+}
+
+.fi-logo {
+    color: amber !important;
+}
+
+.fi-ta-text-item {
+    white-space: normal;
+}
+
+.fi-sidebar-item.fi-active>.fi-sidebar-item-btn>.fi-sidebar-item-label {
+    color: #ffffff !important;
+}
+
+.fi-sidebar-item.fi-active>.fi-sidebar-item-btn>.fi-icon {
+    color: #ffffff !important;
+}
+
+.w-4 {
+    width: 1rem;
+}
+
+.h-4 {
+    height: 1rem;
+}
+
+.text-green-500 {
+    color: rgb(75, 135, 15);
+}

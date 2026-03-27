@@ -4,8 +4,8 @@ services:
             context: .
             dockerfile: Dockerfile
             target: production
-        image: robotics-app:${APP_VERSION:-latest}
-        container_name: robotics-app
+        image: nis-app:${APP_VERSION:-latest}
+        container_name: nis-app
         restart: unless-stopped
         ports:
             - "8000:8000"
@@ -56,11 +56,11 @@ services:
 
     db:
         image: mysql:8.4
-        container_name: robotics-db
+        container_name: nis-db
         restart: unless-stopped
         environment:
-            MYSQL_DATABASE: ${DB_DATABASE:-robotics_prod}
-            MYSQL_USER: ${DB_USERNAME:-robotics_user}
+            MYSQL_DATABASE: ${DB_DATABASE:-nis_prod}
+            MYSQL_USER: ${DB_USERNAME:-nis_user}
             MYSQL_PASSWORD: ${DB_PASSWORD}
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-${DB_PASSWORD}}
 
@@ -91,7 +91,7 @@ services:
 
     redis:
         image: redis:7-alpine
-        container_name: robotics-redis
+        container_name: nis-redis
         restart: unless-stopped
         command: redis-server --appendonly yes
         volumes:
@@ -120,16 +120,16 @@ services:
 networks:
     backend:
         driver: bridge
-        name: robotics-network
+        name: nis-network
 
 volumes:
     db_data:
         driver: local
-        name: robotics-db-data
+        name: nis-db-data
     redis_data:
         driver: local
-        name: robotics-redis-data
+        name: nis-redis-data
     caddy_data:
-        name: robotics-caddy-data
+        name: nis-caddy-data
     caddy_config:
-        name: robotics-caddy-config
+        name: nis-caddy-config

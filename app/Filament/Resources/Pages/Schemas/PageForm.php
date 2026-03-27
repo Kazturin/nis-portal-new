@@ -9,6 +9,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ContactBloc
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumResultBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\EducationLevelsBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FixedButtonBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FullSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\GallerySliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HorizontalCardBlock;
@@ -79,15 +80,17 @@ class PageForm
                                                 EducationLevelsBlock::class,
                                                 CurriculumCardBlock::class,
                                                 CurriculumResultBlock::class,
-                                                ColoredBackgroundBlock::class
+                                                ColoredBackgroundBlock::class,
+                                                FixedButtonBlock::class,
                                             ])
                                             ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
+                                            ->customTextColors()
                                             ->fileAttachmentsDisk('public')
                                             ->fileAttachmentsDirectory('pages/content/attachments')
                                             ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp'])
@@ -119,15 +122,17 @@ class PageForm
                                                 EducationLevelsBlock::class,
                                                 CurriculumCardBlock::class,
                                                 CurriculumResultBlock::class,
-                                                ColoredBackgroundBlock::class
+                                                ColoredBackgroundBlock::class,
+                                                FixedButtonBlock::class,
                                             ])
                                             ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
+                                            ->customTextColors()
                                             ->fileAttachmentsDisk('public')
                                             ->fileAttachmentsDirectory('pages/content/attachments')
                                             ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp'])
@@ -161,15 +166,17 @@ class PageForm
                                                 EducationLevelsBlock::class,
                                                 CurriculumCardBlock::class,
                                                 CurriculumResultBlock::class,
-                                                ColoredBackgroundBlock::class
+                                                ColoredBackgroundBlock::class,
+                                                FixedButtonBlock::class,
                                             ])
                                             ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
+                                            ->customTextColors()
                                             ->fileAttachmentsDisk('public')
                                             ->fileAttachmentsDirectory('pages/content/attachments')
                                             ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp'])

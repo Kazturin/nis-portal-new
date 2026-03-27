@@ -269,8 +269,13 @@ details img {
 }
 
 .prose .grid-layout-col {
-    margin-top: auto;
-    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    /* display: flex;
+    align-items: center;
+    flex-direction: column; */
 }
 
 .prose table {

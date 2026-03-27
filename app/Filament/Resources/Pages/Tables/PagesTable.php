@@ -18,15 +18,20 @@ class PagesTable
         return $table
             ->columns([
                 TextColumn::make('title_ru')
+                    ->label('Название')
                     ->searchable(),
                 TextColumn::make('slug')
+                    ->label('Ссылка')
                     ->url(fn(Page $record): string => route('page', ['locale' => app()->getLocale(), 'page' => $record])),
                 TextColumn::make('menu.title_ru')
+                    ->label('Меню')
                     ->searchable()
                     ->sortable(),
                 IconColumn::make('active')
+                    ->label('Активен')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Создан')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -34,11 +39,11 @@ class PagesTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_by')
-                    ->numeric()
+                TextColumn::make('creator.name')
+                    ->label('Создал')
                     ->sortable(),
-                TextColumn::make('updated_by')
-                    ->numeric()
+                TextColumn::make('edited.name')
+                    ->label('Обновил')
                     ->sortable(),
             ])
             ->filters([

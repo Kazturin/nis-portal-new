@@ -17,10 +17,13 @@ class ProductsTable
         return $table
             ->columns([
                 TextColumn::make('title_kk')
+                    ->label('Название')
                     ->searchable(),
                 TextColumn::make('slug')
+                    ->label('Ссылка')
                     ->searchable(),
                 IconColumn::make('active')
+                    ->label('Активен')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -30,9 +33,6 @@ class ProductsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('menu_id')
-                    ->numeric()
-                    ->sortable(),
             ])
             ->filters([
                 //

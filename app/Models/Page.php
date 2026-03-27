@@ -8,6 +8,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ContactBloc
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumResultBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\EducationLevelsBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FixedButtonBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FullSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\GallerySliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HorizontalCardBlock;
@@ -147,7 +148,8 @@ class Page extends Model
                 EducationLevelsBlock::class,
                 CurriculumCardBlock::class,
                 CurriculumResultBlock::class,
-                ColoredBackgroundBlock::class
+                ColoredBackgroundBlock::class,
+                FixedButtonBlock::class,
             ]);
 
         $this->registerRichContent('content_ru')
@@ -166,7 +168,8 @@ class Page extends Model
                 EducationLevelsBlock::class,
                 CurriculumCardBlock::class,
                 CurriculumResultBlock::class,
-                ColoredBackgroundBlock::class
+                ColoredBackgroundBlock::class,
+                FixedButtonBlock::class,
             ]);
 
         $this->registerRichContent('content_en')
@@ -185,7 +188,8 @@ class Page extends Model
                 EducationLevelsBlock::class,
                 CurriculumCardBlock::class,
                 CurriculumResultBlock::class,
-                ColoredBackgroundBlock::class
+                ColoredBackgroundBlock::class,
+                FixedButtonBlock::class,
             ]);
     }
 

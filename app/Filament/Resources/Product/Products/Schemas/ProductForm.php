@@ -44,9 +44,11 @@ class ProductForm
                                     ->schema([
                                         static::getCopyActions("kk"),
                                         TextInput::make('title_kk')
+                                            ->label('Название')
                                             ->required()
                                             ->maxLength(255),
                                         RichEditor::make('content_kk')
+                                            ->label('Контент')
                                             ->required()
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -79,9 +81,11 @@ class ProductForm
                                     ->schema([
                                         static::getCopyActions("ru"),
                                         TextInput::make('title_ru')
+                                            ->label('Название')
                                             ->required()
                                             ->maxLength(255),
                                         RichEditor::make('content_ru')
+                                            ->label('Контент')
                                             ->required()
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -114,8 +118,10 @@ class ProductForm
                                     ->schema([
                                         static::getCopyActions("en"),
                                         TextInput::make('title_en')
+                                            ->label('Название')
                                             ->maxLength(255),
                                         RichEditor::make('content_en')
+                                            ->label('Контент')
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'alignStart', 'alignCenter', 'alignEnd'],

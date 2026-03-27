@@ -16,13 +16,14 @@ class MenusTable
         return $table
             ->columns([
                 TextColumn::make('title_ru')
+                    ->label('Название')
                     ->searchable(),
-                TextColumn::make('slug'),
-                TextColumn::make('link'),
+                TextColumn::make('link_ru')
+                    ->label('Ссылка'),
                 TextColumn::make('sort')
-                    ->label('Position'),
+                    ->label('Позиция'),
                 TextColumn::make('parent.title_ru')
-                    ->label('Parent'),
+                    ->label('Родитель'),
                 IconColumn::make('active')
                     ->boolean(),
             ])

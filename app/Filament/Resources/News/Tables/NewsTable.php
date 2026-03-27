@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\News\Tables;
 
+use App\Models\News;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,22 +18,18 @@ class NewsTable
     {
         return $table
             ->columns([
-                TextColumn::make('title_kk')
-                    ->searchable(),
+                ImageColumn::make('thumbnail')
+                    ->label('Картинка'),
                 TextColumn::make('title_ru')
-                    ->searchable(),
-                TextColumn::make('title_en')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                TextColumn::make('thumbnail')
-                    ->searchable(),
-                TextColumn::make('meta_title')
+                    ->url(fn(News $record): string => route('news.show', ['locale' => 'ru', 'news' => $record]))
+                    ->label('Заголовок')
                     ->searchable(),
                 TextColumn::make('published_at')
-                    ->dateTime()
+                    ->label('Дата')
+                    ->dateTime('d.m.Y H:i')
                     ->sortable(),
                 IconColumn::make('active')
+                    ->label('Активный')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()

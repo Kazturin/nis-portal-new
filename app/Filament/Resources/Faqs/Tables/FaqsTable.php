@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Filament\Resources\TextWidgets\Tables;
+namespace App\Filament\Resources\Faqs\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class TextWidgetsTable
+class FaqsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('key')
+                TextColumn::make('language')
+                    ->label('Язык')
                     ->searchable(),
-                TextColumn::make('title_kk')
-                    ->label('Название')
+                TextColumn::make('question')
+                    ->label('Вопрос')
                     ->searchable(),
-                IconColumn::make('active')
-                    ->label('Активен')
-                    ->boolean(),
+                TextColumn::make('sort')
+                    ->label('Сортировка')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Создан')
                     ->dateTime()
@@ -39,7 +39,6 @@ class TextWidgetsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

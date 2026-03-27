@@ -21,6 +21,13 @@ class NewsResource extends Resource
     protected static ?string $model = News::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?int $navigationSort = 3;
+
+    protected static ?string $navigationLabel = 'Новости';
+
+    protected static ?string $modelLabel = 'Новость';
+
+    protected static ?string $pluralModelLabel = 'Новости';
 
     protected static ?string $recordTitleAttribute = 'title_kk';
 

@@ -19,6 +19,25 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Админ';
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Пользователи';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Пользователи';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Пользователь';
+    }
 
     protected static ?string $recordTitleAttribute = 'name';
 

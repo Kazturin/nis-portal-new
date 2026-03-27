@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Roles;
 
+use App\Enums\RolesEnum;
 use App\Filament\Resources\Roles\Pages\ManageRoles;
 use App\Models\Role;
 use BackedEnum;
@@ -9,6 +10,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -24,13 +26,34 @@ class RoleResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Админ';
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Роли';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Роли';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Роль';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('guard_name')
+                Select::make('name')
+                    ->label('Название')
+                    ->unique(ignoreRecord: true)
+                    ->options(RolesEnum::class)
                     ->required(),
             ]);
     }
@@ -41,14 +64,15 @@ class RoleResource extends Resource
             ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('guard_name')
+                    ->label('Название')
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Создан')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Обновлен')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
