@@ -51,7 +51,13 @@ class NewsController extends Controller
             ->limit(1)
             ->first();
 
+        $metaTitle = $news->meta_title ?: $news->{'title_' . app()->getLocale()};
+        $metaDescription = $news->meta_description ?: $news->shortBody(40);
+        $metaImage = $news->getPhoto();
 
-        return view('news.show', compact('news', 'prev', 'next'));
+        $locale = app()->getLocale();
+
+
+        return view('news.show', compact('news', 'prev', 'next', 'metaTitle', 'metaDescription', 'metaImage', 'locale'));
     }
 }

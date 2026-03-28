@@ -1,4 +1,4 @@
-<x-layout  :meta-title="$news->meta_title ?: $news->{'title_' . app()->getLocale()}" :meta-description="$news->description" :meta-image="$news->getPhoto()">
+<x-layout  :meta-title="$metaTitle" :meta-description="$metaDescription" :meta-image="$metaImage">
     
     <div class="container mx-auto px-4 mb-20">
     <div class="mb-8">
@@ -14,7 +14,7 @@
                             </a>
                         </li>
                         <li class="mb-2">
-                            <a href="{{ route('news',app()->getLocale()) }}"
+                            <a href="{{ route('news',$locale) }}"
                                 class="px-5 py-1 block w-fit hover:bg-secondary hover:rounded-3xl rounded-3xl">
                                 {{__("News")}}
                             </a>
@@ -22,7 +22,7 @@
                     </ul>
                 </div>
             <div class="lg:col-span-3 animate-fade-in-right">
-                 <h1 class="font-inter text-4xl mb-10">{{ $news->{'title_' . app()->getLocale()} }}</h1>
+                 <h1 class="font-inter text-4xl mb-10">{{ $news->{'title_' . $locale} }}</h1>
                     <div class="my-4">
                         <img class="w-full rounded-3xl" src="{{ $news->getPhoto() }}" alt="news">
                     </div>
@@ -36,7 +36,7 @@
                 </div>
 
                     <div class="tiptap-content font-sf text-xl">
-                        {!! $news->{'content_'.app()->getLocale()} !!}
+                        {!! $news->{'content_'.$locale} !!}
                     </div>
 
                     <div class="flex items-center gap-4 py-8 border-t border-gray-100 mt-10">
@@ -102,7 +102,7 @@
                                 <i class="fas fa-arrow-left pr-1"></i>
                                 {!!'&laquo; '.__("Next")!!}
                             </p>
-                            <p class="pt-2">{{\Illuminate\Support\Str::words($prev->{'title_'.app()->getLocale()}, 10)}}</p>
+                            <p class="pt-2">{{\Illuminate\Support\Str::words($prev->{'title_'.$locale}, 10)}}</p>
                         </a>
                     @endif
                 </div>
@@ -114,7 +114,7 @@
                                 <i
                                     class="fas fa-arrow-right pl-1"></i></p>
                             <p class="pt-2">
-                                {{\Illuminate\Support\Str::words($next->{'title_'.app()->getLocale()}, 10)}}
+                                {{\Illuminate\Support\Str::words($next->{'title_'.$locale}, 10)}}
                             </p>
                         </a>
                     @endif
