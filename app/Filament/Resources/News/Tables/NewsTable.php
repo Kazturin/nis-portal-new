@@ -32,6 +32,8 @@ class NewsTable
                 IconColumn::make('active')
                     ->label('Активный')
                     ->boolean(),
+                TextColumn::make('views')
+                    ->label('Просмотры'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -40,9 +42,6 @@ class NewsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('category_id')
-                    ->numeric()
-                    ->sortable(),
             ])
             ->filters([
                 //

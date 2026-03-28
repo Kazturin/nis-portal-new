@@ -118,8 +118,8 @@ class NewsForm
                         FileUpload::make('thumbnail')
                             ->image()
                             ->imageEditor()
-                            ->imageEditorViewportWidth('1920')
-                            ->imageEditorViewportHeight('1080')
+                            ->imageEditorViewportWidth(1920)
+                            ->imageEditorViewportHeight(1080)
                             ->directory('news')
                             ->disk('public')
                             ->label('Картинка'),

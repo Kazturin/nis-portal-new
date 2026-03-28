@@ -27,7 +27,14 @@
                         <img class="w-full rounded-3xl" src="{{ $news->getPhoto() }}" alt="news">
                     </div>
                 <div class="mb-10">
-                <p class="font-sf opacity-60 text-sm">{{ $news->getFormattedDate() }}</p>
+                <div class="flex items-center mb-2 text-gray-500 text-sm">
+                    <span>{{ $news->getFormattedDate() }}</span> <span class="mx-2">|</span> 
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <x-icon.eye class="w-4 h-4 mr-1" />
+                        <span>{{ $news->views }}</span>
+                    </div>
+                </div>
+
                     <div class="tiptap-content font-sf text-xl">
                         {!! $news->{'content_'.app()->getLocale()} !!}
                     </div>

@@ -25,7 +25,8 @@ class News extends Model
         'meta_description',
         'published_at',
         'active',
-        'gallery'
+        'gallery',
+        'views'
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -42,39 +43,39 @@ class News extends Model
 
     public function getFormattedDate()
     {
-        return $this->published_at?$this->published_at->locale(app()->getLocale(),'kk')->translatedFormat('d F Y'):'';
+        return $this->published_at ? $this->published_at->locale(app()->getLocale(), 'kk')->translatedFormat('d F Y') : '';
     }
 
-    public function getPhoto(){
-        if($this->thumbnail){
-           return '/storage/'. (string)$this->thumbnail;
+    public function getPhoto()
+    {
+        if ($this->thumbnail) {
+            return '/storage/' . (string) $this->thumbnail;
         }
         return '/img/no_image.webp';
     }
 
     public function getUrl()
     {
-        return route('news.show',['locale'=>app()->getLocale(),'news'=>$this]);
+        return route('news.show', ['locale' => app()->getLocale(), 'news' => $this]);
     }
 
     public function shortTitle($limit = 100): string
     {
-        if($this->{'title_'.app()->getLocale()})
-        {
-             return Str::limit($this->{'title_'.app()->getLocale()},$limit);
+        if ($this->{'title_' . app()->getLocale()}) {
+            return Str::limit($this->{'title_' . app()->getLocale()}, $limit);
         }
         return '';
     }
 
-    public function category(){
-        return $this->belongsTo(NewsCategory::class,'category_id','id');
+    public function category()
+    {
+        return $this->belongsTo(NewsCategory::class, 'category_id', 'id');
     }
 
     public function shortBody($words = 30): string
     {
-        if($this->{'content_'.app()->getLocale()})
-        {
-            return Str::words(strip_tags($this->{'content_'.app()->getLocale()}), $words);
+        if ($this->{'content_' . app()->getLocale()}) {
+            return Str::words(strip_tags($this->{'content_' . app()->getLocale()}), $words);
         }
         return '';
     }
@@ -85,19 +86,19 @@ class News extends Model
     }
     public function getUrlAttribute()
     {
-        return route('news.show', ['locale'=>app()->getLocale(),'news' => $this->slug]);
+        return route('news.show', ['locale' => app()->getLocale(), 'news' => $this->slug]);
     }
 
     protected static function boot()
     {
         parent::boot();
- 
+
         static::created(function () {
             Cache::forget('news_homepage_kk');
             Cache::forget('news_homepage_ru');
             Cache::forget('news_homepage_en');
         });
- 
+
         static::updated(function () {
             Cache::forget('news_homepage_kk');
             Cache::forget('news_homepage_ru');
