@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class TextWidget extends Model
 {
+    use InvalidatesHomepageCache;
     protected $fillable = [
         'key',
         'title_kk',
@@ -25,14 +27,17 @@ class TextWidget extends Model
  
         static::created(function ($textWidget) {
             Cache::forget($textWidget->key);
+            self::invalidateHomepageHtml();
         });
  
         static::updated(function ($textWidget) {
             Cache::forget($textWidget->key);
+            self::invalidateHomepageHtml();
         });
 
         static::deleted(function ($textWidget) {
             Cache::forget($textWidget->key);
+            self::invalidateHomepageHtml();
         });
     }
 }

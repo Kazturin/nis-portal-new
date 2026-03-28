@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Page;
 use App\Models\Product\Product;
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Menu extends Model
 {
-    use HasSlug;
+    use HasSlug, InvalidatesHomepageCache;
 
     const POSITION_HEADER = 0;
     const POSITION_FOOTER = 1;
@@ -108,14 +109,15 @@ class Menu extends Model
                 Cache::forget('footer_menu');
             }
             Cache::forget('menu');
+            self::invalidateHomepageHtml();
         });
 
         static::updated(function ($model) {
-
             if ($model->position === self::POSITION_FOOTER) {
                 Cache::forget('footer_menu');
             }
             Cache::forget('menu');
+            self::invalidateHomepageHtml();
         });
 
         static::deleted(function ($model) {
@@ -123,6 +125,7 @@ class Menu extends Model
                 Cache::forget('footer_menu');
             }
             Cache::forget('menu');
+            self::invalidateHomepageHtml();
         });
     }
 

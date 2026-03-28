@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class Partner extends Model
 {
+    use InvalidatesHomepageCache;
     protected $fillable = [
         "logo",
         "link",
@@ -23,14 +25,17 @@ class Partner extends Model
  
         static::created(function () {
             Cache::forget('partners');
+            self::invalidateHomepageHtml();
         });
  
         static::updated(function () {
             Cache::forget('partners');
+            self::invalidateHomepageHtml();
         });
 
         static::deleted(function () {
             Cache::forget('partners');
+            self::invalidateHomepageHtml();
         });
     }
 }

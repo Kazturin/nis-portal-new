@@ -3,10 +3,9 @@
         worker /var/www/public/frankenphp-worker.php {$MAX_WORKERS:16}
     }
     order php_server before file_server
-    auto_https off
 }
 
-:8000 {
+{$SERVER_NAME:localhost} {
     log {
         output stdout
     }

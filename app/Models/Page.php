@@ -19,6 +19,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCar
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock;
 use App\Models\Alumni\AlumniNews;
+use App\Traits\InvalidatesHomepageCache;
 use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +36,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Page extends Model
 {
-    use HasSlug;
+    use HasSlug, InvalidatesHomepageCache;
     use InteractsWithRichContent;
     protected $fillable = [
         'title_kk',
@@ -209,13 +210,16 @@ class Page extends Model
 
         static::created(function () {
             Cache::forget('menu');
+            self::invalidateHomepageHtml();
         });
 
         static::updated(function () {
             Cache::forget('menu');
+            self::invalidateHomepageHtml();
         });
         static::deleted(function () {
             Cache::forget('menu');
+            self::invalidateHomepageHtml();
         });
     }
 }

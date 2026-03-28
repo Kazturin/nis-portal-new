@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class Advantage extends Model
 {
+    use InvalidatesHomepageCache;
     public $timestamps = false;
     protected $fillable = [
         'title_kk',
@@ -37,18 +39,21 @@ class Advantage extends Model
             Cache::forget('advantages_kk');
             Cache::forget('advantages_ru');
             Cache::forget('advantages_en');
+            self::invalidateHomepageHtml();
         });
  
         static::updated(function () {
             Cache::forget('advantages_kk');
             Cache::forget('advantages_ru');
             Cache::forget('advantages_en');
+            self::invalidateHomepageHtml();
         });
 
         static::deleted(function () {
             Cache::forget('advantages_kk');
             Cache::forget('advantages_ru');
             Cache::forget('advantages_en');
+            self::invalidateHomepageHtml();
         });
     }
     

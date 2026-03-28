@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class Ad extends Model
 {
+    use InvalidatesHomepageCache;
     protected $fillable = [
         'banner_ru',
         'banner_kk',
@@ -40,14 +42,17 @@ class Ad extends Model
  
         static::created(function () {
             Cache::forget('ads');
+            self::invalidateHomepageHtml();
         });
  
         static::updated(function () {
             Cache::forget('ads');
+            self::invalidateHomepageHtml();
         });
 
         static::deleted(function () {
             Cache::forget('ads');
+            self::invalidateHomepageHtml();
         });
     }
 }

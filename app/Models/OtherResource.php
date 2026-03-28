@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class OtherResource extends Model
 {
+    use InvalidatesHomepageCache;
     protected $fillable = [
         'title_kk',
         'title_ru',
@@ -35,14 +37,17 @@ class OtherResource extends Model
  
         static::created(function () {
             Cache::forget('resources');
+            self::invalidateHomepageHtml();
         });
  
         static::updated(function () {
             Cache::forget('resources');
+            self::invalidateHomepageHtml();
         });
 
         static::deleted(function () {
             Cache::forget('resources');
+            self::invalidateHomepageHtml();
         });
     }
 }

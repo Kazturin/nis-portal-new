@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -10,7 +11,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class News extends Model
 {
-    use HasSlug;
+    use HasSlug, InvalidatesHomepageCache;
     protected $fillable = [
         'category_id',
         'title_kk',
@@ -97,12 +98,14 @@ class News extends Model
             Cache::forget('news_homepage_kk');
             Cache::forget('news_homepage_ru');
             Cache::forget('news_homepage_en');
+            self::invalidateHomepageHtml();
         });
 
         static::updated(function () {
             Cache::forget('news_homepage_kk');
             Cache::forget('news_homepage_ru');
             Cache::forget('news_homepage_en');
+            self::invalidateHomepageHtml();
         });
     }
 }
