@@ -30,5 +30,4 @@ x-data="{ shown: false }"
                         {{ $news->links() }}
                     </div>
                 </div>
-       
         </div>

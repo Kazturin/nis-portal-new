@@ -1,6 +1,6 @@
 @props([
  'gallery',
-    'title'=>''
+ 'title'=>''
 ])
 <div x-data="{
     isModalOpen: false,

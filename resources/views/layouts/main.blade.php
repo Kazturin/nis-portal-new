@@ -9,7 +9,7 @@
     <meta name="description" content="{{ $metaDescription?:__("site.app_description") }}">
     <meta property="og:title" content="{{ $metaTitle?: ''}}">
     <meta property="og:description" content="{{ $metaDescription?:__("site.app_description") }}">
-    <meta property="og:image" content="/img/not_photo.png">
+    <meta property="og:image" content="{{ $metaImage ?: '/img/not_photo.png' }}">
     <link rel="stylesheet" href="{{ asset("css/bvi/bvi.min.css") }}">
     <link rel="stylesheet" href="{{ asset("/css/swiper-bundle.min.css") }}">
    

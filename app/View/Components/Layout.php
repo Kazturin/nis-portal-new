@@ -29,7 +29,7 @@ class Layout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public ?string $metaTitle = null, public ?string $metaDescription = null)
+    public function __construct(public ?string $metaTitle = null, public ?string $metaDescription = null, public ?string $metaImage = null)
     {
         $this->menu = Cache::remember('menu', now()->addDays(1), function() {
             return Menu::with(['page','children' => function($q){

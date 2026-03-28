@@ -19,7 +19,8 @@ class NewsTable
         return $table
             ->columns([
                 ImageColumn::make('thumbnail')
-                    ->label('Картинка'),
+                    ->label('Картинка')
+                    ->disk('public'),
                 TextColumn::make('title_ru')
                     ->url(fn(News $record): string => route('news.show', ['locale' => 'ru', 'news' => $record]))
                     ->label('Заголовок')
@@ -54,6 +55,6 @@ class NewsTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('published_at', 'desc');
     }
 }

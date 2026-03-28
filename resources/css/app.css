@@ -351,6 +351,8 @@ blockquote {
     background-color: #f0f2f5;
     border-radius: 1.5rem;
     padding: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .card h3 {
@@ -408,4 +410,18 @@ blockquote {
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.swiper-pagination-bullet-active {
+    background: #80C342 !important;
+}
+
+.news .swiper-pagination {
+    width: fit-content;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
