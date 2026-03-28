@@ -400,3 +400,12 @@ blockquote {
 .prose h4 {
     font-family: "Inter Medium";
 }
+
+.prose details {
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

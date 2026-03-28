@@ -9,7 +9,7 @@
         }
     @endphp
     <div class="book-accordion-wrapper w-full mb-8" x-data="{ activeBook: {{ $defaultActive }} }">
-        <div class="bg-[#F0F2F5] p-6 md:p-10 rounded-[32px] w-full shadow-inner">
+        <div class="bg-[#F0F2F5] p-6 md:p-10 rounded-[32px] w-full shadow-inner ove overflow-y-auto lg:overflow-hidden">
             <div class="flex flex-row gap-4 min-w-max items-stretch h-[320px] md:h-[400px]">
                 @foreach ($books as $index => $book)
                     <div 

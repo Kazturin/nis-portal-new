@@ -3,7 +3,7 @@
 <div>
     <div>
         @foreach ($files as $file)
-            <div class="flex border-t py-6">
+            <div class="flex border-t border-gray-300 py-6">
                 <div class="shrink-0">
                     <img class="w-36" src="{{ $file->getThumbnail() }}" alt="docs">
                 </div>
@@ -22,28 +22,25 @@
 
                     @if ($link)
                         <div class="font-sf text-xl my-4">
-                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]" 
-                               href="{{ $link }}" 
-                               target="_blank">
+                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
+                                href="{{ $link }}" target="_blank">
                                 {{ __("View online") }}
                             </a>
                         </div>
                     @elseif ($filesLocale)
                         <div class="font-sf text-xl my-4">
                             @if ($hasMultipleFiles)
-                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]" 
-                                   href="{{ route('files', ['locale' => app()->getLocale(), 'pageFile' => $file]) }}">
+                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
+                                    href="{{ route('files', ['locale' => app()->getLocale(), 'pageFile' => $file]) }}">
                                     {{ __("More") }}
                                 </a>
                             @else
-                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px] mr-2" 
-                                   href="/storage/{{ $firstFile }}" 
-                                   target="_blank">
+                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px] mr-2"
+                                    href="/storage/{{ $firstFile }}" target="_blank">
                                     {{ __("View online") }}
                                 </a>
-                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]" 
-                                   href="/storage/{{ $firstFile }}" 
-                                   download>
+                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
+                                    href="/storage/{{ $firstFile }}" download>
                                     {{ __("Download") }}
                                 </a>
                             @endif

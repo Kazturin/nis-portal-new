@@ -1,4 +1,4 @@
-<div class="not-prose mb-12 w-full">
+<div class="not-prose mb-12 w-full hidden lg:block">
     <div class="flex flex-wrap items-end justify-center gap-6 md:gap-8 overflow-x-auto pb-4">
         @foreach($items as $index => $item)
             @php
