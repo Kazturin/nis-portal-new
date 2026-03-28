@@ -64,7 +64,7 @@ COPY . .
 
 COPY --from=frontend_builder /app/public/build ./public/build
 
-COPY docker/frankenphp/Caddyfile /etc/frankenphp/Caddyfile
+# COPY docker/frankenphp/Caddyfile /etc/frankenphp/Caddyfile
 
 RUN if [ ! -f public/frankenphp-worker.php ]; then \
     php artisan octane:install --server=frankenphp --force; \
@@ -94,4 +94,4 @@ RUN rm -rf \
 
 EXPOSE 8000
 
-ENTRYPOINT ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile", "--adapter", "caddyfile"]
+ENTRYPOINT ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000", "--workers=4", "--max-requests=5000"]
