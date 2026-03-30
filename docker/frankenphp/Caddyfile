@@ -1,8 +1,12 @@
 {
     frankenphp {
-        worker /var/www/public/frankenphp-worker.php {$MAX_WORKERS:16}
+        worker /var/www/public/frankenphp-worker.php
     }
     order php_server before file_server
+}
+
+nis.edu.kz {
+    redir https://www.nis.edu.kz{uri} permanent
 }
 
 {$SERVER_NAME:localhost} {
@@ -40,6 +44,10 @@
 
     handle {
         root * /var/www/public
-        php_server
+        try_files {path} /frankenphp-worker.php?{query}
+        
+        php_server {
+            resolve_root_symlink false 
+        }
     }
 }

@@ -8,7 +8,9 @@ services:
         container_name: nis-app
         restart: unless-stopped
         ports:
-            - "8000:8000"
+            - "80:80"
+            - "443:443"
+            - "443:443/udp"
         env_file:
             - .env
         environment:

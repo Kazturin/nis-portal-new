@@ -70,7 +70,7 @@
                 <svg class="w-3 h-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span>{{ __('Назад') }}</span>
+                <span>{{ __('Back') }}</span>
             </a>
         </div>
         <ul>

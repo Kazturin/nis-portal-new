@@ -32,7 +32,7 @@ FROM dunglas/frankenphp:1.4-php8.4-alpine AS production
 
 ENV OS_LOCAL=linux
 ENV PHP_INI_DIR=/usr/local/etc/php
-ENV FRANKENPHP_CONFIG="worker ./public/index.php"
+# ENV FRANKENPHP_CONFIG="worker ./public/index.php"
 
 RUN apk add --no-cache curl
 
@@ -64,7 +64,7 @@ COPY . .
 
 COPY --from=frontend_builder /app/public/build ./public/build
 
-# COPY docker/frankenphp/Caddyfile /etc/frankenphp/Caddyfile
+COPY docker/frankenphp/Caddyfile /etc/frankenphp/Caddyfile
 
 RUN if [ ! -f public/frankenphp-worker.php ]; then \
     php artisan octane:install --server=frankenphp --force; \
@@ -94,4 +94,4 @@ RUN rm -rf \
 
 EXPOSE 8000
 
-ENTRYPOINT ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8000", "--workers=4", "--max-requests=5000"]
+ENTRYPOINT ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile", "--adapter", "caddyfile"]
