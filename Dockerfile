@@ -60,9 +60,9 @@ RUN mkdir -p \
 
 COPY --from=composer_stage /app/vendor ./vendor
 
-COPY . .
-
-COPY --from=frontend_builder /app/public/build ./public/build
+COPY --chown=www-data:www-data . .
+COPY --chown=www-data:www-data --from=composer_stage /app/vendor ./vendor
+COPY --chown=www-data:www-data --from=frontend_builder /app/public/build ./public/build
 
 COPY docker/frankenphp/Caddyfile /etc/frankenphp/Caddyfile
 
@@ -75,8 +75,7 @@ RUN php artisan storage:link \
     && php artisan filament:cache-components \
     && (php artisan icons:cache || true)
 
-RUN chown -R www-data:www-data /var/www \
-    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache /var/www/public
+RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 RUN rm -rf \
     .git \

@@ -4,7 +4,7 @@
         {{ $badge_text }}
     </div>
 
-    <div class="text-xl md:text-2xl font-inter text-slate-800 leading-tight text-center sm:text-left">
+    <div class="text-lg md:text-xl font-inter opacity-60 leading-tight text-center sm:text-left">
         @php
             // Simple logic to bold CEFR or other parts if needed
             $formattedText = str_replace('CEFR', '<strong>CEFR</strong>', $description);
