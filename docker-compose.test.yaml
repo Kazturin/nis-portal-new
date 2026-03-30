@@ -1,0 +1,120 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: production
+        image: nis-app:${APP_VERSION:-latest}
+        container_name: nis-app
+        restart: unless-stopped
+        ports:
+            # Для тестов оставляем только порт 80
+            - "80:80"
+        env_file:
+            - .env
+        environment:
+            - APP_ENV=${APP_ENV:-production}
+            - APP_DEBUG=${APP_DEBUG:-false}
+            - MAX_WORKERS=4
+            - OCTANE_SERVER=${OCTANE_SERVER:-frankenphp}
+            - DB_HOST=${DB_HOST:-db}
+            - DB_DATABASE=${DB_DATABASE:-app_db}
+            - DB_USERNAME=${DB_USERNAME:-developer}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - DB_PORT=${DB_PORT:-3306}
+            - REDIS_HOST=${REDIS_HOST:-redis}
+            - REDIS_PORT=${REDIS_PORT:-6379}
+            - REDIS_DB=${REDIS_DB:-0}
+        volumes:
+            - ./storage:/var/www/storage
+            - caddy_data:/data
+            - caddy_config:/config
+        networks:
+            - backend
+        depends_on:
+            db:
+                condition: service_healthy
+            redis:
+                condition: service_healthy
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:8000/up" ]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        deploy:
+            resources:
+                limits:
+                    cpus: "2.0"
+                    memory: 1024M
+                reservations:
+                    cpus: "0.5"
+                    memory: 512M
+        logging:
+            driver: json-file
+            options:
+                max-size: "10m"
+                max-file: "5"
+
+    db:
+        image: mysql:8.4
+        container_name: nis-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-nis_prod}
+            MYSQL_USER: ${DB_USERNAME:-nis_user}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-${DB_PASSWORD}}
+        volumes:
+            - db_data:/var/lib/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/conf.d/custom.cnf:ro
+        networks:
+            - backend
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD" ]
+            interval: 15s
+            timeout: 5s
+            retries: 5
+            start_period: 30s
+        logging:
+            driver: json-file
+            options:
+                max-size: "10m"
+                max-file: "3"
+
+    redis:
+        image: redis:7-alpine
+        container_name: nis-redis
+        restart: unless-stopped
+        command: redis-server --appendonly yes
+        volumes:
+            - redis_data:/data
+        networks:
+            - backend
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            interval: 10s
+            timeout: 5s
+            retries: 3
+        logging:
+            driver: json-file
+            options:
+                max-size: "5m"
+                max-file: "3"
+
+networks:
+    backend:
+        driver: bridge
+        name: nis-network
+
+volumes:
+    db_data:
+        driver: local
+        name: nis-db-test-data
+    redis_data:
+        driver: local
+        name: nis-redis-test-data
+    caddy_data:
+        name: nis-caddy-test-data
+    caddy_config:
+        name: nis-caddy-test-config

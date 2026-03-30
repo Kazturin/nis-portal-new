@@ -95,8 +95,9 @@ class PageForm
                                             ->customTextColors()
                                             ->fileAttachmentsDisk('public')
                                             ->fileAttachmentsDirectory('pages/content/attachments')
-                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
                                             ->json()
+                                            ->resizableImages()
                                             ->extraInputAttributes([
                                                 'style' => 'max-height: 50vh; overflow-y: auto;',
                                             ]),
@@ -138,8 +139,9 @@ class PageForm
                                             ->customTextColors()
                                             ->fileAttachmentsDisk('public')
                                             ->fileAttachmentsDirectory('pages/content/attachments')
-                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
                                             ->json()
+                                            ->resizableImages()
                                             ->extraInputAttributes([
                                                 'style' => 'max-height: 50vh; overflow-y: auto;',
                                             ]),
@@ -183,8 +185,9 @@ class PageForm
                                             ->customTextColors()
                                             ->fileAttachmentsDisk('public')
                                             ->fileAttachmentsDirectory('pages/content/attachments')
-                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
                                             ->json()
+                                            ->resizableImages()
                                             ->extraInputAttributes([
                                                 'style' => 'max-height: 50vh; overflow-y: auto;',
                                             ]),

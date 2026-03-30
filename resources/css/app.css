@@ -186,11 +186,18 @@ details img {
 }
 
 .prose img {
-    width: 100%;
+    /* width: 100%; */
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     margin: 20px 0;
+    display: inline-block;
+}
+
+.prose img[src*=".svg"] {
+    border-radius: 0;
+    margin: 0 !important;
+    margin-right: 10px !important;
 }
 
 .prose blockquote {

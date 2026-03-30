@@ -5,8 +5,8 @@
     order php_server before file_server
 }
 
-nis.edu.kz {
-    redir https://www.nis.edu.kz{uri} permanent
+{$REDIRECT_SERVER_NAME:http://localhost-redirect} {
+    redir {$PRIMARY_SERVER_URL:http://localhost}{uri} permanent
 }
 
 {$SERVER_NAME:localhost} {
