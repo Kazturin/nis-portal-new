@@ -240,6 +240,13 @@ details img {
     margin-bottom: 10px;
 }
 
+.prose h3 {
+    font-family: 'Inter SemiBold', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
 /* .prose h3 {
     font-family: 'Inter Regular', sans-serif;
     font-weight: 500;
