@@ -1,12 +1,13 @@
 <div class="ornament-card relative rounded-3xl h-full min-h-48" style="background-color: {{ $color }};">
     <img src="/img/ornament-nis.png" alt="" class="absolute bottom-0 right-0 !h-full pt-12 !m-0">
-    <div class="px-[43px] py-[37px] h-full">
+    <div class="px-[43px] py-[37px] h-full flex flex-col">
         @if ($icon)
             <div class="bg-[#A0D857] p-4 rounded-2xl w-20 h-20 flex items-center justify-center mb-4">
                 <img src="/storage/{{ $icon }}" alt="">
             </div>
         @endif
-        <div class="prose max-w-none font-inter-medium text-[22px] !leading-7 text-left pr-0 md:pr-16">
+        <div
+            class="prose max-w-none font-inter-medium text-[22px] !leading-7 text-left pr-0 md:pr-16 {{ isset($text_position) && $text_position === 'bottom' ? 'mt-auto' : 'mb-auto' }}">
             {!! $description !!}
         </div>
     </div>

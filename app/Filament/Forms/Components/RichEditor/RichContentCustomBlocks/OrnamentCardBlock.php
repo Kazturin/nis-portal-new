@@ -7,7 +7,9 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\RichEditor\RichContentCustomBlock;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Fieldset;
 use Filament\Support\Markdown;
 
 class OrnamentCardBlock extends RichContentCustomBlock
@@ -34,9 +36,18 @@ class OrnamentCardBlock extends RichContentCustomBlock
                 RichEditor::make('description')
                     ->label('Description')
                     ->required(),
-                TextInput::make('color')
-                    ->label('Color')
-                    ->required(),
+                Fieldset::make('style')
+                    ->schema([
+                        TextInput::make('color')
+                            ->label('Color')
+                            ->required(),
+                        Select::make('text_position')
+                            ->options([
+                                'top' => 'Вверху',
+                                'bottom' => 'Внизу',
+                            ])
+                            ->required(),
+                    ])
             ]);
     }
 
