@@ -99,7 +99,7 @@ class PageForm
                                             ->json()
                                             ->resizableImages()
                                             ->extraInputAttributes([
-                                                'style' => 'max-height: 50vh; overflow-y: auto;',
+                                                'style' => 'max-height: 50vh; overflow-y: auto; white-space: pre-wrap;',
                                             ]),
                                     ]),
                                 Tabs\Tab::make('ru')
@@ -143,7 +143,7 @@ class PageForm
                                             ->json()
                                             ->resizableImages()
                                             ->extraInputAttributes([
-                                                'style' => 'max-height: 50vh; overflow-y: auto;',
+                                                'style' => 'max-height: 50vh; overflow-y: auto; white-space: pre-wrap;',
                                             ]),
 
                                     ]),
@@ -189,7 +189,7 @@ class PageForm
                                             ->json()
                                             ->resizableImages()
                                             ->extraInputAttributes([
-                                                'style' => 'max-height: 50vh; overflow-y: auto;',
+                                                'style' => 'max-height: 50vh; overflow-y: auto; white-space: pre-wrap;',
                                             ]),
                                     ]),
                             ]),

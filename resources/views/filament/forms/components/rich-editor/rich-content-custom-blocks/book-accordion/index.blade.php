@@ -15,7 +15,7 @@
                     <div 
                         @click="activeBook = {{ $index }}"
                         class="book-item flex relative rounded-[20px] cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] items-center"
-                        :class="activeBook === {{ $index }} ? 'w-[85vw] md:w-[680px] bg-white shadow-md border border-gray-100' : 'w-[70px] md:w-[85px] hover:-translate-y-1 bg-transparent text-transparent'"
+                        :class="activeBook === {{ $index }} ? 'w-[85vw] md:w-[680px] bg-white shadow-md border border-gray-100' : 'w-[70px] md:w-[85px] hover:-translate-y-3 bg-transparent text-transparent'"
                         style="-webkit-tap-highlight-color: transparent;"
                     >
                         <!-- Inactive State: Spine -->

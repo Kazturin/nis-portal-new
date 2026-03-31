@@ -11,6 +11,7 @@
     --font-inter: 'Inter', sans-serif;
     --font-inter-medium: 'Inter Medium', sans-serif;
     --font-inter-regular: 'Inter Regular', sans-serif;
+    --font-inter-semibold: 'Inter SemiBold', sans-serif;
     --font-sf: 'SF-Pro-Display-Regular', sans-serif;
     --font-sfBold: 'SF-Pro-Display-Bold', sans-serif;
     --font-nunitoExtraBold: 'Nunito-ExtraBold', sans-serif;
@@ -66,6 +67,11 @@
     src: url("../fonts/Nunito-ExtraBold.ttf") format('truetype');
 }
 
+@font-face {
+    font-family: "Inter SemiBold";
+    src: url("../fonts/Inter-SemiBold.otf") format('opentype');
+}
+
 .slider {
     position: relative;
 }
@@ -102,6 +108,7 @@
 
 .swiper-button-disabled {
     color: #BFC3C9 !important;
+    opacity: 0.5 !important;
 }
 
 iframe {
@@ -209,19 +216,15 @@ details img {
     margin-bottom: 10px;
 }
 
-.prose p,
-.list p {
+.prose p {
     min-height: 8px;
     /* font-family: "SF-Pro-Display-Regular" !important; */
     margin-top: 7px !important;
     margin-bottom: 7px !important;
     color: #000;
+    white-space: pre-wrap;
 }
 
-.prose a {
-    /* color: #e17100 */
-    text-decoration: underline;
-}
 
 .prose h1 {
     font-family: 'Inter', sans-serif;
@@ -231,10 +234,10 @@ details img {
 }
 
 .prose h2 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter SemiBold', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 /* .prose h3 {
@@ -432,4 +435,8 @@ blockquote {
     border-radius: 10px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.curriculum-card li {
+    font-size: 20px !important;
 }

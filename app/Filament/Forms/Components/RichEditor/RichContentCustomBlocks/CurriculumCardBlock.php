@@ -35,7 +35,7 @@ class CurriculumCardBlock extends RichContentCustomBlock
                 RichEditor::make('content')
                     ->label('Содержимое')
                     ->toolbarButtons([
-                        ['bold', 'italic', 'underline', 'link', 'textColor'],
+                        ['bold', 'italic', 'underline', 'h2', 'h3', 'h4', 'link', 'textColor'],
                         ['bulletList', 'orderedList'],
                         ['undo', 'redo'],
                     ])

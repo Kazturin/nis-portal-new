@@ -18,9 +18,9 @@
                 {{-- Colored Card --}}
                 <div class="w-full rounded-t-[1rem] p-8 flex flex-col justify-start transition-all duration-300 shadow-sm hover:shadow-md"
                     style="background-color: {{ $bgColor }}; height: {{ $height }}px;">
-                    <p class="text-xl md:text-xl text-left font-inter text-gray-900 leading-tight">
+                    <span class="text-xl md:text-xl text-left font-inter text-gray-900 leading-tight">
                         {{ $item['title'] }}
-                    </p>
+                    </span>
                 </div>
             </div>
         @endforeach
