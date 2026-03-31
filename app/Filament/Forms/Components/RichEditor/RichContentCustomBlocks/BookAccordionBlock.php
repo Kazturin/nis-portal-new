@@ -74,6 +74,7 @@ class BookAccordionBlock extends RichContentCustomBlock
                         ['table', 'attachFiles', 'grid', 'customBlocks'],
                         ['undo', 'redo'],
                     ])
+                    ->customTextColors()
                     ->required(),
             ]);
     }

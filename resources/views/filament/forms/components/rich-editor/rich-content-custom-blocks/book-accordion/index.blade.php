@@ -10,7 +10,7 @@
     @endphp
     <div class="book-accordion-wrapper w-full mb-8" x-data="{ activeBook: {{ $defaultActive }} }">
         <div class="bg-[#F0F2F5] p-6 md:p-10 rounded-[32px] w-full shadow-inner ove overflow-y-auto lg:overflow-hidden">
-            <div class="flex flex-row gap-4 min-w-max items-stretch h-[320px] md:h-[400px]">
+            <div class="flex flex-row gap-4 min-w-max items-stretch h-[320px] md:h-[368px]">
                 @foreach ($books as $index => $book)
                     <div 
                         @click="activeBook = {{ $index }}"
@@ -24,7 +24,7 @@
                             :class="activeBook === {{ $index }} ? 'opacity-0 pointer-events-none' : 'opacity-100'"
                         >
                             @if(!empty($book['spine_image']))
-                                <img src="{{ Storage::disk('public')->url($book['spine_image']) }}" alt="Spine" class="w-full h-full object-contain md:object-cover object-center rounded-[20px] drop-shadow-md">
+                                <img src="{{ Storage::disk('public')->url($book['spine_image']) }}" alt="Spine" class="w-full !h-full object-contain md:object-cover object-center rounded-[20px] drop-shadow-md !m-0">
                             @endif
                         </div>
 
@@ -36,10 +36,10 @@
                             <!-- Book Cover Image -->
                             <div class="flex-shrink-0 w-[140px] md:w-[220px] h-full flex flex-col items-center justify-center">
                                 @if(!empty($book['cover_image']))
-                                    <img src="{{ Storage::disk('public')->url($book['cover_image']) }}" alt="Cover" class="max-w-full max-h-[100%] object-contain drop-shadow-xl" style="filter: drop-shadow(-4px 6px 10px rgba(0,0,0,0.25)); border-radius: 4px;">
+                                    <img src="{{ Storage::disk('public')->url($book['cover_image']) }}" alt="Cover" class="max-w-full max-h-[100%] object-contain drop-shadow-xl !m-0" style="filter: drop-shadow(-4px 6px 10px rgba(0,0,0,0.25)); border-radius: 4px;">
                                 @endif
                                 @if(empty($book['cover_image']) && !empty($book['spine_image']))
-                                    <img src="{{ Storage::disk('public')->url($book['spine_image']) }}" alt="Cover Fallback" class="max-w-full max-h-[100%] object-contain drop-shadow-xl">
+                                    <img src="{{ Storage::disk('public')->url($book['spine_image']) }}" alt="Cover Fallback" class="max-w-full max-h-[100%] object-contain drop-shadow-xl !m-0">
                                 @endif
                             </div>
                             
@@ -59,7 +59,7 @@
                                 
                                 @if(!empty($book['button_url']))
                                     <div class="mt-auto pt-2">
-                                        <a href="{{ $book['button_url'] }}" class="inline-block hover:scale-105 transition-transform duration-200">
+                                        <a href="{{ $book['button_url'] }}" class="inline-block hover:scale-105 transition-transform duration-200" target="_blank">
                                             @if (isset($book['button_text']))
                                                 <x-primary-button>
                                                     {{ $book['button_text'] }}
