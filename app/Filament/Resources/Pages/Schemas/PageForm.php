@@ -14,6 +14,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FullSliderB
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\GallerySliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HorizontalCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OrnamentCardBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\PrimaryLinkBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
@@ -84,6 +85,7 @@ class PageForm
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
                                                 BookAccordionBlock::class,
+                                                PrimaryLinkBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -128,6 +130,7 @@ class PageForm
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
                                                 BookAccordionBlock::class,
+                                                PrimaryLinkBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -174,6 +177,7 @@ class PageForm
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
                                                 BookAccordionBlock::class,
+                                                PrimaryLinkBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],

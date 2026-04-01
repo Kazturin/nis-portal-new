@@ -7,6 +7,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\RichEditor\RichContentCustomBlock;
+use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -74,6 +75,9 @@ class BookAccordionBlock extends RichContentCustomBlock
                         ['table', 'attachFiles', 'grid', 'customBlocks'],
                         ['undo', 'redo'],
                     ])
+                    ->customBlocks([
+                        PrimaryLinkBlock::class,
+                    ])
                     ->customTextColors()
                     ->required(),
             ]);
@@ -88,9 +92,20 @@ class BookAccordionBlock extends RichContentCustomBlock
 
     public static function toHtml(array $config, array $data): string
     {
+        $footer = $config['footer'] ?? '';
+
+        if ($footer) {
+            $footer = RichContentRenderer::make($footer)
+                ->fileAttachmentsDisk('public')
+                ->customBlocks([
+                    PrimaryLinkBlock::class,
+                ])
+                ->toUnsafeHtml();
+        }
+
         return view('filament.forms.components.rich-editor.rich-content-custom-blocks.book-accordion.index', [
             'books' => $config['books'] ?? [],
-            'footer' => $config['footer'] ?? '',
+            'footer' => $footer,
         ])->render();
     }
 }
