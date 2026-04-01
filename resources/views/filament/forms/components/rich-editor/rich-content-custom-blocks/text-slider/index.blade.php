@@ -22,7 +22,7 @@
                         @if (isset($item['title']))
                             <p class="font-inter-regular font-medium text-[64px] !text-[#535B5E]">{{ $item['title'] }}</p>
                         @endif
-                        <div class="flex-1">
+                        <div class="flex-1 !font-inter-medium">
                             {!! $item['text'] !!}
                         </div>
                     </div>
