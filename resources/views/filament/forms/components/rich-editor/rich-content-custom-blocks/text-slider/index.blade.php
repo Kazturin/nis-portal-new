@@ -109,16 +109,32 @@
                     e.preventDefault();
                     swiper.animating = false;
                     swiper.autoplay.stop();
-                    swiper.setTransition(500);
-                    swiper.slideNext(500);
+
+                    // 1. Моментально (незаметно для глаза) выравниваем слайдер
+                    swiper.setTransition(0);
+                    swiper.slideToClosest(0);
+
+                    // 2. Даем браузеру 10мс на обновление математики и делаем шаг вперед
+                    setTimeout(() => {
+                        swiper.setTransition(500);
+                        swiper.slideNext(500);
+                    }, 10);
                 });
 
                 prevBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     swiper.animating = false;
                     swiper.autoplay.stop();
-                    swiper.setTransition(500);
-                    swiper.slidePrev(500);
+
+                    // 1. Моментально выравниваем слайдер (восстанавливаем сломанный индекс)
+                    swiper.setTransition(0);
+                    swiper.slideToClosest(0);
+
+                    // 2. Делаем нормальный, предсказуемый шаг назад!
+                    setTimeout(() => {
+                        swiper.setTransition(500);
+                        swiper.slidePrev(500);
+                    }, 10);
                 });
             }
 
@@ -127,14 +143,10 @@
             sliderArea.addEventListener('mouseenter', function () {
                 swiper.setTransition(8000);
                 swiper.autoplay.start();
-                // Убрали ломающий slideToLoop. 
-                // Теперь мы просто мягко толкаем его к следующему соседнему слайду
-                swiper.slideNext();
             });
 
             sliderArea.addEventListener('mouseleave', function () {
                 swiper.autoplay.stop();
-                // Мгновенная заморозка при уходе курсора
                 const currentTranslate = swiper.getTranslate();
                 swiper.setTransition(0);
                 swiper.setTranslate(currentTranslate);
