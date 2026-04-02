@@ -26,7 +26,7 @@
                 @if (isset($button_url) && isset($button_text))
                     <div class="pt-6">
                         <a href="{{ $button_url }}" class="inline-block hover:scale-105 transition-transform duration-200">
-                            <x-primary-button>
+                            <x-primary-button class="!px-6 text-sm">
                                 {{ $button_text }}
                             </x-primary-button>
                         </a>

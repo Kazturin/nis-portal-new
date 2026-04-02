@@ -1,4 +1,4 @@
-<div class="h-full transition-all duration-300 shadow-sm hover:shadow-md mx-auto"
+<div class="colored-background-block h-full transition-all duration-300 shadow-sm hover:shadow-md mx-auto"
     style="background-color: {{ $color ?? '#F0F2F5' }}; padding: {{ $padding ?? '40' }}px; border-radius: {{ $border_radius ?? '16' }}px; width: {{ isset($width) ? $width . '%' : 'fit-content' }};">
     @if(isset($title))
         <div class="mb-4">

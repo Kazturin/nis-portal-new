@@ -35,7 +35,7 @@ class ColoredBackgroundBlock extends RichContentCustomBlock
                     ->label('Content')
                     ->toolbarButtons([
                         ['bold', 'italic', 'underline', 'link', 'textColor', 'alignStart', 'alignCenter', 'alignEnd'],
-                        ['h4', 'h5', 'h6', 'bulletList', 'orderedList', 'attachFiles'],
+                        ['h4', 'h5', 'h6', 'bulletList', 'orderedList', 'attachFiles', 'grid'],
                         ['undo', 'redo'],
                     ])
                     ->customTextColors()

@@ -17,9 +17,9 @@
     </div>
 
     @if (isset($button_url) && isset($button_text))
-        <div class="flex justify-end">
+        <div class="flex justify-end mt-4">
             <a href="{{ $button_url }}" class="hover:scale-105 transition-transform">
-                <x-primary-button class="text-lg py-1 px-8">
+                <x-primary-button class="text-sm py-1 !px-5">
                     {{ $button_text }}
                 </x-primary-button>
             </a>

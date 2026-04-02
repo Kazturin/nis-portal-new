@@ -39,7 +39,8 @@ services:
             redis:
                 condition: service_healthy
         healthcheck:
-            test: [ "CMD", "curl", "-fL", "http://localhost/up" ]
+            test: [ "CMD", "curl", "-fkL", "http://localhost/up" ]
+
             interval: 30s
             timeout: 10s
             retries: 3

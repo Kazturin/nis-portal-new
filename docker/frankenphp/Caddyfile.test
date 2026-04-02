@@ -3,10 +3,7 @@
         worker /var/www/public/frankenphp-worker.php
     }
     order php_server before file_server
-
-    tls {
-        status_stapling off
-    }
+    ocsp_stapling off
 }
 
 {$REDIRECT_SERVER_NAME:http://localhost-redirect} {
