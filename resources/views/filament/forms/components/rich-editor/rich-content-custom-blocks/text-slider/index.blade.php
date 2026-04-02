@@ -107,9 +107,7 @@
             if (nextBtn && prevBtn) {
                 nextBtn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    // СНИМАЕМ БЛОКИРОВКУ (говорим Swiper'у, что он больше не в процессе анимации)
                     swiper.animating = false;
-
                     swiper.autoplay.stop();
                     swiper.setTransition(500);
                     swiper.slideNext(500);
@@ -117,9 +115,7 @@
 
                 prevBtn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    // СНИМАЕМ БЛОКИРОВКУ
                     swiper.animating = false;
-
                     swiper.autoplay.stop();
                     swiper.setTransition(500);
                     swiper.slidePrev(500);
@@ -131,20 +127,18 @@
             sliderArea.addEventListener('mouseenter', function () {
                 swiper.setTransition(8000);
                 swiper.autoplay.start();
-                swiper.slideToLoop(swiper.realIndex + 1, 8000);
+                // Убрали ломающий slideToLoop. 
+                // Теперь мы просто мягко толкаем его к следующему соседнему слайду
+                swiper.slideNext();
             });
 
             sliderArea.addEventListener('mouseleave', function () {
                 swiper.autoplay.stop();
+                // Мгновенная заморозка при уходе курсора
                 const currentTranslate = swiper.getTranslate();
                 swiper.setTransition(0);
                 swiper.setTranslate(currentTranslate);
-
-                // Снимаем блокировку при остановке
                 swiper.animating = false;
-
-                // Помогаем Swiper'у понять, где он сейчас находится
-                swiper.updateActiveIndex();
             });
         });
 
