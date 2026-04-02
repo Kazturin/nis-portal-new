@@ -1,0 +1,46 @@
+{
+    frankenphp {
+        worker /var/www/public/frankenphp-worker.php
+    }
+    order php_server before file_server
+}
+
+{$REDIRECT_SERVER_NAME:http://localhost-redirect} {
+    redir {$PRIMARY_SERVER_URL:http://localhost}{uri} permanent
+}
+
+{$SERVER_NAME:localhost} {
+    tls /etc/caddy/certs/nis_edu_kz.crt /etc/caddy/certs/private.key
+
+    log {
+        output stdout
+    }
+
+    encode zstd gzip
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options SAMEORIGIN
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+
+    @storage_php {
+        path "/storage/*.php" "/storage/**/*.php"
+    }
+    respond @storage_php 403
+
+    handle /storage/* {
+        root * /var/www/public
+        file_server
+    }
+
+    handle {
+        root * /var/www/public
+        try_files {path} /index.php?{query}
+        
+        php_server {
+            resolve_root_symlink false 
+        }
+    }
+}

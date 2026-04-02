@@ -8,8 +8,8 @@ services:
         container_name: nis-app
         restart: unless-stopped
         ports:
-            # Для тестов оставляем только порт 80
             - "80:80"
+            - "443:443"
         env_file:
             - .env
         environment:
@@ -29,6 +29,8 @@ services:
             - ./storage:/var/www/storage
             - caddy_data:/data
             - caddy_config:/config
+            - ./docker/frankenphp/Caddyfile.test:/etc/frankenphp/Caddyfile:ro
+            - ./docker/certs:/etc/caddy/certs:ro
         networks:
             - backend
         depends_on:

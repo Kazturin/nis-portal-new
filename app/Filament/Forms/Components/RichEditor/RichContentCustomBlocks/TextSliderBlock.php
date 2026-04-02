@@ -40,14 +40,14 @@ class TextSliderBlock extends RichContentCustomBlock
     public static function toPreviewHtml(array $config): string
     {
         return view('filament.forms.components.rich-editor.rich-content-custom-blocks.text-slider.preview', [
-            'slides' => $config['slides'],
+            'slides' => $config['slides'] ?? [],
         ])->render();
     }
 
     public static function toHtml(array $config, array $data): string
     {
         return view('filament.forms.components.rich-editor.rich-content-custom-blocks.text-slider.index', [
-            'slides' => $config['slides'],
+            'slides' => $config['slides'] ?? [],
         ])->render();
     }
 }
