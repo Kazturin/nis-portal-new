@@ -10,10 +10,30 @@
     .page-slider-wrapper {
         margin-right: -100vw;
         padding-right: 100vw;
-        overflow: hidden;
+        overflow: hidden; /* Обрезает клоны слева, но позволяет слайдеру "уходить" вправо */
+    }
+
+    /* Внешний контейнер теперь просто предотвращает горизонтальный скролл на странице */
+    .slider-external-container {
+        width: auto;
+    }
+
+    /* Линейная анимация для плавного движения без остановок */
+    .page-slider .swiper-wrapper {
+        transition-timing-function: linear !important;
     }
 </style>
-<div class="my-10">
+
+{{-- Глобальное исправление горизонтального скролла для всей страницы --}}
+@push('scripts')
+<style>
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+</style>
+@endpush
+<div class="my-10 slider-external-container">
     <div class="page-slider-wrapper">
         <div class="page-slider">
             <div class="swiper-wrapper flex items-stretch mb-10">
@@ -58,28 +78,56 @@
 
 @push('scripts')
     <script>
-        var swiperSlide = new Swiper('.page-slider', {
-            spaceBetween: 20,
-            centeredSlides: false,
-            loop: false,
-            speed: 1000,
-            navigation: {
-                nextEl: '.ad-swiper-button-next',
-                prevEl: '.ad-swiper-button-prev',
-            },
-            mousewheel: {
-                releaseOnEdges: true,
-            },
-            breakpoints: {
-                480: {
-                    slidesPerView: 1
+        document.querySelectorAll('.page-slider').forEach(function (el) {
+            const swiper = new Swiper(el, {
+                spaceBetween: 20,
+                centeredSlides: false,
+                loop: true,
+                speed: 8000, // Скорость движения (чем выше, тем медленнее)
+                autoplay: {
+                    delay: 0,
+                    disableOnInteraction: false,
                 },
-                1200: {
-                    slidesPerView: 3,
-                    spaceBetween: 20
+                navigation: {
+                    nextEl: el.querySelector('.ad-swiper-button-next'),
+                    prevEl: el.querySelector('.ad-swiper-button-prev'),
+                },
+                mousewheel: {
+                    releaseOnEdges: true,
+                },
+                breakpoints: {
+                    480: {
+                        slidesPerView: 1
+                    },
+                    1200: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    }
                 }
-            }
-        });
+            });
 
+            // Останавливаем автопрокрутку по умолчанию
+            swiper.autoplay.stop();
+
+            // Запускаем автопрокрутку только при наведении
+            el.addEventListener('mouseenter', function () {
+                // Сначала восстанавливаем настройки перехода
+                swiper.setTransition(8000);
+                swiper.autoplay.start();
+                // Обновляем состояние и форсируем движение к следующему реальному индексу
+                swiper.update();
+                swiper.slideToLoop(swiper.realIndex + 1, 8000);
+            });
+
+            // Мгновенная остановка при уходе курсора
+            el.addEventListener('mouseleave', function () {
+                swiper.autoplay.stop();
+
+                // Моментально фиксируем текущее положение
+                const currentTranslate = swiper.getTranslate();
+                swiper.setTransition(0);
+                swiper.setTranslate(currentTranslate);
+            });
+        });
     </script>
 @endpush
