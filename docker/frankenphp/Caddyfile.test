@@ -3,6 +3,10 @@
         worker /var/www/public/frankenphp-worker.php
     }
     order php_server before file_server
+
+    tls {
+        status_stapling off
+    }
 }
 
 {$REDIRECT_SERVER_NAME:http://localhost-redirect} {
@@ -37,7 +41,7 @@
 
     handle {
         root * /var/www/public
-        try_files {path} /index.php?{query}
+        try_files {path} /frankenphp-worker.php?{query}
         
         php_server {
             resolve_root_symlink false 
