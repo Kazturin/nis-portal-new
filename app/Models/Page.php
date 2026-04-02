@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AnimatedNumbersBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ColoredBackgroundBlock;
@@ -155,6 +156,7 @@ class Page extends Model
                 FixedButtonBlock::class,
                 BookAccordionBlock::class,
                 PrimaryLinkBlock::class,
+                AccordionBlock::class,
             ]);
 
         $this->registerRichContent('content_ru')
@@ -177,6 +179,7 @@ class Page extends Model
                 FixedButtonBlock::class,
                 BookAccordionBlock::class,
                 PrimaryLinkBlock::class,
+                AccordionBlock::class,
             ]);
 
         $this->registerRichContent('content_en')
@@ -199,6 +202,7 @@ class Page extends Model
                 FixedButtonBlock::class,
                 BookAccordionBlock::class,
                 PrimaryLinkBlock::class,
+                AccordionBlock::class,
             ]);
     }
 

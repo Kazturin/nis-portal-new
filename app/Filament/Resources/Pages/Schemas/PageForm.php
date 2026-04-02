@@ -20,6 +20,8 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCar
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock;
+
 use App\Models\Menu;
 use App\Models\Page;
 use Filament\Forms\Components\RichEditor;
@@ -85,6 +87,7 @@ class PageForm
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
                                                 BookAccordionBlock::class,
+                                                AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
                                             ])
                                             ->toolbarButtons([
@@ -130,6 +133,7 @@ class PageForm
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
                                                 BookAccordionBlock::class,
+                                                AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
                                             ])
                                             ->toolbarButtons([
@@ -177,6 +181,7 @@ class PageForm
                                                 ColoredBackgroundBlock::class,
                                                 FixedButtonBlock::class,
                                                 BookAccordionBlock::class,
+                                                AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
                                             ])
                                             ->toolbarButtons([

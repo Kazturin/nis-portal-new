@@ -1,6 +1,9 @@
 <style>
     .page-slider {
         overflow: visible !important;
+        /* Опускаем сам слайдер на нижний уровень */
+        position: relative;
+        z-index: 1;
     }
 
     .page-slider .swiper-slide {
@@ -8,13 +11,14 @@
     }
 
     .page-slider-wrapper {
-        margin-right: -100vw;
-        padding-right: 100vw;
-        overflow: hidden;
+        clip-path: inset(0 -100vw 0 0);
+        overflow: visible;
+        position: relative;
     }
 
     .slider-external-container {
         width: auto;
+        position: relative;
     }
 
     .page-slider .swiper-wrapper {
@@ -46,24 +50,23 @@
                     </div>
                 @endforeach
             </div>
-            <div class="flex justify-center space-x-2 max-w-fit mx-auto rounded-3xl bg-secondary p-2">
-                <div
-                    class="ad-swiper-button-prev  p-1 bg-white rounded-full text-gray-700 cursor-pointer !disabled:opacity-50">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
-                            fill="#000000" />
-                    </svg>
-                </div>
-                <div
-                    class="ad-swiper-button-next p-1 bg-white rounded-full text-gray-700 cursor-pointer !disabled:opacity-50">
-                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M8.29289 4.29289C8.68342 3.90237 9.31658 3.90237 9.70711 4.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L9.70711 19.7071C9.31658 20.0976 8.68342 20.0976 8.29289 19.7071C7.90237 19.3166 7.90237 18.6834 8.29289 18.2929L14.5858 12L8.29289 5.70711C7.90237 5.31658 7.90237 4.68342 8.29289 4.29289Z"
-                            fill="#000000" />
-                    </svg>
-                </div>
-            </div>
+        </div>
+    </div>
+    {{-- Кнопки теперь в обычном потоке, без костылей с z-индексом --}}
+    <div class="flex justify-end space-x-2 max-w-fit ml-auto rounded-3xl bg-secondary p-2 mt-4 z-[100] relative">
+        <div class="ad-swiper-button-prev p-1 bg-white rounded-full text-gray-700 cursor-pointer">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
+                    fill="#000000" />
+            </svg>
+        </div>
+        <div class="ad-swiper-button-next p-1 bg-white rounded-full text-gray-700 cursor-pointer">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8.29289 4.29289C8.68342 3.90237 9.31658 3.90237 9.70711 4.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L9.70711 19.7071C9.31658 20.0976 8.68342 20.0976 8.29289 19.7071C7.90237 19.3166 7.90237 18.6834 8.29289 18.2929L14.5858 12L8.29289 5.70711C7.90237 5.31658 7.90237 4.68342 8.29289 4.29289Z"
+                    fill="#000000" />
+            </svg>
         </div>
     </div>
 </div>
@@ -76,8 +79,12 @@
 
 @push('scripts')
     <script>
-        document.querySelectorAll('.page-slider').forEach(function (el) {
-            const swiper = new Swiper(el, {
+
+        document.querySelectorAll('.slider-external-container').forEach(function (container) {
+            const swiperEl = container.querySelector('.page-slider');
+            if (!swiperEl) return;
+
+            const swiper = new Swiper(swiperEl, {
                 spaceBetween: 20,
                 centeredSlides: false,
                 loop: true,
@@ -86,37 +93,60 @@
                     delay: 0,
                     disableOnInteraction: false,
                 },
-                navigation: {
-                    nextEl: el.querySelector('.ad-swiper-button-next'),
-                    prevEl: el.querySelector('.ad-swiper-button-prev'),
-                },
-                mousewheel: {
-                    releaseOnEdges: true,
-                },
                 breakpoints: {
-                    480: {
-                        slidesPerView: 1
-                    },
-                    1200: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    }
+                    480: { slidesPerView: 1 },
+                    1200: { slidesPerView: 3, spaceBetween: 20 }
                 }
             });
+
             swiper.autoplay.stop();
 
-            el.addEventListener('mouseenter', function () {
+            const nextBtn = container.querySelector('.ad-swiper-button-next');
+            const prevBtn = container.querySelector('.ad-swiper-button-prev');
+
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // СНИМАЕМ БЛОКИРОВКУ (говорим Swiper'у, что он больше не в процессе анимации)
+                    swiper.animating = false;
+
+                    swiper.autoplay.stop();
+                    swiper.setTransition(500);
+                    swiper.slideNext(500);
+                });
+
+                prevBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // СНИМАЕМ БЛОКИРОВКУ
+                    swiper.animating = false;
+
+                    swiper.autoplay.stop();
+                    swiper.setTransition(500);
+                    swiper.slidePrev(500);
+                });
+            }
+
+            const sliderArea = container.querySelector('.page-slider-wrapper');
+
+            sliderArea.addEventListener('mouseenter', function () {
                 swiper.setTransition(8000);
                 swiper.autoplay.start();
-                swiper.update();
                 swiper.slideToLoop(swiper.realIndex + 1, 8000);
             });
-            el.addEventListener('mouseleave', function () {
+
+            sliderArea.addEventListener('mouseleave', function () {
                 swiper.autoplay.stop();
                 const currentTranslate = swiper.getTranslate();
                 swiper.setTransition(0);
                 swiper.setTranslate(currentTranslate);
+
+                // Снимаем блокировку при остановке
+                swiper.animating = false;
+
+                // Помогаем Swiper'у понять, где он сейчас находится
+                swiper.updateActiveIndex();
             });
         });
+
     </script>
 @endpush
