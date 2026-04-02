@@ -69,8 +69,6 @@ class AccordionBlock extends RichContentCustomBlock
     {
         $items = array_map(function ($item) {
             if (isset($item['content'])) {
-                // Мы используем RichContentRenderer для рендеринга содержимого, 
-                // если оно сохранено в формате JSON (как это делает основной RichEditor)
                 $item['content'] = RichContentRenderer::make($item['content'])
                     ->fileAttachmentsDisk('public')
                     ->customBlocks([
