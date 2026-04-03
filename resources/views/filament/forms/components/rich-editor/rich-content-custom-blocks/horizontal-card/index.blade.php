@@ -2,7 +2,7 @@
     $imageStyle = $image_style ?? 'contain';
 @endphp
 
-<div class="card relative bg-[#F0F2F5] rounded-[32px] mb-8 overflow-hidden min-h-[300px] flex items-center">
+<div class="card relative bg-[#F0F2F5] rounded-[32px] mb-6 overflow-hidden min-h-[300px] flex items-center">
     @if (isset($image) && $image && $imageStyle === 'cover')
         <div class="absolute flex justify-end right-0 top-0 h-full w-full z-0">
             <div class="absolute inset-0 short-gradient"></div>
