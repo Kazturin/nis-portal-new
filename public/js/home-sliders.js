@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.ad-slider', {
         centeredSlides: true,
         loop: true,
-        autoHeight: true,
         spaceBetween: 10,
         navigation: {
             nextEl: '.ad-swiper-button-next',
