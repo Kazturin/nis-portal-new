@@ -43,5 +43,7 @@
         php_server {
             resolve_root_symlink false 
         }
+        file_server
+
     }
 }
