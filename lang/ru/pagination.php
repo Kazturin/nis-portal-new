@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+    'previous' => '&laquo; Предыдущий',
+    'next' => 'Cледующий &raquo;',
+    'showing' => 'Показано с :first по :last из :total результатов',
 
 ];

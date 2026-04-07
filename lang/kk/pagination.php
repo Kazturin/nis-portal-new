@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+    'previous' => '&laquo; Артқа',
+    'next' => 'Келесі &raquo;',
+    'showing' => ':total нәтиженің :first-ден :last-ге дейін көрсетілуде',
 
 ];
