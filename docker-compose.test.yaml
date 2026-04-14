@@ -39,7 +39,13 @@ services:
             redis:
                 condition: service_healthy
         healthcheck:
-            test: [ "CMD", "curl", "-fkL", "http://localhost/up" ]
+            test:
+                - "CMD"
+                - "curl"
+                - "-fkL"
+                - "--resolve"
+                - "${SERVER_NAME:-localhost}:443:127.0.0.1"
+                - "https://${SERVER_NAME:-localhost}/up"
 
             interval: 30s
             timeout: 10s
