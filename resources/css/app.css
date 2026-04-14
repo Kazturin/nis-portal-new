@@ -451,3 +451,8 @@ blockquote {
 .colored-background-block img {
     margin: 0 !important;
 }
+
+.news p {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}

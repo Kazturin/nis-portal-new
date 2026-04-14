@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                    <div class="prose font-sf text-xl">
+                    <div class="prose news font-sf text-xl">
                         {!! $news->{'content_'.$locale} !!}
                     </div>
 
