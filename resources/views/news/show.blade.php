@@ -20,7 +20,7 @@
                             </a>
                         </li>
                     </ul>
-                <!-- </div> -->
+                 </div> 
             <div class="lg:col-span-3 animate-fade-in-right">
                  <h1 class="font-inter text-4xl mb-10">{{ $news->{'title_' . $locale} }}</h1>
                     <div class="my-4">
