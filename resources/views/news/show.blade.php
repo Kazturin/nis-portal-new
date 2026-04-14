@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                    <div class="tiptap-content font-sf text-xl">
+                    <div class="prose font-sf text-xl">
                         {!! $news->{'content_'.$locale} !!}
                     </div>
 
