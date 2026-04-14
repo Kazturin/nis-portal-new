@@ -17,7 +17,7 @@
                
                 <div>
                     <div class="content tiptap-content text-xl">
-                        {!! $page->{'content_'.app()->getLocale()} !!}
+                        {!! $page->renderRichContent('content_' . app()->getLocale()) !!}
                     </div>
                 </div>
 

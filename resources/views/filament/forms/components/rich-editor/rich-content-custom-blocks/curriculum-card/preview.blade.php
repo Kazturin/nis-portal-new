@@ -5,6 +5,6 @@
     @endif
     <div class="w-full h-4 rounded-full" style="background-color: {{ $background_color }}"></div>
     <div class="text-sm font-medium text-gray-700 truncate">
-        {!! strip_tags($content) !!}
+        {!! strip_tags(is_array($content) ? json_encode($content) : (string) $content) !!}
     </div>
 </div>

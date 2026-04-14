@@ -23,7 +23,7 @@
                     </div>
                 @endif
 
-                @if ($page->{'content_' . $locale} && $page->{'content_' . $locale} != "<p></p>")
+                @if (!empty($page->{'content_' . $locale}))
                     <div class="max-w-7xl mx-auto mb-5 prose font-sf text-xl">
                         {!! $page->renderRichContent('content_' . $locale) !!}
                     </div>

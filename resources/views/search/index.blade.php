@@ -25,7 +25,8 @@
             <h2 class="font-semibold my-2">{{ $page->{'title_' . app()->getLocale()} }}</h2>
             @php
 
-              $content = strip_tags($page->{'content_' . app()->getLocale()});
+              $rawContent = $page->{'content_' . app()->getLocale()};
+              $content = strip_tags(is_array($rawContent) ? $page->renderRichContent('content_' . app()->getLocale()) : (string) $rawContent);
               $query = request()->input('query');
               $pos = mb_stripos($content, $query, 0, 'UTF-8');
               $start = max(0, $pos - 50); // Начинаем 50 символов до найденного слова

@@ -75,8 +75,12 @@ class News extends Model
 
     public function shortBody($words = 30): string
     {
-        if ($this->{'content_' . app()->getLocale()}) {
-            return Str::words(strip_tags($this->{'content_' . app()->getLocale()}), $words);
+        $content = $this->{'content_' . app()->getLocale()};
+        if ($content) {
+            if (is_array($content)) {
+                $content = json_encode($content);
+            }
+            return Str::words(strip_tags((string) $content), $words);
         }
         return '';
     }
