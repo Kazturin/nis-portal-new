@@ -1,6 +1,10 @@
 {
     frankenphp {
-        worker /var/www/public/frankenphp-worker.php
+        worker {
+            file /var/www/public/frankenphp-worker.php
+            num {$MAX_WORKERS:4}
+            max_requests 500
+        }
     }
     order php_server before file_server
 }

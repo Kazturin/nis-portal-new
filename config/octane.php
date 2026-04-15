@@ -206,7 +206,20 @@ return [
     |
     */
 
-    'garbage' => 50,
+    'garbage' => 25,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Max Requests Per Worker
+    |--------------------------------------------------------------------------
+    |
+    | The number of requests to process before reloading the server. This
+    | can be useful to clear any memory leaks in your application before
+    | a long-running server consumes too much memory.
+    |
+    */
+
+    'max_requests' => 500,
 
     /*
     |--------------------------------------------------------------------------

@@ -45,10 +45,10 @@ services:
                 - "--resolve"
                 - "${SERVER_NAME:-localhost}:443:127.0.0.1"
                 - "https://${SERVER_NAME:-localhost}/up"
-            interval: 30s
+            interval: 60s
             timeout: 10s
             retries: 3
-            start_period: 40s
+            start_period: 60s
         deploy:
             resources:
                 limits:
