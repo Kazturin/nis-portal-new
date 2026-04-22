@@ -102,13 +102,23 @@ class Page extends Model
 
     public function getTopParentMenu()
     {
-        $menu = $this->menu;
+        $currentMenu = $this->menu;
 
-        while ($menu && $menu->parent_id) {
-            $menu = Menu::query()->select('id', 'parent_id')->where('id', $menu->parent_id)->first();
+        if (!$currentMenu) {
+            return null;
         }
 
-        return $menu->id;
+        while ($currentMenu->parent_id) {
+            if ($currentMenu->relationLoaded('parent') && $currentMenu->parent) {
+                $currentMenu = $currentMenu->parent;
+            } else {
+                $currentMenu = Menu::query()->select('id', 'parent_id')->where('id', $currentMenu->parent_id)->first();
+            }
+            if (!$currentMenu)
+                break;
+        }
+
+        return $currentMenu?->id;
     }
 
     public function getUrlAttribute()
@@ -212,22 +222,17 @@ class Page extends Model
             $model->created_by = Auth::id();
             $model->updated_by = Auth::id();
         });
-        // static::updating(function ($model) {
-        //     $model->updated_by = Auth::id();
-        // });
 
-        static::created(function () {
-            Cache::forget('menu');
+        $clearCache = function () {
+            foreach (['kk', 'ru', 'en'] as $locale) {
+                Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
+                Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
+            }
             self::invalidateHomepageHtml();
-        });
+        };
 
-        static::updated(function () {
-            Cache::forget('menu');
-            self::invalidateHomepageHtml();
-        });
-        static::deleted(function () {
-            Cache::forget('menu');
-            self::invalidateHomepageHtml();
-        });
+        static::created($clearCache);
+        static::updated($clearCache);
+        static::deleted($clearCache);
     }
 }

@@ -29,18 +29,13 @@ class Layout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public ?string $metaTitle = null, public ?string $metaDescription = null, public ?string $metaImage = null)
-    {
-        $this->menu = Cache::remember('menu', now()->addDays(1), function() {
-            return Menu::with(['page','children' => function($q){
-                $q->with(['page','children' => function($c){
-                    $c->with(['page','children' => function($l){
-                       $l->with('page')->where('active',true)->orderBy('sort');
-                     }])->where('active',true)->orderBy('sort');
-                }])->where('active',true)->orderBy('sort');
-            }, 'parent'])->where(["active"=>true,'parent_id'=>NULL, 'position' => Menu::POSITION_HEADER])->orderBy('sort')->get()->toArray();
-        }); 
-        $this->menu = $this->hydrateMenu($this->menu);
+    public function __construct(
+        public ?string $metaTitle = null, 
+        public ?string $metaDescription = null, 
+        public ?string $metaImage = null,
+        protected \App\Services\Page\PageService $pageService = new \App\Services\Page\PageService()
+    ) {
+        $this->menu = $this->pageService->getMenuTree(Menu::POSITION_HEADER);
     
         $this->call_center = Cache::remember('call_center', now()->addDays(1), function(){
             $data = DB::table('text_widgets')->where('key','call_center')->first();
@@ -71,51 +66,7 @@ class Layout extends Component
             $this->top_button->exists = true;
         }
 
-        $this->footerMenu = Cache::remember('footer_menu', now()->addDays(1), function() {
-            return Menu::with(['children' => function($q){
-                $q->with(['children' => function($c){
-                    $c->with('page')->where('active',true)->orderBy('sort');
-                }])->where('active',true)->orderBy('sort');
-            }, 'parent'])->where(["active"=>true,'parent_id'=>NULL, 'position' => Menu::POSITION_FOOTER])->orderBy('sort')->get()->toArray();
-        });
-        $this->footerMenu = $this->hydrateMenu($this->footerMenu);
-    }
-
-    /**
-     * Recursive hydration for Menu models from arrays.
-     * Separates attributes from relations to prevent array-access errors in Blade.
-     */
-    private function hydrateMenu($data)
-    {
-        if (empty($data) || !is_array($data)) return collect();
-
-        $models = [];
-        foreach ($data as $itemData) {
-            // Extract and remove relations from the primary data array
-            $childrenData = $itemData['children'] ?? [];
-            $pageData = $itemData['page'] ?? null;
-            
-            unset($itemData['children'], $itemData['page'], $itemData['parent']);
-
-            // Create model and set raw attributes WITHOUT relations in them
-            $model = new Menu();
-            $model->setRawAttributes($itemData, true);
-            $model->exists = true;
-
-            // Set relations as proper collections/models
-            $model->setRelation('children', $this->hydrateMenu($childrenData));
-
-            if ($pageData) {
-                $pageModel = new Page();
-                $pageModel->setRawAttributes($pageData, true);
-                $pageModel->exists = true;
-                $model->setRelation('page', $pageModel);
-            }
-
-            $models[] = $model;
-        }
-
-        return collect($models);
+        $this->footerMenu = $this->pageService->getMenuTree(Menu::POSITION_FOOTER);
     }
 
     /**

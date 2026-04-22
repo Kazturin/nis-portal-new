@@ -19,6 +19,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "fruitcake/laravel-debugbar": "^4.2",
         "kitloong/laravel-migrations-generator": "^7.3",
         "larastan/larastan": "^3.0",
         "laravel/pail": "^1.2.5",

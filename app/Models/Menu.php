@@ -58,9 +58,9 @@ class Menu extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function parent(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(Menu::class, 'id', 'parent_id');
+        return $this->belongsTo(Menu::class, 'parent_id');
     }
 
     public function children(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -104,29 +104,24 @@ class Menu extends Model
     {
         parent::boot();
 
-        static::created(function ($model) {
-            if ($model->position === self::POSITION_FOOTER) {
-                Cache::forget('footer_menu');
+        $clearCache = function () {
+            foreach (['kk', 'ru', 'en'] as $locale) {
+                Cache::forget("menu_tree_" . self::POSITION_HEADER . "_{$locale}");
+                Cache::forget("menu_tree_" . self::POSITION_FOOTER . "_{$locale}");
             }
-            Cache::forget('menu');
             self::invalidateHomepageHtml();
-        });
+        };
 
-        static::updated(function ($model) {
-            if ($model->position === self::POSITION_FOOTER) {
-                Cache::forget('footer_menu');
-            }
-            Cache::forget('menu');
-            self::invalidateHomepageHtml();
-        });
+        static::created($clearCache);
+        static::updated($clearCache);
+        static::deleted($clearCache);
+    }
 
-        static::deleted(function ($model) {
-            if ($model->position === self::POSITION_FOOTER) {
-                Cache::forget('footer_menu');
-            }
-            Cache::forget('menu');
-            self::invalidateHomepageHtml();
-        });
+    protected static function invalidateHomepageHtml()
+    {
+        Cache::forget('homepage_html_kk');
+        Cache::forget('homepage_html_ru');
+        Cache::forget('homepage_html_en');
     }
 
 }
