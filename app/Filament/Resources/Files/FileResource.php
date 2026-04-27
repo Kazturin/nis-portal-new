@@ -47,16 +47,17 @@ class FileResource extends Resource
                     ->maxLength(255),
                 FileUpload::make('path')
                     ->required()
+                    ->disk('public')
+                    ->visibility('public')
                     ->directory('files')
                     ->label('Файл')
                     ->getUploadedFileNameForStorageUsing(
                         function (TemporaryUploadedFile $file, Get $get) {
-                            $originalName = $file->getClientOriginalName();
-                            $extension = $file->getClientOriginalExtension();
-                            if ($get('filename')) {
-                                return $get('filename') . '.' . $extension;
+                            if ($filename = $get('filename')) {
+                                return $filename . '.' . $file->getClientOriginalExtension();
                             }
-                            return $originalName;
+
+                            return $file->hashName();
                         }
                     ),
             ]);
@@ -71,17 +72,20 @@ class FileResource extends Resource
                     ->label('Название')
                     ->searchable(),
                 TextColumn::make('path')
+                    ->label('Ссылка')
                     ->url(fn(File $record): string => $record->getFile())
                     ->openUrlInNewTab(),
                 TextColumn::make('created_at')
+                    ->label('Дата создания')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 TextColumn::make('updated_at')
+                    ->label('Дата обновления')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
