@@ -457,6 +457,9 @@ blockquote {
     margin-bottom: 15px !important;
 }
 
-.prose u {
-    text-underline-offset: 5px !important;
+.prose a[href$=".pdf"] {
+    color: #80C342;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 5px;
 }
