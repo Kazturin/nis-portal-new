@@ -156,6 +156,7 @@ class PageListRelationManager extends RelationManager
             ->filters([
                 //
             ])
+            ->defaultSort('date', 'desc')
             ->headerActions([
                 CreateAction::make(),
                 AssociateAction::make(),
@@ -163,12 +164,10 @@ class PageListRelationManager extends RelationManager
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-                DissociateAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DissociateBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
             ]);

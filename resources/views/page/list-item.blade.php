@@ -26,9 +26,9 @@
                     <span class="mx-4 h-auto text-gray-400 font-medium">/</span>
                 </li>
               
-                <li class="inline-flex items-center">
+                <!-- <li class="inline-flex items-center">
                     {{ $pageList->{'title_'.app()->getLocale()} }}
-                </li>
+                </li> -->
             </ul>
         </div>
 
@@ -45,7 +45,7 @@
                 @endif
                 
                 <div class="my-10">
-                    <div class="content tiptap-content text-xl list">
+                    <div class="content prose text-xl list">
                         {!! $pageList->{'content_'.app()->getLocale()} !!}
                     </div>
                 </div>

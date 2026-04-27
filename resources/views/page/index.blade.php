@@ -17,12 +17,6 @@
                 @endif
                 <h1 class="font-inter text-xl md:text-3xl mb-10">{{ $page->{'title_' . app()->getLocale()} }}</h1>
 
-                @if ($topMenu)
-                    <div class="mb-10">
-                        <x-page-top-menu :menu="$topMenu" :current_menu="$page->menu->id"></x-page-top-menu>
-                    </div>
-                @endif
-
                 @if (!empty($page->{'content_' . $locale}))
                     <div class="max-w-7xl mx-auto mb-5 prose font-sf text-xl">
                         {!! $page->renderRichContent('content_' . $locale) !!}
@@ -39,8 +33,8 @@
                             @foreach($tabs as $t)
                                 <button @click="tab = '{{ $t['id'] }}'"
                                     :class="tab === '{{ $t['id'] }}' 
-                                                                                                                                                                ? 'text-yellow-600 shadow bg-white dark:text-white dark:bg-yellow-600' 
-                                                                                                                                                                : 'hover:text-gray-800 focus:text-yellow-600 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-400'"
+                                                                                                                                                                        ? 'text-yellow-600 shadow bg-white dark:text-white dark:bg-yellow-600' 
+                                                                                                                                                                        : 'hover:text-gray-800 focus:text-yellow-600 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-400'"
                                     class="flex whitespace-nowrap items-center h-8 px-2 md:px-5 font-medium rounded-lg outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-inset"
                                     role="tab" type="button" :aria-selected="tab === '{{ $t['id'] }}'">
                                     {{ $t['title_' . app()->getLocale()] }}

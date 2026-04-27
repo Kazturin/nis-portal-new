@@ -48,23 +48,15 @@ class PageController extends Controller
             ->paginate(12);
 
         $accordion_menu = $this->service->accordionMenu($page);
-        
-        $topMenu = null;
-        if ($page->menu && $page->menu->parent_id) {
-            $topMenu = $this->service->topMenu($page->menu->parent_id);
-            if ($topMenu && $topMenu->isEmpty()) {
-                $topMenu = null;
-            }
-        }
 
 
-        $metaTitle = $page->menu && $page->menu->parent 
-            ? $page->menu->parent->{'title_' . $locale} . ' | ' . $page->{'title_' . $locale} 
+        $metaTitle = $page->menu && $page->menu->parent
+            ? $page->menu->parent->{'title_' . $locale} . ' | ' . $page->{'title_' . $locale}
             : $page->{'title_' . $locale};
 
         $tabs = $page->tabs;
 
-        return view('page.index', compact('accordion_menu', 'page', 'topMenu', 'files', 'list', 'metaTitle', 'tabs', 'locale'));
+        return view('page.index', compact('accordion_menu', 'page', 'files', 'list', 'metaTitle', 'tabs', 'locale'));
     }
 
     public function listItem(?string $locale, PageList $pageList)
@@ -104,8 +96,8 @@ class PageController extends Controller
                 ->first();
         }
 
-        $metaTitle = $page->menu && $page->menu->parent 
-            ? $page->menu->parent->{'title_' . app()->getLocale()} . ' | ' . $pageList->{'title_' . app()->getLocale()} 
+        $metaTitle = $page->menu && $page->menu->parent
+            ? $page->menu->parent->{'title_' . app()->getLocale()} . ' | ' . $pageList->{'title_' . app()->getLocale()}
             : $pageList->{'title_' . app()->getLocale()};
 
         return view('page.list-item', compact("pageList", "accordion_menu", "page", "next", "prev", "metaTitle"));

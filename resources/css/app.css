@@ -456,3 +456,7 @@ blockquote {
     margin-top: 15px !important;
     margin-bottom: 15px !important;
 }
+
+.prose u {
+    text-underline-offset: 5px !important;
+}
