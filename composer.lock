@@ -3569,12 +3569,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kazturin/filament-file-manager.git",
-                "reference": "19b7c5b861fd61d01ba4c059f8ac48a4966bec76"
+                "reference": "79cd389799cd35a970413a35d0f705bf668739be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kazturin/filament-file-manager/zipball/19b7c5b861fd61d01ba4c059f8ac48a4966bec76",
-                "reference": "19b7c5b861fd61d01ba4c059f8ac48a4966bec76",
+                "url": "https://api.github.com/repos/Kazturin/filament-file-manager/zipball/79cd389799cd35a970413a35d0f705bf668739be",
+                "reference": "79cd389799cd35a970413a35d0f705bf668739be",
                 "shasum": ""
             },
             "require": {
@@ -3621,7 +3621,7 @@
             "support": {
                 "source": "https://github.com/Kazturin/filament-file-manager/tree/main"
             },
-            "time": "2026-04-29T09:00:41+00:00"
+            "time": "2026-04-29T09:32:20+00:00"
         },
         {
             "name": "monolog/monolog",
