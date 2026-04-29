@@ -28,10 +28,15 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use MmesDesign\FilamentFileManager\RichEditor\FileManagerRichEditorPlugin;
 
 class PageListRelationManager extends RelationManager
 {
     protected static string $relationship = 'pageList';
+
+    protected static ?string $modelLabel = 'Список';
+    protected static ?string $pluralModelLabel = 'Список';
+    protected static ?string $title = 'Список';
 
     public function form(Schema $schema): Schema
     {
@@ -55,7 +60,14 @@ class PageListRelationManager extends RelationManager
                                             ->customTextColors()
                                             ->columnSpanFull(),
                                         RichEditor::make('content_kk')
-                                            ->columnSpanFull(),
+                                            ->columnSpanFull()
+                                            ->plugins([
+                                                FileManagerRichEditorPlugin::make()
+                                                    ->multiple(false)
+                                                    ->disk('public')
+                                                    ->directory('pages/list')
+                                            ])
+                                            ->enableToolbarButtons(['fileManager'])
                                     ]),
                                 Tabs\Tab::make('ru')
                                     ->schema([
@@ -71,7 +83,14 @@ class PageListRelationManager extends RelationManager
                                             ->customTextColors()
                                             ->columnSpanFull(),
                                         RichEditor::make('content_ru')
-                                            ->columnSpanFull(),
+                                            ->columnSpanFull()
+                                            ->plugins([
+                                                FileManagerRichEditorPlugin::make()
+                                                    ->multiple(false)
+                                                    ->disk('public')
+                                                    ->directory('pages/list')
+                                            ])
+                                            ->enableToolbarButtons(['fileManager']),
                                     ]),
                                 Tabs\Tab::make('en')
                                     ->schema([
@@ -86,7 +105,14 @@ class PageListRelationManager extends RelationManager
                                             ->customTextColors()
                                             ->columnSpanFull(),
                                         RichEditor::make('content_en')
-                                            ->columnSpanFull(),
+                                            ->columnSpanFull()
+                                            ->plugins([
+                                                FileManagerRichEditorPlugin::make()
+                                                    ->multiple(false)
+                                                    ->disk('public')
+                                                    ->directory('pages/list')
+                                            ])
+                                            ->enableToolbarButtons(['fileManager']),
                                     ]),
                             ]),
 

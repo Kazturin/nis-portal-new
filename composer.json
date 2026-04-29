@@ -8,6 +8,12 @@
         "framework"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Kazturin/filament-file-manager"
+        }
+    ],
     "require": {
         "php": "^8.3",
         "filament/filament": "^5.0",
@@ -15,7 +21,8 @@
         "laravel/octane": "^2.17",
         "laravel/tinker": "^3.0",
         "spatie/laravel-permission": "*",
-        "spatie/laravel-sluggable": "^3.8"
+        "spatie/laravel-sluggable": "^3.8",
+        "mmes-design/filament-file-manager": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

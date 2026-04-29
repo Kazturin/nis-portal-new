@@ -1,0 +1,133 @@
+<?php
+
+return [
+
+    'page' => [
+        'title' => 'Файловый менеджер',
+        'navigation_label' => 'Файловый менеджер',
+    ],
+
+    'toolbar' => [
+        'upload' => 'Загрузить',
+        'new_folder' => 'Новая папка',
+        'refresh' => 'Обновить',
+        'deselect' => 'Снять выделение',
+        'sort_name' => 'Имя',
+        'sort_size' => 'Размер',
+        'sort_date' => 'Дата',
+        'sort_type' => 'Тип',
+        'sort_asc' => 'По возрастанию',
+        'sort_desc' => 'По убыванию',
+        'selected_count' => ':count выбран|:count выбрано|:count выбрано',
+    ],
+
+    'actions' => [
+        'rename' => 'Переименовать',
+        'delete' => 'Удалить',
+        'preview' => 'Просмотр',
+        'full_preview' => 'Полный просмотр',
+        'download' => 'Скачать',
+        'open' => 'Открыть',
+        'upload_files' => 'Загрузить файлы',
+        'new_folder' => 'Новая папка',
+        'move_selected' => 'Переместить выбранные',
+        'delete_selected' => 'Удалить выбранные',
+        'confirm_selection' => 'Подтвердить выбор',
+        'browse' => 'Обзор',
+        'select_file' => 'Выбрать файл',
+        'check_updates' => 'Проверить обновления',
+        'update_available_title' => 'Доступно обновление',
+        'update_available_body' => 'Доступна версия :latest (текущая: :current).',
+        'up_to_date_title' => 'Актуальная версия',
+        'up_to_date_body' => 'Вы используете последнюю версию (:current).',
+        'update_check_failed_title' => 'Ошибка проверки',
+        'update_check_failed_body' => 'Не удалось проверить обновления. Попробуйте позже.',
+    ],
+
+    'messages' => [
+        'files_uploaded' => ':count файл загружен|:count файла загружено|:count файлов загружено',
+        'some_files_not_uploaded' => 'Некоторые файлы не удалось загрузить',
+        'folder_created' => "Папка ':name' создана",
+        'renamed_successfully' => 'Успешно переименовано',
+        'item_deleted' => "':name' удалён",
+        'items_deleted' => ':count элемент удалён|:count элемента удалено|:count элементов удалено',
+        'items_moved' => ':count элемент перемещён|:count элемента перемещено|:count элементов перемещено',
+        'item_moved' => "':name' перемещён в ':destination'",
+        'move_error' => 'Ошибка при перемещении',
+        'file_too_large' => 'Файл не должен превышать :max.',
+        'upload_failed' => 'Ошибка загрузки. Файл не должен превышать :max.',
+        'file_type_not_allowed' => 'Тип файла не разрешён: :name',
+        'folder_already_exists' => "Папка ':name' уже существует.",
+        'name_already_exists' => "':name' уже существует.",
+        'extension_changed' => 'Изменение расширения файла может сделать его непригодным для использования.',
+        'permission_denied' => 'У вас нет разрешения на выполнение этого действия.',
+    ],
+
+    'labels' => [
+        'folder_name' => 'Название папки',
+        'new_name' => 'Новое имя',
+        'destination_folder' => 'Папка назначения',
+        'destination_placeholder' => 'например, images/photos',
+        'destination_helper' => 'Оставьте пустым для перемещения в корень.',
+        'file' => 'Файл',
+        'name_validation' => 'Имя не может содержать / или \\.',
+        'folder' => 'Папка',
+        'files_count' => ':count файл|:count файла|:count файлов',
+        'folders_count' => ':count папка|:count папки|:count папок',
+        'selected' => ':count выбрано',
+        'file_selected' => '1 файл выбран',
+        'no_file_selected' => 'Файл не выбран',
+        'root' => 'Корень',
+        'showing_of_total' => ':shown из :total файлов',
+        'loading_more' => 'Загрузка...',
+    ],
+
+    'modals' => [
+        'confirm_deletion' => 'Подтверждение удаления',
+        'deletion_warning' => 'Это действие нельзя отменить. Продолжить?',
+        'bulk_deletion_warning' => 'Вы собираетесь удалить :count элементов. Это действие нельзя отменить.',
+        'close' => 'Закрыть',
+    ],
+
+    'sidebar' => [
+        'folders' => 'Папки',
+        'expand' => 'Развернуть',
+        'collapse' => 'Свернуть',
+        'empty' => '(пусто)',
+        'show_folders' => 'Показать папки',
+        'show_preview' => 'Показать предпросмотр',
+        'hide_preview' => 'Скрыть предпросмотр',
+    ],
+
+    'file_types' => [
+        'image' => 'Изображение',
+        'document' => 'Документ',
+        'audio' => 'Аудио',
+        'video' => 'Видео',
+        'archive' => 'Архив',
+        'code' => 'Код',
+        'other' => 'Другое',
+    ],
+
+    'editors' => [
+        'file_manager' => 'Файловый менеджер',
+        'insert' => 'Вставить',
+        'select_files' => 'Выберите файлы для вставки',
+        'no_url_warning' => 'Некоторые файлы были пропущены, так как у них нет публичного URL.',
+    ],
+
+    'misc' => [
+        'empty_folder' => 'Эта папка пуста',
+        'empty_folder_hint' => 'Загрузите файлы или создайте новую папку',
+        'select_file_preview' => 'Выберите файл для просмотра его данных',
+        'info' => 'Информация',
+        'type' => 'Тип',
+        'mime' => 'MIME',
+        'size' => 'Размер',
+        'modified' => 'Изменён',
+        'audio_not_supported' => 'Ваш браузер не поддерживает аудио.',
+        'video_not_supported' => 'Ваш браузер не поддерживает видео.',
+        'cannot_read_file' => 'Не удалось прочитать содержимое файла.',
+    ],
+
+];

@@ -37,6 +37,7 @@ use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Validation\Rules\Unique;
+use MmesDesign\FilamentFileManager\RichEditor\FileManagerRichEditorPlugin;
 
 class PageForm
 {
@@ -98,9 +99,13 @@ class PageForm
                                                 ['undo', 'redo'],
                                             ])
                                             ->customTextColors()
-                                            ->fileAttachmentsDisk('public')
-                                            ->fileAttachmentsDirectory('pages/content/attachments')
-                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
+                                            ->plugins([
+                                                FileManagerRichEditorPlugin::make()
+                                                    ->multiple(false)
+                                                    ->disk('public')
+                                                    ->directory('pages/content')
+                                            ])
+                                            ->enableToolbarButtons(['fileManager'])
                                             ->json()
                                             ->resizableImages()
                                             ->extraInputAttributes([
@@ -144,9 +149,13 @@ class PageForm
                                                 ['undo', 'redo'],
                                             ])
                                             ->customTextColors()
-                                            ->fileAttachmentsDisk('public')
-                                            ->fileAttachmentsDirectory('pages/content/attachments')
-                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
+                                            ->plugins([
+                                                FileManagerRichEditorPlugin::make()
+                                                    ->multiple(false)
+                                                    ->disk('public')
+                                                    ->directory('pages/content')
+                                            ])
+                                            ->enableToolbarButtons(['fileManager'])
                                             ->json()
                                             ->resizableImages()
                                             ->extraInputAttributes([
@@ -192,9 +201,13 @@ class PageForm
                                                 ['undo', 'redo'],
                                             ])
                                             ->customTextColors()
-                                            ->fileAttachmentsDisk('public')
-                                            ->fileAttachmentsDirectory('pages/content/attachments')
-                                            ->fileAttachmentsAcceptedFileTypes(['application/pdf', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
+                                            ->plugins([
+                                                FileManagerRichEditorPlugin::make()
+                                                    ->multiple(false)
+                                                    ->disk('public')
+                                                    ->directory('pages/content')
+                                            ])
+                                            ->enableToolbarButtons(['fileManager'])
                                             ->json()
                                             ->resizableImages()
                                             ->extraInputAttributes([

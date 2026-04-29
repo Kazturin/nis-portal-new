@@ -2,6 +2,7 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+@source '../../../../vendor/mmes-design/filament-file-manager/**/*';
 
 .fi-sidebar {
     background-color: #2e363e !important;
@@ -53,4 +54,8 @@
 
 .text-green-500 {
     color: rgb(75, 135, 15);
+}
+
+.bg-primary-600 {
+    background-color: oklch(0.666 0.179 58.318);
 }
