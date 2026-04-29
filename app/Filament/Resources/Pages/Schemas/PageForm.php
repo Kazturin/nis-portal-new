@@ -171,7 +171,6 @@ class PageForm
                                             ->required()
                                             ->maxLength(255),
                                         RichEditor::make('content_en')
-                                            ->required()
                                             ->label("Содержимое")
                                             ->customBlocks([
                                                 WorldMapBlock::class,
