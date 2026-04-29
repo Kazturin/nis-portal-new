@@ -58,9 +58,9 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                FileManagerPlugin::make()
-                    ->defaultDisk('public')
-                    ->navigationSort(20),
+                // FileManagerPlugin::make()
+                //     ->defaultDisk('public')
+                //     ->navigationSort(20),
             ])
             ->viteTheme('resources/css/filament/admin/theme.css');
     }
