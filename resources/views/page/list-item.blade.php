@@ -46,7 +46,7 @@
                 
                 <div class="my-10">
                     <div class="content prose text-xl list">
-                        {!! $pageList->{'content_'.app()->getLocale()} !!}
+                        {!! $pageList->renderRichContent('content_'.app()->getLocale()) !!}
                     </div>
                 </div>
 

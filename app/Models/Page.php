@@ -14,6 +14,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FixedButton
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FullSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\GallerySliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HorizontalCardBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OrnamentCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\PrimaryLinkBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderBlock;
@@ -170,6 +171,7 @@ class Page extends Model
                 BookAccordionBlock::class,
                 PrimaryLinkBlock::class,
                 AccordionBlock::class,
+                IframeBlock::class,
             ]);
 
         $this->registerRichContent('content_ru')
@@ -193,6 +195,7 @@ class Page extends Model
                 BookAccordionBlock::class,
                 PrimaryLinkBlock::class,
                 AccordionBlock::class,
+                IframeBlock::class,
             ]);
 
         $this->registerRichContent('content_en')
@@ -216,6 +219,7 @@ class Page extends Model
                 BookAccordionBlock::class,
                 PrimaryLinkBlock::class,
                 AccordionBlock::class,
+                IframeBlock::class,
             ]);
     }
 

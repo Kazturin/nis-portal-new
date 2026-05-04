@@ -21,6 +21,8 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlo
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
+
 
 use App\Models\Menu;
 use App\Models\Page;
@@ -90,6 +92,7 @@ class PageForm
                                                 BookAccordionBlock::class,
                                                 AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
+                                                IframeBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
@@ -140,7 +143,9 @@ class PageForm
                                                 BookAccordionBlock::class,
                                                 AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
+                                                IframeBlock::class,
                                             ])
+
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
@@ -191,7 +196,9 @@ class PageForm
                                                 BookAccordionBlock::class,
                                                 AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
+                                                IframeBlock::class,
                                             ])
+
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],

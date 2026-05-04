@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Pages\RelationManagers;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
 use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -67,8 +68,20 @@ class PageListRelationManager extends RelationManager
                                                     ->disk('public')
                                                     ->directory('pages/list')
                                             ])
+                                            ->toolbarButtons([
+                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
+                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                                ['undo', 'redo'],
+                                            ])
+                                            ->customBlocks([
+                                                IframeBlock::class,
+                                            ])
                                             ->enableToolbarButtons(['fileManager'])
+                                            ->json()
                                     ]),
+
                                 Tabs\Tab::make('ru')
                                     ->schema([
                                         TextInput::make('title_ru')
@@ -90,8 +103,20 @@ class PageListRelationManager extends RelationManager
                                                     ->disk('public')
                                                     ->directory('pages/list')
                                             ])
-                                            ->enableToolbarButtons(['fileManager']),
+                                            ->toolbarButtons([
+                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
+                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                                ['undo', 'redo'],
+                                            ])
+                                            ->customBlocks([
+                                                IframeBlock::class,
+                                            ])
+                                            ->enableToolbarButtons(['fileManager'])
+                                            ->json(),
                                     ]),
+
                                 Tabs\Tab::make('en')
                                     ->schema([
                                         TextInput::make('title_en')
@@ -112,8 +137,20 @@ class PageListRelationManager extends RelationManager
                                                     ->disk('public')
                                                     ->directory('pages/list')
                                             ])
-                                            ->enableToolbarButtons(['fileManager']),
+                                            ->toolbarButtons([
+                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
+                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                                ['undo', 'redo'],
+                                            ])
+                                            ->customBlocks([
+                                                IframeBlock::class,
+                                            ])
+                                            ->enableToolbarButtons(['fileManager'])
+                                            ->json(),
                                     ]),
+
                             ]),
 
                         TextInput::make('position')

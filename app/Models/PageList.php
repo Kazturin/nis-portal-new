@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
+use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
 
 /**
  * @property \App\Models\Page|null $page
@@ -14,6 +15,8 @@ use Illuminate\Support\Str;
 class PageList extends Model
 {
     use HasFactory;
+    use InteractsWithRichContent;
+
     public $timestamps = false;
     protected $fillable = [
         'title_kk',
@@ -34,8 +37,12 @@ class PageList extends Model
 
 
     protected $casts = [
-        'date' => 'datetime'
+        'date' => 'datetime',
+        'content_kk' => 'array',
+        'content_ru' => 'array',
+        'content_en' => 'array',
     ];
+
 
     public function page()
     {
@@ -87,4 +94,39 @@ class PageList extends Model
     //         $builder->orderBy('position');
     //     });
     // }
+
+    public function renderRichContent(string $attribute): string
+    {
+        $value = $this->{$attribute};
+
+        if (empty($value) || !is_array($value)) {
+            return is_string($value) ? $value : (string) ($this->getRawOriginal($attribute) ?? '');
+        }
+
+        $attributeObj = $this
+            ->getRichContentAttribute($attribute) ?? \Filament\Forms\Components\RichEditor\RichContentAttribute::make($this, $attribute);
+
+        return $attributeObj->getRenderer()->toUnsafeHtml();
+    }
+
+    public function setUpRichContent(): void
+    {
+        $this->registerRichContent('content_kk')
+            ->fileAttachmentsDisk('public')
+            ->customBlocks([
+                IframeBlock::class,
+            ]);
+
+        $this->registerRichContent('content_ru')
+            ->fileAttachmentsDisk('public')
+            ->customBlocks([
+                IframeBlock::class,
+            ]);
+
+        $this->registerRichContent('content_en')
+            ->fileAttachmentsDisk('public')
+            ->customBlocks([
+                IframeBlock::class,
+            ]);
+    }
 }
