@@ -60,6 +60,7 @@ Route::group([
 });
 Route::post('/products/{product}/form', [ProductController::class, 'submitForm'])->name('product.form.submit');
 
+ Route::get('/login', function() { return 'login'; })->name('login');
 // Route::get('/login', [LdapLoginController::class, 'showLoginForm'])->name('login');
 // Route::post('/login', [LdapLoginController::class, 'login']);
 // Route::post('/logout', [LdapLoginController::class, 'logout'])->name('logout');

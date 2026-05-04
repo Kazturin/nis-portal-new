@@ -1,0 +1,215 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthat true is true[39m
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\MenuTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget banner returns default[39m[90m                                         [39m [90m11.47s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget banner returns storage path[39m[90m                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for product[39m[90m                                                 [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for external link[39m[90m                                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for named route[39m[90m                                             [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for page[39m[90m                                                    [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on boot events[39m[90m                                 [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\NewsTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget formatted date[39m[90m                                                  [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget photo returns default when empty[39m[90m                                [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget photo returns storage path[39m[90m                                      [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort title[39m[90m                                                         [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort body[39m[90m                                                          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort title returns empty when no title[39m[90m                             [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort body returns empty when no content[39m[90m                            [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mset published at attribute[39m[90m                                          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url attribute[39m[90m                                                   [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcategory relation[39m[90m                                                   [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\PageTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget top parent menu[39m[90m                                                 [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url attribute[39m[90m                                                   [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\ProductTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on delete[39m[90m                                      [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget menu url[39m[90m                                                        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct relations[39m[90m                                                   [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\SmallModelsTest[39m
+  [32;1m✓[39;22m[90m [39m[90mad model[39m[90m                                                            [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madvantage model[39m[90m                                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfaq model[39m[90m                                                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpartner model[39m[90m                                                       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstatistic model[39m[90m                                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mother resource model[39m[90m                                                [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache invalidation on ad save[39m[90m                                       [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\UserTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpages relation[39m[90m                                                      [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcan access panel[39m[90m                                                    [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Policies\AllPoliciesTest[39m
+  [32;1m✓[39;22m[90m [39m[90mall policies view any method[39m[90m                                        [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Services\HomePageDataFetcherTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget news returns hydrated models[39m[90m                                    [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget advantages returns hydrated models[39m[90m                              [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget ads returns hydrated models[39m[90m                                     [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget photo gallery returns hydrated models[39m[90m                           [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget mission returns object[39m[90m                                          [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget statistics returns collection of objects[39m[90m                        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget resources returns hydrated models[39m[90m                               [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget partners returns hydrated models[39m[90m                                [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget faq returns collection of objects[39m[90m                               [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget opportunities block returns object[39m[90m                              [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget resources block returns object[39m[90m                                  [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget modal returns object[39m[90m                                            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Services\PageServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget menu tree returns correct structure[39m[90m                             [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget menu tree is cached[39m[90m                                             [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90maccordion menu returns children of top parent[39m[90m                       [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtop menu returns filtered children[39m[90m                                  [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhydrate menu restores relations[39m[90m                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhydrate menu returns empty on invalid data[39m[90m                          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtop menu filters correctly[39m[90m                                          [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\View\Components\PageListsTest[39m
+  [32;1m✓[39;22m[90m [39m[90mrender returns specific view when it exists[39m[90m                         [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrender returns default view when specific does not exist[39m[90m            [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mrender returns default view when type is null[39m[90m                       [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Commands\ClearHomepageCacheTest[39m
+  [32;1m✓[39;22m[90m [39m[90mit clears homepage cache for all locales[39m[90m                            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\EmptyPageControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mindex returns view for existing page[39m[90m                                [39m [90m0.06s[39m  
+  [32;1m✓[39;22m[90m [39m[90mindex aborts for non existent page[39m[90m                                  [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\FileControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90minvoke returns view with file data[39m[90m                                  [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\ModifyLinkControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mguest is redirected to login[39m[90m                                        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mauthenticated user is redirected to modified url[39m[90m                    [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\NewsControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mnews index returns successful response[39m[90m                              [39m [90m0.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnews show returns successful response[39m[90m                               [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnews show does not increment views twice in session[39m[90m                 [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnews show returns 404 for inactive news[39m[90m                             [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\PageControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpage index returns successful response[39m[90m                              [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage index returns 404 for non existent page[39m[90m                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprotected page redirects to login[39m[90m                                   [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprotected page access successful when authenticated[39m[90m                 [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage list item with date returns successful response[39m[90m                [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage list item without date returns successful response[39m[90m             [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage list item next prev[39m[90m                                            [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\ProductControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mproduct index returns successful response[39m[90m                           [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form successfully[39m[90m                                    [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form validation error[39m[90m                                [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form empty schema[39m[90m                                    [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form empty validated data[39m[90m                            [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\SearchControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90msearch returns successful response[39m[90m                                  [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90msearch finds pages[39m[90m                                                  [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90msearch finds news[39m[90m                                                   [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\SiteControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mhomepage returns successful response[39m[90m                                [39m [90m0.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhomepage is cached[39m[90m                                                  [39m [90m0.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhomepage serves cached content[39m[90m                                      [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhomepage respects locale cache[39m[90m                                      [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\TestControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mindex returns successful response[39m[90m                                   [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Middleware\LocalizationTest[39m
+  [32;1m✓[39;22m[90m [39m[90mit sets locale from url segment[39m[90m                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mit sets locale from session if not in url[39m[90m                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mit defaults to config locale if nothing specified[39m[90m                   [39m [90m0.02s[39m  
+
+  [90mTests:[39m    [32;1m91 passed[39;22m[90m (203 assertions)[39m
+  [90mDuration:[39m [39m14.25s[39m
+
+  Console/Commands/ClearHomepageCache ................................. 100.0%  
+  Contracts/Routable .................................................. 100.0%  
+  Enums/ListViewType .................................................. 100.0%  
+  Enums/MenuTypeEnum .................................................... 0.0%  
+  Enums/ProductsEnum .................................................... 0.0%  
+  Enums/RolesEnum ....................................................... 0.0%  
+  Http/Controllers/Controller ......................................... 100.0%  
+  Http/Controllers/EmptyPageController ............................ 13 / 66.7%  
+  Http/Controllers/FileController ..................................... 100.0%  
+  Http/Controllers/ModifyLinkController ............................... 100.0%  
+  Http/Controllers/NewsController ..................................... 100.0%  
+  Http/Controllers/PageController ................ 25, 54, 88..96, 100 / 79.6%  
+  Http/Controllers/ProductController .............................. 43 / 94.7%  
+  Http/Controllers/SearchController ................................... 100.0%  
+  Http/Controllers/SiteController ..................................... 100.0%  
+  Http/Controllers/TestController ..................................... 100.0%  
+  Http/Middleware/Localization ........................................ 100.0%  
+  Livewire/ImageChecker ........................... 32, 40..148, 31..53 / 5.4%  
+  Livewire/LanguageSelector ................................... 24..29 / 40.0%  
+  Livewire/NewsComponent ................................................ 0.0%  
+  Livewire/ProductRequestsModal ......................................... 0.0%  
+  Livewire/Statistics ................................................... 0.0%  
+  Models/Ad ................................................... 54..55 / 89.5%  
+  Models/Advantage ............................................ 47..57 / 63.6%  
+  Models/Faq .......................................................... 100.0%  
+  Models/File ........................................................... 0.0%  
+  Models/Menu ......................................................... 100.0%  
+  Models/News ..................................................... 82 / 97.0%  
+  Models/NewsCategory ................................................... 0.0%  
+  Models/OtherResource ........................................ 45..51 / 75.0%  
+  Models/Page ................................. 92..102, 111, 116, 121 / 94.2%  
+  Models/PageBanner ................................................... 100.0%  
+  Models/PageFile ............................................. 42..59 / 11.1%  
+  Models/PageList ............................................. 47..71 / 25.0%  
+  Models/PageTab ...................................................... 100.0%  
+  Models/Partner .............................................. 32..33 / 85.7%  
+  Models/Permission ................................................... 100.0%  
+  Models/PhotoGallery ..................................... 24, 37..43 / 64.3%  
+  Models/Product/Product .......................................... 75 / 98.3%  
+  Models/Product/ProductComment ......................................... 0.0%  
+  Models/Product/ProductFormSchema .................................... 100.0%  
+  Models/Product/ProductRequest ......................................... 0.0%  
+  Models/Role ........................................................... 0.0%  
+  Models/Statistic .................................................... 100.0%  
+  Models/TextWidget ........................................... 29..40 / 53.8%  
+  Models/User ......................................................... 100.0%  
+  Policies/AdPolicy ................................................... 100.0%  
+  Policies/AdvantagePolicy ............................................ 100.0%  
+  Policies/AlumniMenuPolicy ........................................... 100.0%  
+  Policies/AlumniPagePolicy ........................................... 100.0%  
+  Policies/FaqPolicy .................................................. 100.0%  
+  Policies/FilePolicy ................................................. 100.0%  
+  Policies/MenuPolicy ................................................. 100.0%  
+  Policies/NewsCategoryPolicy ......................................... 100.0%  
+  Policies/NewsPolicy ................................................. 100.0%  
+  Policies/OtherResourcePolicy ........................................ 100.0%  
+  Policies/PageFilePolicy ............................................. 100.0%  
+  Policies/PageListPolicy ............................................. 100.0%  
+  Policies/PagePolicy ................................................. 100.0%  
+  Policies/PartnerPolicy .............................................. 100.0%  
+  Policies/PermissionPolicy ........................................... 100.0%  
+  Policies/PhotoGalleryPolicy ......................................... 100.0%  
+  Policies/ProductPolicy .............................................. 100.0%  
+  Policies/RolePolicy ................................................. 100.0%  
+  Policies/StatisticPolicy ............................................ 100.0%  
+  Policies/TextWidgetPolicy ........................................... 100.0%  
+  Policies/UserPolicy ................................................. 100.0%  
+  Providers/AppServiceProvider ................................ 20..24 / 37.5%  
+  Providers/Filament/AdminPanelProvider ............................... 100.0%  
+  Services/Page/HomePageDataFetcher ................................... 100.0%  
+  Services/Page/PageService .......................... 64, 76, 104, 91 / 95.4%  
+  Traits/InvalidatesHomepageCache ..................................... 100.0%  
+  View/Components/Layout .............................................. 100.0%  
+  View/Components/PageLists ........................................... 100.0%  
+  ────────────────────────────────────────────────────────────────────────────  
+                                                                 Total: 82.0 %  

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Cache;
  */
 class PhotoGallery extends Model
 {
-    use InvalidatesHomepageCache;
+    use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         'description_kk',
         'description_ru',

@@ -27,6 +27,14 @@ class TextWidgetForm
                                     ->maxLength(255),
                                 RichEditor::make('content_kk')
                                     ->label('Контент(KZ)')
+                                    ->toolbarButtons([
+                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
+                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                        ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                        ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                        ['undo', 'redo'],
+                                    ])
+                                    ->customTextColors()
                                     ->required()
                                     ->columnSpanFull(),
                             ]),
@@ -38,6 +46,14 @@ class TextWidgetForm
                                     ->maxLength(255),
                                 RichEditor::make('content_ru')
                                     ->label('Контент(RU)')
+                                    ->toolbarButtons([
+                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
+                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                        ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                        ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                        ['undo', 'redo'],
+                                    ])
+                                    ->customTextColors()
                                     ->required()
                                     ->columnSpanFull(),
                             ]),
@@ -49,6 +65,14 @@ class TextWidgetForm
                                     ->maxLength(255),
                                 RichEditor::make('content_en')
                                     ->label('Контент(EN)')
+                                    ->toolbarButtons([
+                                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
+                                        ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                        ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                        ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                        ['undo', 'redo'],
+                                    ])
+                                    ->customTextColors()
                                     ->required()
                                     ->columnSpanFull(),
                             ]),

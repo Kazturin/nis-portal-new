@@ -25,6 +25,7 @@ use App\Traits\InvalidatesHomepageCache;
 use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Sluggable\HasSlug;
@@ -36,9 +37,11 @@ use Spatie\Sluggable\SlugOptions;
  * @property int|null $parent_id
  * @property int $id
  */
+
+
 class Page extends Model
 {
-    use HasSlug, InvalidatesHomepageCache;
+    use HasSlug, InvalidatesHomepageCache, HasFactory;
     use InteractsWithRichContent;
     protected $fillable = [
         'title_kk',
@@ -219,8 +222,8 @@ class Page extends Model
     protected static function booted()
     {
         static::creating(function ($model) {
-            $model->created_by = Auth::id();
-            $model->updated_by = Auth::id();
+            $model->created_by ??= Auth::id();
+            $model->updated_by ??= Auth::id();
         });
 
         $clearCache = function () {

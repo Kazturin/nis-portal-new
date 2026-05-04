@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Statistic extends Model
 {
-    use InvalidatesHomepageCache;
+    use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         'description_kk',
         'description_ru',

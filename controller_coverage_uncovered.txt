@@ -1,0 +1,330 @@
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.1 with PCOV 1.0.12
+Configuration: /var/www/html/phpunit.xml
+
+...............                                                   15 / 15 (100%)
+
+Time: 00:12.565, Memory: 89.00 MB
+
+[30;42mOK (15 tests, 29 assertions)[0m
+
+
+[1;37;40mCode Coverage Report:       [0m
+[1;37;40m  2026-04-30 06:25:40       [0m
+[1;37;40m                            [0m
+[1;37;40m Summary:                   [0m
+[37;41m  Classes:  4.23% (6/142)   [0m
+[37;41m  Methods: 18.92% (70/370)  [0m
+[37;41m  Lines:   20.05% (645/3217)[0m
+
+App\Console\Commands\ClearHomepageCache
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\Enums\ListViewType
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Enums\MenuTypeEnum
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  5)[0m
+App\Enums\ProductsEnum
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\Enums\RolesEnum
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  6)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 51)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AnimatedNumbersBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 24)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 72)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BorderedTextBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 15)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CheckListBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 30)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ColoredBackgroundBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 38)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ContactBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 21)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumCardBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 23)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumResultBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 20)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\EducationLevelsBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 30)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FixedButtonBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 18)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\FullSliderBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 40)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\GallerySliderBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 30)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HorizontalCardBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 35)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ImageBottomTextBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 20)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ImageWithOverlayBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 37)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\KeyBenefitsBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 15)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OrnamentCardBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 27)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\PrimaryLinkBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 27)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 21)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCardBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 23)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock
+  [37;41mMethods:   0.00% ( 0/ 5)[0m   [37;41mLines:   0.00% (  0/ 32)[0m
+App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock
+  [37;41mMethods:   0.00% ( 0/ 6)[0m   [37;41mLines:   0.00% (  0/ 23)[0m
+App\Filament\Resources\Ads\AdResource
+  [37;41mMethods:  33.33% ( 1/ 3)[0m   [37;41mLines:   3.57% (  3/ 84)[0m
+App\Filament\Resources\Ads\Pages\ManageAds
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Faqs\FaqResource
+  [37;41mMethods:  50.00% ( 2/ 4)[0m   [30;43mLines:  80.00% (  8/ 10)[0m
+App\Filament\Resources\Faqs\Pages\CreateFaq
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\Faqs\Pages\EditFaq
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Faqs\Pages\ListFaqs
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Faqs\Schemas\FaqForm
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 27)[0m
+App\Filament\Resources\Faqs\Tables\FaqsTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 34)[0m
+App\Filament\Resources\Files\FileResource
+  [37;41mMethods:  33.33% ( 1/ 3)[0m   [37;41mLines:   5.17% (  3/ 58)[0m
+App\Filament\Resources\Files\Pages\ManageFiles
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Menus\MenuResource
+  [37;41mMethods:  50.00% ( 2/ 4)[0m   [30;43mLines:  80.00% (  8/ 10)[0m
+App\Filament\Resources\Menus\Pages\CreateMenu
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\Menus\Pages\EditMenu
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Menus\Pages\ListMenus
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Menus\Schemas\MenuForm
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 84)[0m
+App\Filament\Resources\Menus\Tables\MenusTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 25)[0m
+App\Filament\Resources\News\NewsResource
+  [37;41mMethods:  40.00% ( 2/ 5)[0m   [30;43mLines:  75.00% (  9/ 12)[0m
+App\Filament\Resources\News\Pages\CreateNews
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\News\Pages\EditNews
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\Filament\Resources\News\Pages\ListNews
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\News\Pages\ViewNews
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\News\Schemas\NewsForm
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/114)[0m
+App\Filament\Resources\News\Schemas\NewsInfolist
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 54)[0m
+App\Filament\Resources\News\Tables\NewsTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 39)[0m
+App\Filament\Resources\Pages\PageResource
+  [37;41mMethods:  40.00% ( 2/ 5)[0m   [30;43mLines:  75.00% (  9/ 12)[0m
+App\Filament\Resources\Pages\Pages\CreatePage
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\Pages\Pages\EditPage
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\Filament\Resources\Pages\Pages\ListPages
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Pages\Pages\ViewPage
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Pages\RelationManagers\PageListRelationManager
+  [37;41mMethods:   0.00% ( 0/ 3)[0m   [37;41mLines:   0.00% (  0/148)[0m
+App\Filament\Resources\Pages\Schemas\PageForm
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/231)[0m
+App\Filament\Resources\Pages\Schemas\PageInfolist
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 29)[0m
+App\Filament\Resources\Pages\Tables\PagesTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 43)[0m
+App\Filament\Resources\Partners\Pages\ManagePartners
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Partners\PartnerResource
+  [37;41mMethods:  33.33% ( 1/ 3)[0m   [37;41mLines:   6.25% (  3/ 48)[0m
+App\Filament\Resources\Product\Products\Pages\CreateProduct
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\Product\Products\Pages\EditProduct
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\Filament\Resources\Product\Products\Pages\ListProducts
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Product\Products\Pages\ViewProduct
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Product\Products\ProductResource
+  [37;41mMethods:  40.00% ( 2/ 5)[0m   [30;43mLines:  75.00% (  9/ 12)[0m
+App\Filament\Resources\Product\Products\Schemas\ProductForm
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/220)[0m
+App\Filament\Resources\Product\Products\Schemas\ProductInfolist
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 20)[0m
+App\Filament\Resources\Product\Products\Tables\ProductsTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 32)[0m
+App\Filament\Resources\Roles\Pages\ManageRoles
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Roles\RoleResource
+  [37;41mMethods:  14.29% ( 1/ 7)[0m   [37;41mLines:   6.82% (  3/ 44)[0m
+App\Filament\Resources\TextWidgets\Pages\CreateTextWidget
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\TextWidgets\Pages\EditTextWidget
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  4)[0m
+App\Filament\Resources\TextWidgets\Pages\ListTextWidgets
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\TextWidgets\Pages\ViewTextWidget
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\TextWidgets\Schemas\TextWidgetForm
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 45)[0m
+App\Filament\Resources\TextWidgets\Schemas\TextWidgetInfolist
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 22)[0m
+App\Filament\Resources\TextWidgets\Tables\TextWidgetsTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 33)[0m
+App\Filament\Resources\TextWidgets\TextWidgetResource
+  [37;41mMethods:  40.00% ( 2/ 5)[0m   [30;43mLines:  75.00% (  9/ 12)[0m
+App\Filament\Resources\Users\Pages\CreateUser
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Filament\Resources\Users\Pages\EditUser
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Users\Pages\ListUsers
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Filament\Resources\Users\Schemas\UserForm
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 13)[0m
+App\Filament\Resources\Users\Tables\UsersTable
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 30)[0m
+App\Filament\Resources\Users\UserResource
+  [37;41mMethods:  25.00% ( 2/ 8)[0m   [30;43mLines:  57.14% (  8/ 14)[0m
+App\Http\Controllers\Controller
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Http\Controllers\EmptyPageController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Http\Controllers\FileController
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  5)[0m
+App\Http\Controllers\ModifyLinkController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  7)[0m
+App\Http\Controllers\NewsController
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 31/ 31)[0m
+App\Http\Controllers\PageController
+  [37;41mMethods:  33.33% ( 1/ 3)[0m   [30;43mLines:  79.63% ( 43/ 54)[0m
+App\Http\Controllers\ProductController
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [30;43mLines:  89.47% ( 17/ 19)[0m
+App\Http\Controllers\SearchController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  8)[0m
+App\Http\Controllers\SiteController
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 22/ 22)[0m
+App\Http\Controllers\TestController
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Http\Middleware\Localization
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [30;43mLines:  80.00% (  4/  5)[0m
+App\Livewire\ImageChecker
+  [37;41mMethods:   0.00% ( 0/ 7)[0m   [37;41mLines:   0.00% (  0/ 56)[0m
+App\Livewire\LanguageSelector
+  [30;43mMethods:  66.67% ( 2/ 3)[0m   [37;41mLines:  40.00% (  2/  5)[0m
+App\Livewire\NewsComponent
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  2)[0m
+App\Livewire\ProductRequestsModal
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Livewire\Statistics
+  [37;41mMethods:   0.00% ( 0/ 3)[0m   [37;41mLines:   0.00% (  0/  5)[0m
+App\Models\Ad
+  [37;41mMethods:   0.00% ( 0/ 3)[0m   [30;43mLines:  68.42% ( 13/ 19)[0m
+App\Models\Advantage
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [30;43mLines:  59.09% ( 13/ 22)[0m
+App\Models\Faq
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 13)[0m
+App\Models\File
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Models\Menu
+  [37;41mMethods:  44.44% ( 4/ 9)[0m   [30;43mLines:  63.33% ( 19/ 30)[0m
+App\Models\News
+  [37;41mMethods:  50.00% ( 5/10)[0m   [30;43mLines:  78.79% ( 26/ 33)[0m
+App\Models\NewsCategory
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Models\OtherResource
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [30;43mLines:  68.75% ( 11/ 16)[0m
+App\Models\Page
+  [30;43mMethods:  64.29% ( 9/14)[0m   [30;42mLines:  90.38% ( 94/104)[0m
+App\Models\PageBanner
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Models\PageFile
+  [37;41mMethods:   0.00% ( 0/ 4)[0m   [37;41mLines:   0.00% (  0/  9)[0m
+App\Models\PageList
+  [37;41mMethods:  16.67% ( 1/ 6)[0m   [37;41mLines:   8.33% (  1/ 12)[0m
+App\Models\PageTab
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Models\Partner
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [30;43mLines:  71.43% ( 10/ 14)[0m
+App\Models\Permission
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Models\PhotoGallery
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:  50.00% (  7/ 14)[0m
+App\Models\Product\Product
+  [30;43mMethods:  55.56% ( 5/ 9)[0m   [30;42mLines:  91.67% ( 55/ 60)[0m
+App\Models\Product\ProductComment
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  3)[0m
+App\Models\Product\ProductFormSchema
+  [30;42mMethods:  ( 0/ 0)[0m   [30;42mLines:  (  0/  0)[0m
+App\Models\Product\ProductRequest
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Models\Role
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  6)[0m
+App\Models\Statistic
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/ 13)[0m
+App\Models\TextWidget
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [30;43mLines:  53.85% (  7/ 13)[0m
+App\Models\User
+  [37;41mMethods:  33.33% ( 1/ 3)[0m   [30;43mLines:  66.67% (  4/  6)[0m
+App\Policies\AdPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\AdvantagePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\AlumniMenuPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\AlumniPagePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\FaqPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\FilePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\MenuPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\NewsCategoryPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\NewsPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\OtherResourcePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\PageFilePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\PageListPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\PagePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\PartnerPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\PermissionPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\PhotoGalleryPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\ProductPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\RolePolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\StatisticPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\TextWidgetPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Policies\UserPolicy
+  [37;41mMethods:   0.00% ( 0/ 1)[0m   [37;41mLines:   0.00% (  0/  1)[0m
+App\Providers\AppServiceProvider
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [37;41mLines:  42.86% (  3/  7)[0m
+App\Providers\Filament\AdminPanelProvider
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% ( 39/ 39)[0m
+App\Services\Page\HomePageDataFetcher
+  [30;42mMethods: 100.00% (13/13)[0m   [30;42mLines: 100.00% ( 89/ 89)[0m
+App\Services\Page\PageService
+  [37;41mMethods:   0.00% ( 0/ 4)[0m   [37;41mLines:  29.89% ( 26/ 87)[0m
+App\Traits\InvalidatesHomepageCache
+  [30;42mMethods: 100.00% ( 1/ 1)[0m   [30;42mLines: 100.00% (  2/  2)[0m
+App\View\Components\Layout
+  [30;42mMethods: 100.00% ( 2/ 2)[0m   [30;42mLines: 100.00% ( 35/ 35)[0m
+App\View\Components\PageLists
+  [37;41mMethods:   0.00% ( 0/ 2)[0m   [37;41mLines:   0.00% (  0/  3)[0m

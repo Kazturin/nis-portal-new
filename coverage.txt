@@ -1,0 +1,91 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthat true is true[39m
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\PageTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget top parent menu[39m[90m                                                [39m [90m10.50s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\ProductTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on delete[39m[90m                                      [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Services\HomePageDataFetcherTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget news returns hydrated models[39m[90m                                    [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget advantages returns hydrated models[39m[90m                              [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget ads returns hydrated models[39m[90m                                     [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget photo gallery returns hydrated models[39m[90m                           [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget mission returns object[39m[90m                                          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget statistics returns collection of objects[39m[90m                        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget resources returns hydrated models[39m[90m                               [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget partners returns hydrated models[39m[90m                                [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget faq returns collection of objects[39m[90m                               [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget opportunities block returns object[39m[90m                              [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget resources block returns object[39m[90m                                  [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget modal returns object[39m[90m                                            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Services\PageServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget menu tree returns correct structure[39m[90m                             [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget menu tree is cached[39m[90m                                             [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90maccordion menu returns children of top parent[39m[90m                       [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtop menu returns filtered children[39m[90m                                  [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhydrate menu restores relations[39m[90m                                     [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Commands\ClearHomepageCacheTest[39m
+  [32;1m✓[39;22m[90m [39m[90mit clears homepage cache for all locales[39m[90m                            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\EmptyPageControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mindex returns view for existing page[39m[90m                                [39m [90m0.06s[39m  
+  [32;1m✓[39;22m[90m [39m[90mindex aborts for non existent page[39m[90m                                  [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\FileControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90minvoke returns view with file data[39m[90m                                  [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\ModifyLinkControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mguest is redirected to login[39m[90m                                        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mauthenticated user is redirected to modified url[39m[90m                    [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\NewsControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mnews index returns successful response[39m[90m                              [39m [90m0.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnews show returns successful response[39m[90m                               [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnews show does not increment views twice in session[39m[90m                 [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnews show returns 404 for inactive news[39m[90m                             [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\PageControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpage index returns successful response[39m[90m                              [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage index returns 404 for non existent page[39m[90m                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprotected page redirects to login[39m[90m                                   [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprotected page access successful when authenticated[39m[90m                 [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage list item with date returns successful response[39m[90m                [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage list item without date returns successful response[39m[90m             [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpage list item next prev[39m[90m                                            [39m [90m0.05s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\ProductControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mproduct index returns successful response[39m[90m                           [39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form successfully[39m[90m                                    [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form validation error[39m[90m                                [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form empty schema[39m[90m                                    [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct submit form empty validated data[39m[90m                            [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\SearchControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90msearch returns successful response[39m[90m                                  [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90msearch finds pages[39m[90m                                                  [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90msearch finds news[39m[90m                                                   [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\SiteControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mhomepage returns successful response[39m[90m                                [39m [90m0.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhomepage is cached[39m[90m                                                  [39m [90m0.07s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhomepage serves cached content[39m[90m                                      [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mhomepage respects locale cache[39m[90m                                      [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Controllers\TestControllerTest[39m
+  [32;1m✓[39;22m[90m [39m[90mindex returns successful response[39m[90m                                   [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Middleware\LocalizationTest[39m
+  [32;1m✓[39;22m[90m [39m[90mit sets locale from url segment[39m[90m                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mit sets locale from session if not in url[39m[90m                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mit defaults to config locale if nothing specified[39m[90m                   [39m [90m0.02s[39m  
+
+  [90mTests:[39m    [32;1m55 passed[39;22m[90m (110 assertions)[39m
+  [90mDuration:[39m [39m12.45s[39m
+

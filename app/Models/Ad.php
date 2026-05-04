@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Ad extends Model
 {
-    use InvalidatesHomepageCache;
+    use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         'banner_ru',
         'banner_kk',

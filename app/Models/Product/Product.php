@@ -15,15 +15,18 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\KeyBenefits
 use App\Models\Menu;
 use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+
+
 class Product extends Model implements Routable
 {
-    use HasSlug;
+    use HasSlug, HasFactory;
     use InteractsWithRichContent;
 
     protected $fillable = [

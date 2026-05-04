@@ -1,0 +1,130 @@
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.1
+Configuration: /var/www/html/phpunit.xml
+
+[31;1mE[0m[31;1mE[0m[31;1mE[0m                                                                 3 / 3 (100%)
+
+Time: 00:10.419, Memory: 71.00 MB
+
+There were 3 errors:
+
+1) Tests\Feature\Controllers\ProductControllerTest::test_product_index_returns_successful_response
+Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1364 Field 'content_kk' doesn't have a default value (Connection: mysql, Host: mysql, Port: 3306, Database: testing, SQL: insert into `products` (`title_kk`, `title_ru`, `title_en`, `slug`, `active`, `updated_at`, `created_at`) values (Test Product KK, Sunt rerum nisi eum., Quia et delectus qui cumque asperiores., test-product, 1, 2026-04-30 06:10:54, 2026-04-30 06:10:54))
+
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:841
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:797
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:42
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php:35
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:4246
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:2270
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1660
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1576
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1380
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:379
+/var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php:275
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:374
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:330
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:324
+/var/www/html/tests/Feature/Controllers/ProductControllerTest.php:30
+
+Caused by
+PDOException: SQLSTATE[HY000]: General error: 1364 Field 'content_kk' doesn't have a default value
+
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:53
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:830
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:797
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:42
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php:35
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:4246
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:2270
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1660
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1576
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1380
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:379
+/var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php:275
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:374
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:330
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:324
+/var/www/html/tests/Feature/Controllers/ProductControllerTest.php:30
+
+2) Tests\Feature\Controllers\ProductControllerTest::test_product_submit_form_successfully
+Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1364 Field 'content_kk' doesn't have a default value (Connection: mysql, Host: mysql, Port: 3306, Database: testing, SQL: insert into `products` (`title_kk`, `title_ru`, `title_en`, `slug`, `active`, `updated_at`, `created_at`) values (Reiciendis vel et consequatur est esse inventore nihil necessitatibus., Numquam explicabo occaecati unde voluptatibus totam qui., Cumque alias aliquid et consectetur., eos-non-fugiat-libero-ut, 1, 2026-04-30 06:10:55, 2026-04-30 06:10:55))
+
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:841
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:797
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:42
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php:35
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:4246
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:2270
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1660
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1576
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1380
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:379
+/var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php:275
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:374
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:330
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:324
+/var/www/html/tests/Feature/Controllers/ProductControllerTest.php:48
+
+Caused by
+PDOException: SQLSTATE[HY000]: General error: 1364 Field 'content_kk' doesn't have a default value
+
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:53
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:830
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:797
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:42
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php:35
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:4246
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:2270
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1660
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1576
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1380
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:379
+/var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php:275
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:374
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:330
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:324
+/var/www/html/tests/Feature/Controllers/ProductControllerTest.php:48
+
+3) Tests\Feature\Controllers\ProductControllerTest::test_product_submit_form_validation_error
+Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1364 Field 'content_kk' doesn't have a default value (Connection: mysql, Host: mysql, Port: 3306, Database: testing, SQL: insert into `products` (`title_kk`, `title_ru`, `title_en`, `slug`, `active`, `updated_at`, `created_at`) values (Est deserunt consequatur vel aliquam iusto voluptatem ex., Ut nesciunt doloremque in deleniti odit a., Rerum aut minima voluptatum autem natus pariatur quia., labore-voluptatem-saepe-quidem-qui-quam-laudantium, 1, 2026-04-30 06:10:55, 2026-04-30 06:10:55))
+
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:841
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:797
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:42
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php:35
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:4246
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:2270
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1660
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1576
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1380
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:379
+/var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php:275
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:374
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:330
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:324
+/var/www/html/tests/Feature/Controllers/ProductControllerTest.php:72
+
+Caused by
+PDOException: SQLSTATE[HY000]: General error: 1364 Field 'content_kk' doesn't have a default value
+
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:53
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:830
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Connection.php:797
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:42
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/MySqlProcessor.php:35
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:4246
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:2270
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1660
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1576
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1380
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:379
+/var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php:275
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:374
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:330
+/var/www/html/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php:324
+/var/www/html/tests/Feature/Controllers/ProductControllerTest.php:72
+
+[37;41mERRORS![0m
+[37;41mTests: 3[0m[37;41m, Assertions: 0[0m[37;41m, Errors: 3[0m[37;41m.[0m

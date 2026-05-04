@@ -16,11 +16,6 @@
             <livewire:language-selector />
         </div>
     </div>
-   
-
-<livewire:image-checker />
-
- 
 
     @livewireScripts
 </body>

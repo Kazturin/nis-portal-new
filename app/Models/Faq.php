@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Faq extends Model
 {
-    use InvalidatesHomepageCache;
+    use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         "language","question","answer","sort",
     ];

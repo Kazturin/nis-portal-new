@@ -8,6 +8,7 @@ use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -20,9 +21,11 @@ use Spatie\Sluggable\SlugOptions;
  * @property string|null $title_en
  * @property \App\Models\Product\Product|null $product
  */
+
+
 class Menu extends Model
 {
-    use HasSlug, InvalidatesHomepageCache;
+    use HasSlug, InvalidatesHomepageCache, HasFactory;
 
     const POSITION_HEADER = 0;
     const POSITION_FOOTER = 1;

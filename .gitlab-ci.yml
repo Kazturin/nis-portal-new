@@ -1,0 +1,39 @@
+stages:
+  - test
+  # - deploy # Этап деплоя пока закомментирован/отключен
+
+test_and_coverage:
+  stage: test
+  # Docker-образ, в котором есть PHP 8.3, Composer и Xdebug (нужен для покрытия)
+  image: lorisleiva/laravel-docker:8.3
+  services:
+    # Запускаем MySQL базу данных рядом с нашим контейнером для тестов
+    - mysql:8.0
+  variables:
+    # Переменные для сервиса MySQL
+    MYSQL_DATABASE: testing
+    MYSQL_ROOT_PASSWORD: root
+    # Переменные окружения Laravel, чтобы он подключился к этому сервису
+    DB_CONNECTION: mysql
+    DB_HOST: mysql
+    DB_PORT: 3306
+    DB_DATABASE: testing
+    DB_USERNAME: root
+    DB_PASSWORD: root
+  before_script:
+    - cp .env.example .env
+    - composer install --no-interaction --prefer-dist --optimize-autoloader
+    - php artisan key:generate
+    - php artisan migrate:fresh --env=testing
+  script:
+    # Запуск тестов с генерацией текстового отчета и XML для GitLab
+    - XDEBUG_MODE=coverage php -d memory_limit=-1 vendor/bin/phpunit --coverage-text --colors=never --coverage-cobertura=coverage.xml
+  # Регулярка, которая "вытаскивает" цифру из строки "Total: 90.4 %"
+  coverage: '/Total:\s*(\d+(?:\.\d+)?)\s*\%/'
+  artifacts:
+    when: always
+    reports:
+      # Позволяет GitLab выводить покрытие в Merge Request
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml

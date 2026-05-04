@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class News extends Model
 {
-    use HasSlug, InvalidatesHomepageCache;
+    use HasSlug, InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         'category_id',
         'title_kk',

@@ -1,0 +1,48 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\MenuTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget banner returns default[39m[90m                                         [39m [90m10.63s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget banner returns storage path[39m[90m                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for product[39m[90m                                                 [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for external link[39m[90m                                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for named route[39m[90m                                             [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url for page[39m[90m                                                    [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on boot events[39m[90m                                 [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\NewsTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget formatted date[39m[90m                                                  [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget photo returns default when empty[39m[90m                                [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget photo returns storage path[39m[90m                                      [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort title[39m[90m                                                         [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort body[39m[90m                                                          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort title returns empty when no title[39m[90m                             [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mshort body returns empty when no content[39m[90m                            [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mset published at attribute[39m[90m                                          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget url attribute[39m[90m                                                   [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcategory relation[39m[90m                                                   [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\PageTest[39m
+  [32;1m✓[39;22m[90m [39m[90mget top parent menu[39m[90m                                                 [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\ProductTest[39m
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on save[39m[90m                                        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache is invalidated on delete[39m[90m                                      [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mget menu url[39m[90m                                                        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mproduct relations[39m[90m                                                   [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\SmallModelsTest[39m
+  [32;1m✓[39;22m[90m [39m[90mad model[39m[90m                                                            [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madvantage model[39m[90m                                                     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfaq model[39m[90m                                                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpartner model[39m[90m                                                       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstatistic model[39m[90m                                                     [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcache invalidation on ad save[39m[90m                                       [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\Models\UserTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpages relation[39m[90m                                                      [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcan access panel[39m[90m                                                    [39m [90m0.03s[39m  
+
+  [90mTests:[39m    [32;1m32 passed[39;22m[90m (42 assertions)[39m
+  [90mDuration:[39m [39m11.49s[39m
+

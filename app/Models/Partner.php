@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Partner extends Model
 {
-    use InvalidatesHomepageCache;
+    use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         "logo",
         "link",

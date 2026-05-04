@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
 
+
+
 class User extends Authenticatable implements FilamentUser
 {
-    use HasRoles, Notifiable;
+    use HasRoles, Notifiable, HasFactory;
 
     protected $guard_name = 'web';
     /**

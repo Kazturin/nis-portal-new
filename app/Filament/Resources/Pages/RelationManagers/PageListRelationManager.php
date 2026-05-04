@@ -185,7 +185,7 @@ class PageListRelationManager extends RelationManager
             ->defaultSort('date', 'desc')
             ->headerActions([
                 CreateAction::make(),
-                AssociateAction::make(),
+                // AssociateAction::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
