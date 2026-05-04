@@ -72,26 +72,31 @@ class PageController extends Controller
         $nextPrevQuery = PageList::query()
             ->where("title_{$locale}", '!=', "")
             ->where('page_id', $page->id)
+            ->where('active', true)
             ->where('id', '!=', $pageList->id);
 
         if ($date) {
             $next = (clone $nextPrevQuery)
                 ->where('date', '<', $date)
+                ->where('active', true)
                 ->orderBy('date', 'desc')
                 ->first();
 
             $prev = (clone $nextPrevQuery)
                 ->where('date', '>', $date)
+                ->where('active', true)
                 ->orderBy('date', 'asc')
                 ->first();
         } else {
             $next = (clone $nextPrevQuery)
                 ->where('position', '>=', $pageList->position)
+                ->where('active', true)
                 ->orderBy('position', 'asc') // Fixed order for next
                 ->first();
 
             $prev = (clone $nextPrevQuery)
                 ->where('position', '<=', $pageList->position)
+                ->where('active', true)
                 ->orderBy('position', 'desc') // Fixed order for prev
                 ->first();
         }
