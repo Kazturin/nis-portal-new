@@ -23,10 +23,10 @@
                         @endif
 
                         <!-- @if ($item->{'content_' . app()->getLocale()})
-                                                                <div class="ml-auto">
-                                                                    <span class="text-2xl text-[#919191]">{{ $item->getFormattedDate() }}</span>
-                                                                </div>
-                                                            @endif -->
+                                                                    <div class="ml-auto">
+                                                                        <span class="text-2xl text-[#919191]">{{ $item->getFormattedDate() }}</span>
+                                                                    </div>
+                                                                @endif -->
                     </div>
                 </div>
             </li>

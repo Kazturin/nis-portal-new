@@ -38,10 +38,30 @@ class PageList extends Model
 
     protected $casts = [
         'date' => 'datetime',
-        'content_kk' => 'array',
-        'content_ru' => 'array',
-        'content_en' => 'array',
     ];
+
+    public function getAttribute($key)
+    {
+        $value = parent::getAttribute($key);
+
+        if (in_array($key, ['content_kk', 'content_ru', 'content_en']) && is_string($value) && !empty($value)) {
+            $decoded = json_decode($value, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                return $decoded;
+            }
+        }
+
+        return $value;
+    }
+
+    public function setAttribute($key, $value)
+    {
+        if (in_array($key, ['content_kk', 'content_ru', 'content_en']) && is_array($value)) {
+            $value = json_encode($value, JSON_UNESCAPED_UNICODE);
+        }
+
+        return parent::setAttribute($key, $value);
+    }
 
 
     public function page()
@@ -97,7 +117,7 @@ class PageList extends Model
 
     public function renderRichContent(string $attribute): string
     {
-        $value = $this->{$attribute};
+        $value = $this->getAttribute($attribute);
 
         if (empty($value) || !is_array($value)) {
             return is_string($value) ? $value : (string) ($this->getRawOriginal($attribute) ?? '');
