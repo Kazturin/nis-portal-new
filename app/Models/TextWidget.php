@@ -18,18 +18,21 @@ class TextWidget extends Model
         'content_kk',
         'content_ru',
         'content_en',
+        'link_kk',
+        'link_ru',
+        'link_en',
         'active'
     ];
 
     protected static function boot()
     {
         parent::boot();
- 
+
         static::created(function ($textWidget) {
             Cache::forget($textWidget->key);
             self::invalidateHomepageHtml();
         });
- 
+
         static::updated(function ($textWidget) {
             Cache::forget($textWidget->key);
             self::invalidateHomepageHtml();

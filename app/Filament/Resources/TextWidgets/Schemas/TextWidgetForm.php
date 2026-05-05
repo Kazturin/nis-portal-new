@@ -77,6 +77,21 @@ class TextWidgetForm
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpanFull(),
+                Grid::make(3)
+                    ->schema([
+                        TextInput::make('link_kk')
+                            ->label('Ссылка(KZ)')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('link_ru')
+                            ->label('Ссылка(RU)')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('link_en')
+                            ->label('Ссылка(EN)')
+                            ->required()
+                            ->maxLength(255),
+                    ])->columnSpanFull(),
                 TextInput::make('key')
                     ->required()
                     ->maxLength(255),
