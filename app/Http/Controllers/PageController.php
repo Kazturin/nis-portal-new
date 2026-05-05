@@ -49,6 +49,8 @@ class PageController extends Controller
 
         $accordion_menu = $this->service->accordionMenu($page);
 
+        //    dd($accordion_menu);
+
 
         $metaTitle = $page->menu && $page->menu->parent
             ? $page->menu->parent->{'title_' . $locale} . ' | ' . $page->{'title_' . $locale}

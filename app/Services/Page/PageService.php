@@ -35,7 +35,15 @@ class PageService
                 'page',
                 'product:id,slug,menu_id',
                 'children' => function ($l) {
-                  $l->with(['page', 'product:id,slug,menu_id'])
+                  $l->with([
+                    'page',
+                    'product:id,slug,menu_id',
+                    'children' => function ($depth5) {
+                      $depth5->with(['page', 'product:id,slug,menu_id'])
+                        ->where('active', true)
+                        ->orderBy('sort');
+                    }
+                  ])
                     ->where('active', true)
                     ->orderBy('sort');
                 }

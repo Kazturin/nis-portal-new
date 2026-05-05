@@ -84,7 +84,7 @@
                                             'px-5 py-1 block flex-grow hover:bg-secondary hover:rounded-3xl',
                                             'bg-secondary rounded-3xl' => $pageMenu === $child->id,
                                         ])>
-                                         {{ $child->{'title_'.$locale} }}000
+                                         {{ $child->{'title_'.$locale} }}
                                      </a>
                                 @else
                                     <button
