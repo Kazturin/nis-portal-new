@@ -16,13 +16,13 @@ class PageService
   public function getMenuTree(int $position = Menu::POSITION_HEADER)
   {
     $locale = app()->getLocale();
-    $cacheKey = "menu_tree_{$position}_{$locale}";
+    $cacheKey = "menu_tree_serialized_{$position}_{$locale}";
 
     if (isset(self::$requestCache[$cacheKey])) {
       return self::$requestCache[$cacheKey];
     }
 
-    $data = Cache::remember($cacheKey, 86400, function () use ($position) {
+    $serialized = Cache::remember($cacheKey, 86400, function () use ($position) {
       $query = Menu::with([
         'page',
         'product:id,slug,menu_id', // Always include foreign key for partial selects
@@ -56,10 +56,11 @@ class PageService
         ->where(["active" => true, 'parent_id' => NULL, 'position' => $position])
         ->orderBy('sort');
 
-      return $query->get()->toArray();
+      return serialize($query->get());
     });
 
-    $tree = $this->hydrateMenu($data);
+    $tree = unserialize($serialized);
+    $this->linkParents($tree);
     self::$requestCache[$cacheKey] = $tree;
 
     return $tree;
@@ -113,56 +114,22 @@ class PageService
   }
 
   /**
-   * Enhanced hydration: restores ALL relations and sets parent in memory
+   * Memory assignment of parent relations to avoid recursive DB loops in the application
    */
-  private function hydrateMenu($data, $parentModel = null)
+  private function linkParents($items, $parentModel = null)
   {
-    if (empty($data) || !is_array($data))
-      return collect();
+    if (!$items || !is_iterable($items)) return;
 
-    $models = [];
-    foreach ($data as $itemData) {
-      if (!is_array($itemData)) continue;
-
-      $childrenData = $itemData['children'] ?? [];
-      $pageData = $itemData['page'] ?? null;
-      $productData = $itemData['product'] ?? null;
-
-      // Extract and remove relations from primary data array
-      unset($itemData['children'], $itemData['page'], $itemData['product'], $itemData['parent']);
-
-      $model = new Menu();
-      $model->setRawAttributes($itemData, true);
-      $model->exists = true;
-
-      // Set parent in memory (0 queries!)
+    foreach ($items as $model) {
+      if (!is_object($model) || !method_exists($model, 'relationLoaded')) {
+        continue;
+      }
       if ($parentModel) {
         $model->setRelation('parent', $parentModel);
       }
-
-      // Recursively hydrate children, passing current model as parent
-      // Set relations as proper collections/models (always set even if null to prevent lazy loading)
-      $model->setRelation('children', $this->hydrateMenu($childrenData, $model));
-
-      $pageModel = null;
-      if ($pageData) {
-        $pageModel = new Page();
-        $pageModel->setRawAttributes($pageData, true);
-        $pageModel->exists = true;
+      if ($model->relationLoaded('children') && $model->children) {
+        $this->linkParents($model->children, $model);
       }
-      $model->setRelation('page', $pageModel);
-
-      $productModel = null;
-      if ($productData) {
-        $productModel = new Product();
-        $productModel->setRawAttributes($productData, true);
-        $productModel->exists = true;
-      }
-      $model->setRelation('product', $productModel);
-
-      $models[] = $model;
     }
-
-    return collect($models);
   }
 }

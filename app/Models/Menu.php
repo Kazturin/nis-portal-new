@@ -111,6 +111,8 @@ class Menu extends Model
             foreach (['kk', 'ru', 'en'] as $locale) {
                 Cache::forget("menu_tree_" . self::POSITION_HEADER . "_{$locale}");
                 Cache::forget("menu_tree_" . self::POSITION_FOOTER . "_{$locale}");
+                Cache::forget("menu_tree_serialized_" . self::POSITION_HEADER . "_{$locale}");
+                Cache::forget("menu_tree_serialized_" . self::POSITION_FOOTER . "_{$locale}");
             }
             self::invalidateHomepageHtml();
         };

@@ -238,6 +238,8 @@ class Page extends Model
             foreach (['kk', 'ru', 'en'] as $locale) {
                 Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
                 Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
+                Cache::forget("menu_tree_serialized_" . Menu::POSITION_HEADER . "_{$locale}");
+                Cache::forget("menu_tree_serialized_" . Menu::POSITION_FOOTER . "_{$locale}");
             }
             self::invalidateHomepageHtml();
         };
