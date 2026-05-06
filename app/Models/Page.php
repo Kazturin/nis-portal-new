@@ -112,14 +112,18 @@ class Page extends Model
             return null;
         }
 
+        $seenIds = [$currentMenu->id];
+
         while ($currentMenu->parent_id) {
             if ($currentMenu->relationLoaded('parent') && $currentMenu->parent) {
                 $currentMenu = $currentMenu->parent;
             } else {
                 $currentMenu = Menu::query()->select('id', 'parent_id')->where('id', $currentMenu->parent_id)->first();
             }
-            if (!$currentMenu)
+            if (!$currentMenu || in_array($currentMenu->id, $seenIds)) {
                 break;
+            }
+            $seenIds[] = $currentMenu->id;
         }
 
         return $currentMenu?->id;

@@ -122,6 +122,8 @@ class PageService
 
     $models = [];
     foreach ($data as $itemData) {
+      if (!is_array($itemData)) continue;
+
       $childrenData = $itemData['children'] ?? [];
       $pageData = $itemData['page'] ?? null;
       $productData = $itemData['product'] ?? null;
