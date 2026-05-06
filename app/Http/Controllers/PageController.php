@@ -63,6 +63,9 @@ class PageController extends Controller
 
     public function listItem(?string $locale, PageList $pageList)
     {
+        if (!$pageList->active) {
+            abort(404);
+        }
         $pageList->load('page.menu.parent.parent');
         $page = $pageList->page;
         $locale = $locale ?? app()->getLocale();
