@@ -103,7 +103,7 @@ services:
         image: redis:7-alpine
         container_name: nis-redis
         restart: unless-stopped
-        command: redis-server --appendonly yes
+        command: redis-server --appendonly yes --maxmemory 300mb --maxmemory-policy allkeys-lru
         volumes:
             - redis_data:/data
         networks:
@@ -117,10 +117,10 @@ services:
             resources:
                 limits:
                     cpus: "0.5"
-                    memory: 192M
+                    memory: 512M
                 reservations:
                     cpus: "0.1"
-                    memory: 64M
+                    memory: 128M
         logging:
             driver: json-file
             options:
