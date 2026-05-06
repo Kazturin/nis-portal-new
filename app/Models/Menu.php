@@ -91,15 +91,20 @@ class Menu extends Model
 
     public function getUrl()
     {
+        $locale = app()->getLocale();
         if ($this->product) {
-            return route('product', ['locale' => app()->getLocale(), 'product' => $this->product->slug]);
+            return route('product', ['locale' => $locale, 'product' => $this->product->slug]);
         }
         if ($this->is_external_link) {
-            return $this->{'link_' . app()->getLocale()};
-        } elseif ($this->link_kk && Route::has($this->link_kk)) {
-            return route($this->link_kk, ['locale' => app()->getLocale()]);
+            return $this->{'link_' . $locale};
+        } elseif ($this->link_kk) {
+            try {
+                return route($this->link_kk, ['locale' => $locale]);
+            } catch (\Exception $e) {
+                return '#';
+            }
         } else {
-            return route('page', ['locale' => app()->getLocale(), 'page' => $this->page]);
+            return $this->page ? route('page', ['locale' => $locale, 'page' => $this->page->slug]) : '#';
         }
     }
 

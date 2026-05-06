@@ -10,6 +10,7 @@ use App\Services\Page\PageService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PageController extends Controller
 {
@@ -34,18 +35,22 @@ class PageController extends Controller
             return redirect()->guest(route('login'));
         }
 
-        $files = $page->files()
-            ->where("title_{$locale}", '!=', "")
-            ->orderBy('position')
-            ->orderBy('created_at', 'desc')
-            ->paginate(15);
+        $files = Cache::remember("page_{$page->id}_files_{$locale}_" . request('page', 1), 600, function () use ($page, $locale) {
+            return $page->files()
+                ->where("title_{$locale}", '!=', "")
+                ->orderBy('position')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+        });
 
-        $list = $page->pageList()
-            ->where("title_{$locale}", '!=', "")
-            ->where('active', true)
-            ->orderBy('position')
-            ->orderBy('date', 'desc')
-            ->paginate(12);
+        $list = Cache::remember("page_{$page->id}_list_{$locale}_" . request('page', 1), 600, function () use ($page, $locale) {
+            return $page->pageList()
+                ->where("title_{$locale}", '!=', "")
+                ->where('active', true)
+                ->orderBy('position')
+                ->orderBy('date', 'desc')
+                ->paginate(12);
+        });
 
         $accordion_menu = $this->service->accordionMenu($page);
 
