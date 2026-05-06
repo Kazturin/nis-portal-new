@@ -97,12 +97,8 @@ class Menu extends Model
         }
         if ($this->is_external_link) {
             return $this->{'link_' . $locale};
-        } elseif ($this->link_kk) {
-            try {
-                return route($this->link_kk, ['locale' => $locale]);
-            } catch (\Exception $e) {
-                return '#';
-            }
+        } elseif ($this->link_kk && \Illuminate\Support\Facades\Route::has($this->link_kk)) {
+            return route($this->link_kk, ['locale' => $locale]);
         } else {
             return $this->page ? route('page', ['locale' => $locale, 'page' => $this->page->slug]) : '#';
         }

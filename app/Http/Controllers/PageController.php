@@ -10,6 +10,7 @@ use App\Services\Page\PageService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PageController extends Controller
 {
@@ -25,40 +26,43 @@ class PageController extends Controller
             abort(404);
         }
 
-        // Eager load everything needed for the page and layout components
-        $page->load(['menu.parent.parent', 'banner', 'tabs']);
-
         $locale = $locale ?? app()->getLocale();
 
         if ($page->is_protected && !Auth::guard('ldap')->check()) {
             return redirect()->guest(route('login'));
         }
 
-        $files = $page->files()
-            ->where("title_{$locale}", '!=', "")
-            ->orderBy('position')
-            ->orderBy('created_at', 'desc')
-            ->paginate(15);
+        $pageCacheKey = "full_page_html_{$page->id}_{$locale}_" . $request->get('page', 1);
 
-        $list = $page->pageList()
-            ->where("title_{$locale}", '!=', "")
-            ->where('active', true)
-            ->orderBy('position')
-            ->orderBy('date', 'desc')
-            ->paginate(12);
+        $html = Cache::remember($pageCacheKey, 600, function () use ($page, $locale) {
+            // Eager load everything needed for the page and layout components
+            $page->load(['menu.parent.parent', 'banner', 'tabs']);
 
-        $accordion_menu = $this->service->accordionMenu($page);
+            $files = $page->files()
+                ->where("title_{$locale}", '!=', "")
+                ->orderBy('position')
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
 
-        //    dd($accordion_menu);
+            $list = $page->pageList()
+                ->where("title_{$locale}", '!=', "")
+                ->where('active', true)
+                ->orderBy('position')
+                ->orderBy('date', 'desc')
+                ->paginate(12);
 
+            $accordion_menu = $this->service->accordionMenu($page);
 
-        $metaTitle = $page->menu && $page->menu->parent
-            ? $page->menu->parent->{'title_' . $locale} . ' | ' . $page->{'title_' . $locale}
-            : $page->{'title_' . $locale};
+            $metaTitle = $page->menu && $page->menu->parent
+                ? $page->menu->parent->{'title_' . $locale} . ' | ' . $page->{'title_' . $locale}
+                : $page->{'title_' . $locale};
 
-        $tabs = $page->tabs;
+            $tabs = $page->tabs;
 
-        return view('page.index', compact('accordion_menu', 'page', 'files', 'list', 'metaTitle', 'tabs', 'locale'));
+            return view('page.index', compact('accordion_menu', 'page', 'files', 'list', 'metaTitle', 'tabs', 'locale'))->render();
+        });
+
+        return response($html);
     }
 
     public function listItem(?string $locale, PageList $pageList)
@@ -66,51 +70,57 @@ class PageController extends Controller
         if (!$pageList->active) {
             abort(404);
         }
-        $pageList->load('page.menu.parent.parent');
-        $page = $pageList->page;
+
         $locale = $locale ?? app()->getLocale();
+        $cacheKey = "full_list_item_html_{$pageList->id}_{$locale}";
 
-        $accordion_menu = $this->service->accordionMenu($page);
+        $html = Cache::remember($cacheKey, 600, function () use ($pageList, $locale) {
+            $pageList->load('page.menu.parent.parent');
+            $page = $pageList->page;
 
-        $date = $pageList->date;
+            $accordion_menu = $this->service->accordionMenu($page);
 
-        $nextPrevQuery = PageList::query()
-            ->where("title_{$locale}", '!=', "")
-            ->where('page_id', $page->id)
-            ->where('active', true)
-            ->where('id', '!=', $pageList->id);
+            $date = $pageList->date;
 
-        if ($date) {
-            $next = (clone $nextPrevQuery)
-                ->where('date', '<', $date)
+            $nextPrevQuery = PageList::query()
+                ->where("title_{$locale}", '!=', "")
+                ->where('page_id', $page->id)
                 ->where('active', true)
-                ->orderBy('date', 'desc')
-                ->first();
+                ->where('id', '!=', $pageList->id);
 
-            $prev = (clone $nextPrevQuery)
-                ->where('date', '>', $date)
-                ->where('active', true)
-                ->orderBy('date', 'asc')
-                ->first();
-        } else {
-            $next = (clone $nextPrevQuery)
-                ->where('position', '>=', $pageList->position)
-                ->where('active', true)
-                ->orderBy('position', 'asc') // Fixed order for next
-                ->first();
+            if ($date) {
+                $next = (clone $nextPrevQuery)
+                    ->where('date', '<', $date)
+                    ->where('active', true)
+                    ->orderBy('date', 'desc')
+                    ->first();
 
-            $prev = (clone $nextPrevQuery)
-                ->where('position', '<=', $pageList->position)
-                ->where('active', true)
-                ->orderBy('position', 'desc') // Fixed order for prev
-                ->first();
-        }
+                $prev = (clone $nextPrevQuery)
+                    ->where('date', '>', $date)
+                    ->where('active', true)
+                    ->orderBy('date', 'asc')
+                    ->first();
+            } else {
+                $next = (clone $nextPrevQuery)
+                    ->where('position', '>=', $pageList->position)
+                    ->where('active', true)
+                    ->orderBy('position', 'asc')
+                    ->first();
 
-        $metaTitle = $page->menu && $page->menu->parent
-            ? $page->menu->parent->{'title_' . app()->getLocale()} . ' | ' . $pageList->{'title_' . app()->getLocale()}
-            : $pageList->{'title_' . app()->getLocale()};
+                $prev = (clone $nextPrevQuery)
+                    ->where('position', '<=', $pageList->position)
+                    ->where('active', true)
+                    ->orderBy('position', 'desc')
+                    ->first();
+            }
 
-        return view('page.list-item', compact("pageList", "accordion_menu", "page", "next", "prev", "metaTitle"));
+            $metaTitle = $page->menu && $page->menu->parent
+                ? $page->menu->parent->{'title_' . $locale} . ' | ' . $pageList->{'title_' . $locale}
+                : $pageList->{'title_' . $locale};
+
+            return view('page.list-item', compact("pageList", "accordion_menu", "page", "next", "prev", "metaTitle"))->render();
+        });
+
+        return response($html);
     }
-
 }
