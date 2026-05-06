@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @property \App\Models\Page|null $page
@@ -129,8 +130,29 @@ class PageList extends Model
         return $attributeObj->getRenderer()->toUnsafeHtml();
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        $clearCache = function ($model = null) {
+            foreach (['kk', 'ru', 'en'] as $locale) {
+                Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
+                Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
+                Cache::forget("menu_tree_serialized_" . Menu::POSITION_HEADER . "_{$locale}");
+                Cache::forget("menu_tree_serialized_" . Menu::POSITION_FOOTER . "_{$locale}");
+            }
+            if ($model && Cache::supportsTags()) {
+                Cache::tags(["page_{$model->page_id}"])->flush();
+            }
+        };
+
+        static::saved($clearCache);
+        static::deleted($clearCache);
+    }
+
     public function setUpRichContent(): void
     {
+
         $this->registerRichContent('content_kk')
             ->fileAttachmentsDisk('public')
             ->customBlocks([

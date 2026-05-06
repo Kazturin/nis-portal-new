@@ -234,7 +234,7 @@ class Page extends Model
             $model->updated_by ??= Auth::id();
         });
 
-        $clearCache = function () {
+        $clearCache = function ($model = null) {
             foreach (['kk', 'ru', 'en'] as $locale) {
                 Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
                 Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
@@ -242,6 +242,9 @@ class Page extends Model
                 Cache::forget("menu_tree_serialized_" . Menu::POSITION_FOOTER . "_{$locale}");
             }
             self::invalidateHomepageHtml();
+            if ($model && Cache::supportsTags()) {
+                Cache::tags(["page_{$model->id}"])->flush();
+            }
         };
 
         static::created($clearCache);

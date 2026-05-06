@@ -116,6 +116,9 @@ class Menu extends Model
                 Cache::forget("menu_tree_serialized_" . self::POSITION_FOOTER . "_{$locale}");
             }
             self::invalidateHomepageHtml();
+            if (Cache::supportsTags()) {
+                Cache::tags(['pages'])->flush();
+            }
         };
 
         static::created($clearCache);

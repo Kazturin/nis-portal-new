@@ -34,8 +34,7 @@ class PageController extends Controller
 
         $pageCacheKey = "full_page_html_{$page->id}_{$locale}_" . $request->get('page', 1);
 
-        $html = Cache::remember($pageCacheKey, 600, function () use ($page, $locale) {
-            // Eager load everything needed for the page and layout components
+        $html = Cache::tags(['pages', "page_{$page->id}"])->rememberForever($pageCacheKey, function () use ($page, $locale) {
             $page->load(['menu.parent.parent', 'banner', 'tabs']);
 
             $files = $page->files()
@@ -74,7 +73,7 @@ class PageController extends Controller
         $locale = $locale ?? app()->getLocale();
         $cacheKey = "full_list_item_html_{$pageList->id}_{$locale}";
 
-        $html = Cache::remember($cacheKey, 600, function () use ($pageList, $locale) {
+        $html = Cache::tags(['pages', "page_{$pageList->page_id}"])->rememberForever($cacheKey, function () use ($pageList, $locale) {
             $pageList->load('page.menu.parent.parent');
             $page = $pageList->page;
 
