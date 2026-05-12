@@ -4,7 +4,6 @@ namespace App\Services\Page;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Product\Product;
-use Fruitcake\LaravelDebugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Cache;
 
 class PageService
@@ -59,10 +58,8 @@ class PageService
       return serialize($query->get());
     });
 
-    Debugbar::startMeasure('unserialize_menu', 'Восстановление меню из кэша');
     $tree = unserialize($serialized);
     $this->linkParents($tree);
-    Debugbar::stopMeasure('unserialize_menu');
     self::$requestCache[$cacheKey] = $tree;
 
     return $tree;
