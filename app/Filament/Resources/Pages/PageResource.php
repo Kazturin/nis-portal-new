@@ -6,6 +6,7 @@ use App\Filament\Resources\Pages\Pages\CreatePage;
 use App\Filament\Resources\Pages\Pages\EditPage;
 use App\Filament\Resources\Pages\Pages\ListPages;
 use App\Filament\Resources\Pages\Pages\ViewPage;
+use App\Filament\Resources\Pages\RelationManagers\FilesRelationManager;
 use App\Filament\Resources\Pages\RelationManagers\PageListRelationManager;
 use App\Filament\Resources\Pages\Schemas\PageForm;
 use App\Filament\Resources\Pages\Schemas\PageInfolist;
@@ -51,6 +52,7 @@ class PageResource extends Resource
     {
         return [
             PageListRelationManager::class,
+            FilesRelationManager::class,
         ];
     }
 

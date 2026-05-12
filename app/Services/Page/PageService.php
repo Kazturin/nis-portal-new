@@ -4,6 +4,7 @@ namespace App\Services\Page;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Product\Product;
+use Fruitcake\LaravelDebugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Cache;
 
 class PageService
@@ -25,7 +26,7 @@ class PageService
     $serialized = Cache::remember($cacheKey, 86400, function () use ($position) {
       $query = Menu::with([
         'page',
-        'product:id,slug,menu_id', // Always include foreign key for partial selects
+        'product:id,slug,menu_id',
         'children' => function ($q) {
           $q->with([
             'page',
@@ -52,15 +53,16 @@ class PageService
           ])->where('active', true)->orderBy('sort');
         },
         'parent'
-      ])
-        ->where(["active" => true, 'parent_id' => NULL, 'position' => $position])
+      ])->where(["active" => true, 'parent_id' => NULL, 'position' => $position])
         ->orderBy('sort');
 
       return serialize($query->get());
     });
 
+    Debugbar::startMeasure('unserialize_menu', 'Восстановление меню из кэша');
     $tree = unserialize($serialized);
     $this->linkParents($tree);
+    Debugbar::stopMeasure('unserialize_menu');
     self::$requestCache[$cacheKey] = $tree;
 
     return $tree;
@@ -72,7 +74,6 @@ class PageService
     if (!$topParentId)
       return collect();
 
-    // Use the global header tree and find the relevant branch
     $fullMenu = $this->getMenuTree(Menu::POSITION_HEADER);
     $rootItem = $fullMenu->firstWhere('id', $topParentId);
 
@@ -104,8 +105,6 @@ class PageService
 
     if ($parentItem && $parentItem->children) {
       return $parentItem->children->filter(function ($item) {
-        // Must be at least level 3 (have a parent with parent_id != null) 
-        // and have no children (as per original topMenu logic)
         return $item->parent_id !== null && $item->children->isEmpty();
       });
     }
@@ -118,7 +117,8 @@ class PageService
    */
   private function linkParents($items, $parentModel = null)
   {
-    if (!$items || !is_iterable($items)) return;
+    if (!$items || !is_iterable($items))
+      return;
 
     foreach ($items as $model) {
       if (!is_object($model) || !method_exists($model, 'relationLoaded')) {
