@@ -235,20 +235,23 @@ class Page extends Model
         });
 
         $clearCache = function ($model = null) {
-            foreach (['kk', 'ru', 'en'] as $locale) {
-                Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
-                Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
-                Cache::forget("menu_tree_serialized_" . Menu::POSITION_HEADER . "_{$locale}");
-                Cache::forget("menu_tree_serialized_" . Menu::POSITION_FOOTER . "_{$locale}");
+            if (Cache::supportsTags()) {
+                Cache::tags(['menus', 'pages'])->flush();
+                if ($model) {
+                    Cache::tags(["page_{$model->id}"])->flush();
+                }
+            } else {
+                foreach (['kk', 'ru', 'en'] as $locale) {
+                    Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
+                    Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
+                    Cache::forget("menu_tree_serialized_" . Menu::POSITION_HEADER . "_{$locale}");
+                    Cache::forget("menu_tree_serialized_" . Menu::POSITION_FOOTER . "_{$locale}");
+                }
             }
             self::invalidateHomepageHtml();
-            if ($model && Cache::supportsTags()) {
-                Cache::tags(["page_{$model->id}"])->flush();
-            }
         };
 
-        static::created($clearCache);
-        static::updated($clearCache);
+        static::saved($clearCache);
         static::deleted($clearCache);
     }
 }

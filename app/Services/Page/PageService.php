@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Cache;
 
 class PageService
 {
-  protected static $requestCache = [];
-
   /**
    * Returns the full menu tree for a specific position (cached as array for stability).
    */
@@ -18,11 +16,7 @@ class PageService
     $locale = app()->getLocale();
     $cacheKey = "menu_tree_serialized_{$position}_{$locale}";
 
-    if (isset(self::$requestCache[$cacheKey])) {
-      return self::$requestCache[$cacheKey];
-    }
-
-    $serialized = Cache::remember($cacheKey, 86400, function () use ($position) {
+    $serialized = Cache::tags(['menus'])->remember($cacheKey, 86400, function () use ($position) {
       $query = Menu::with([
         'page',
         'product:id,slug,menu_id',
@@ -60,7 +54,6 @@ class PageService
 
     $tree = unserialize($serialized);
     $this->linkParents($tree);
-    self::$requestCache[$cacheKey] = $tree;
 
     return $tree;
   }

@@ -137,16 +137,14 @@ class Product extends Model implements Routable
     {
         parent::boot();
 
-        static::created(function () {
+        $clearCache = function () {
             Cache::forget('products');
-        });
+            if (Cache::supportsTags()) {
+                Cache::tags(['menus', 'pages'])->flush();
+            }
+        };
 
-        static::updated(function () {
-            Cache::forget('products');
-        });
-
-        static::deleted(function () {
-            Cache::forget('products');
-        });
+        static::saved($clearCache);
+        static::deleted($clearCache);
     }
 }

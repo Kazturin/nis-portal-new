@@ -108,21 +108,22 @@ class Menu extends Model
     {
         parent::boot();
 
+
         $clearCache = function () {
-            foreach (['kk', 'ru', 'en'] as $locale) {
-                Cache::forget("menu_tree_" . self::POSITION_HEADER . "_{$locale}");
-                Cache::forget("menu_tree_" . self::POSITION_FOOTER . "_{$locale}");
-                Cache::forget("menu_tree_serialized_" . self::POSITION_HEADER . "_{$locale}");
-                Cache::forget("menu_tree_serialized_" . self::POSITION_FOOTER . "_{$locale}");
+            if (Cache::supportsTags()) {
+                Cache::tags(['menus', 'pages'])->flush();
+            } else {
+                foreach (['kk', 'ru', 'en'] as $locale) {
+                    Cache::forget("menu_tree_" . self::POSITION_HEADER . "_{$locale}");
+                    Cache::forget("menu_tree_" . self::POSITION_FOOTER . "_{$locale}");
+                    Cache::forget("menu_tree_serialized_" . self::POSITION_HEADER . "_{$locale}");
+                    Cache::forget("menu_tree_serialized_" . self::POSITION_FOOTER . "_{$locale}");
+                }
             }
             self::invalidateHomepageHtml();
-            if (Cache::supportsTags()) {
-                Cache::tags(['pages'])->flush();
-            }
         };
 
-        static::created($clearCache);
-        static::updated($clearCache);
+        static::saved($clearCache);
         static::deleted($clearCache);
     }
 
