@@ -14,14 +14,13 @@ class PhotoGallery extends Model
 {
     use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
-        'description_kk',
-        'description_ru',
-        'description_en',
-        'image',
+        'photo',
+        'active',
+        'page_id',
     ];
 
     public function getPhoto(){
-           return '/storage/'. (string)$this->image;
+           return '/storage/'. (string)$this->photo;
     }
 
     protected static function boot()

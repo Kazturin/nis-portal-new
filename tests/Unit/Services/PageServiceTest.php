@@ -25,21 +25,11 @@ class PageServiceTest extends TestCase
         
         $user = \App\Models\User::factory()->create(['id' => 1]);
         $this->be($user);
-        
-        // Clear static cache
-        $reflection = new \ReflectionClass(PageService::class);
-        $property = $reflection->getProperty('requestCache');
-        $property->setValue(null, []);
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        
-        // Clear static cache
-        $reflection = new \ReflectionClass(PageService::class);
-        $property = $reflection->getProperty('requestCache');
-        $property->setValue(null, []);
     }
 
     public function test_get_menu_tree_returns_correct_structure()
@@ -64,11 +54,12 @@ class PageServiceTest extends TestCase
     {
         Menu::factory()->create(['position' => Menu::POSITION_HEADER]);
         
-        $cacheKey = "menu_tree_" . Menu::POSITION_HEADER . "_" . app()->getLocale();
+        $locale = app()->getLocale();
+        $cacheKey = "menu_tree_serialized_" . Menu::POSITION_HEADER . "_{$locale}";
         
         $this->service->getMenuTree(Menu::POSITION_HEADER);
         
-        $this->assertTrue(Cache::has($cacheKey));
+        $this->assertTrue(Cache::tags(['menus'])->has($cacheKey));
     }
 
     public function test_accordion_menu_returns_children_of_top_parent()
@@ -101,42 +92,19 @@ class PageServiceTest extends TestCase
         $this->assertEquals($level3->id, $topMenu->first()->id);
     }
 
-    public function test_hydrate_menu_restores_relations()
+    public function test_link_parents_restores_relations()
     {
-        $data = [
-            [
-                'id' => 1,
-                'title_kk' => 'Root',
-                'children' => [
-                    ['id' => 2, 'title_kk' => 'Child', 'children' => []]
-                ],
-                'page' => ['id' => 10, 'title_kk' => 'Page 10', 'slug' => 'p10'],
-                'product' => ['id' => 20, 'title_kk' => 'Product 20', 'slug' => 'p20']
-            ]
-        ];
+        $root = new Menu(['id' => 1, 'title_kk' => 'Root']);
+        $child = new Menu(['id' => 2, 'title_kk' => 'Child', 'parent_id' => 1]);
+        $root->setRelation('children', collect([$child]));
 
         $service = new PageService();
-        $method = new \ReflectionMethod(PageService::class, 'hydrateMenu');
+        $method = new \ReflectionMethod(PageService::class, 'linkParents');
         $method->setAccessible(true);
         
-        $result = $method->invoke($service, $data);
+        $method->invoke($service, collect([$root]));
         
-        $this->assertCount(1, $result);
-        $root = $result->first();
-        $this->assertCount(1, $root->children);
-        $this->assertEquals($root, $root->children->first()->parent);
-        $this->assertInstanceOf(Page::class, $root->page);
-        $this->assertInstanceOf(Product::class, $root->product);
-    }
-
-    public function test_hydrate_menu_returns_empty_on_invalid_data()
-    {
-        $service = new PageService();
-        $method = new \ReflectionMethod(PageService::class, 'hydrateMenu');
-        $method->setAccessible(true);
-        
-        $this->assertTrue($method->invoke($service, null)->isEmpty());
-        $this->assertTrue($method->invoke($service, [])->isEmpty());
+        $this->assertEquals($root, $child->parent);
     }
 
     public function test_top_menu_filters_correctly()
@@ -160,5 +128,44 @@ class PageServiceTest extends TestCase
         // Should only contain child1 because child2 has children
         $this->assertCount(1, $result);
         $this->assertEquals(2, $result->first()->id);
+    }
+
+    public function test_link_parents_with_invalid_data()
+    {
+        $service = new PageService();
+        $method = new \ReflectionMethod(PageService::class, 'linkParents');
+        $method->setAccessible(true);
+        
+        // Test null
+        $method->invoke($service, null);
+        
+        // Test non-iterable
+        $method->invoke($service, 123);
+        
+        // Test array with non-objects
+        $method->invoke($service, [null, 123, "string", new \stdClass()]);
+        
+        $this->assertTrue(true); // Should not throw exception
+    }
+
+    public function test_accordion_menu_with_no_top_parent()
+    {
+        $page = Page::factory()->make();
+        $page->setRelation('menu', null); // Ensure no menu relation or anything that returns top parent
+        
+        $result = $this->service->accordionMenu($page);
+        $this->assertTrue($result->isEmpty());
+    }
+
+    public function test_top_menu_with_no_id()
+    {
+        $result = $this->service->topMenu(0);
+        $this->assertTrue($result->isEmpty());
+    }
+
+    public function test_top_menu_with_item_not_found()
+    {
+        $result = $this->service->topMenu(999);
+        $this->assertTrue($result->isEmpty());
     }
 }

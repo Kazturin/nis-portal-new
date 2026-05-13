@@ -72,8 +72,9 @@ class MenuTest extends TestCase
 
     public function test_cache_is_invalidated_on_boot_events()
     {
+        Cache::shouldReceive('supportsTags')->andReturn(false);
         Cache::shouldReceive('forget')->atLeast()->once();
-        
+
         $menu = Menu::factory()->create();
         $menu->title_kk = 'Updated';
         $menu->save();

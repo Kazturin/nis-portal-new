@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class TextWidget extends Model
 {
-    use InvalidatesHomepageCache;
+    use InvalidatesHomepageCache, HasFactory;
     protected $fillable = [
         'key',
         'title_kk',

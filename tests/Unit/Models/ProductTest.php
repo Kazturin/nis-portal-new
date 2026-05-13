@@ -13,6 +13,7 @@ class ProductTest extends TestCase
 
     public function test_cache_is_invalidated_on_save()
     {
+        Cache::shouldReceive('supportsTags')->andReturn(false);
         Cache::shouldReceive('forget')->with('products')->atLeast()->once();
         
         $product = Product::factory()->create([
@@ -28,6 +29,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->create();
 
+        Cache::shouldReceive('supportsTags')->andReturn(false);
         Cache::shouldReceive('forget')->with('products')->once();
         
         $product->delete();

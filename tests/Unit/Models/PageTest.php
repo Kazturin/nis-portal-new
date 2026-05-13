@@ -27,6 +27,7 @@ class PageTest extends TestCase
 
     public function test_cache_is_invalidated_on_save()
     {
+        Cache::shouldReceive('supportsTags')->andReturn(false);
         Cache::shouldReceive('forget')->atLeast()->once();
         
         $page = Page::factory()->create();

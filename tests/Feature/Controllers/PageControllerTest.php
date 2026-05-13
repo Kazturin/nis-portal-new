@@ -121,4 +121,35 @@ class PageControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_page_list_item_404_if_inactive()
+    {
+        $pageList = PageList::factory()->create(['active' => false]);
+        $response = $this->get("/kk/list/{$pageList->id}");
+        $response->assertStatus(404);
+    }
+
+    public function test_page_list_item_next_prev_without_date()
+    {
+        $page = Page::factory()->create();
+        $item1 = PageList::factory()->create(['page_id' => $page->id, 'position' => 1, 'date' => null]);
+        $item2 = PageList::factory()->create(['page_id' => $page->id, 'position' => 2, 'date' => null]);
+        $item3 = PageList::factory()->create(['page_id' => $page->id, 'position' => 3, 'date' => null]);
+
+        $response = $this->get("/kk/list/{$item2->id}");
+        $response->assertStatus(200);
+    }
+
+    public function test_page_index_meta_title_with_parent()
+    {
+        $parent = \App\Models\Menu::factory()->create(['title_kk' => 'Parent Menu']);
+        $menu = \App\Models\Menu::factory()->create(['parent_id' => $parent->id]);
+        $page = Page::factory()->create(['slug' => 'p1', 'title_kk' => 'Child Page']);
+        $menu->update(['page_id' => $page->id]);
+        $page->update(['menu_id' => $menu->id]);
+
+        $response = $this->get("/kk/page/{$page->slug}");
+        $response->assertStatus(200);
+        $response->assertSee('Parent Menu | Child Page');
+    }
 }
