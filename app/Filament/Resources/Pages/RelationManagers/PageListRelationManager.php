@@ -211,15 +211,16 @@ class PageListRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title_kk')
             ->columns([
+                TextColumn::make('id'),
                 TextColumn::make('title_ru')
                     ->label('Заголовок'),
-                TextColumn::make('created_at')
+                TextColumn::make('date')
                     ->label('Дата'),
             ])
             ->filters([
                 //
             ])
-            ->defaultSort('date', 'desc')
+            ->defaultSort('id', 'desc')
             ->headerActions([
                 CreateAction::make(),
                 // AssociateAction::make(),
