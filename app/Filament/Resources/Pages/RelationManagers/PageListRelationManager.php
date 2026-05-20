@@ -71,7 +71,7 @@ class PageListRelationManager extends RelationManager
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
@@ -106,7 +106,7 @@ class PageListRelationManager extends RelationManager
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
@@ -140,7 +140,7 @@ class PageListRelationManager extends RelationManager
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])

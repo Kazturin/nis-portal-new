@@ -149,7 +149,7 @@ class PageForm
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
@@ -202,7 +202,7 @@ class PageForm
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
