@@ -80,7 +80,7 @@ class Page extends Model
 
     public function files(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(PageFile::class, 'page_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(PageFile::class, 'page_id');
     }
 
     public function pageList(): \Illuminate\Database\Eloquent\Relations\HasMany

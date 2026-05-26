@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @property \App\Models\Page|null $page
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class PageFile extends Model
 {
     use HasFactory;
-    protected $fillable = [ 
+    protected $fillable = [
         'title_kk',
         'title_ru',
         'title_en',
@@ -40,25 +41,52 @@ class PageFile extends Model
         'files_en' => 'array',
     ];
 
-    public function getFile(){
-        return '/storage/'.$this->{'file_'.app()->getLocale()};
+    public function getFile()
+    {
+        return '/storage/' . $this->{'file_' . app()->getLocale()};
     }
 
-    public function getFiles(){
+    public function getFiles()
+    {
         $files = [];
-  
-        foreach($this->{'files_'.app()->getLocale()} as $file){
-           $files[] = (string)'/storage/'.$file;
+
+        foreach ($this->{'files_' . app()->getLocale()} as $file) {
+            $files[] = (string) '/storage/' . $file;
         }
- 
+
         return $files;
     }
 
-    public function getThumbnail(){
-        if($this->thumbnail){
-           return '/storage/'. $this->thumbnail;
+    public function getThumbnail()
+    {
+        if ($this->thumbnail) {
+            return '/storage/' . $this->thumbnail;
         }
         return '/img/docs.jpg';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        $clearCache = function ($model = null) {
+            if (Cache::supportsTags()) {
+                Cache::tags(['menus', 'pages'])->flush();
+                if ($model) {
+                    Cache::tags(["page_{$model->page_id}"])->flush();
+                }
+            } else {
+                foreach (['kk', 'ru', 'en'] as $locale) {
+                    Cache::forget("menu_tree_" . Menu::POSITION_HEADER . "_{$locale}");
+                    Cache::forget("menu_tree_" . Menu::POSITION_FOOTER . "_{$locale}");
+                    Cache::forget("menu_tree_serialized_" . Menu::POSITION_HEADER . "_{$locale}");
+                    Cache::forget("menu_tree_serialized_" . Menu::POSITION_FOOTER . "_{$locale}");
+                }
+            }
+        };
+
+        static::saved($clearCache);
+        static::deleted($clearCache);
     }
 
 
