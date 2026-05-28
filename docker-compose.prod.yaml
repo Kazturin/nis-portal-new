@@ -11,6 +11,7 @@ services:
             - "80:80"
             - "443:443"
             - "443:443/udp"
+            - "${IP_ADDRESS}:2019:2019"
         env_file:
             - .env
         environment:
@@ -27,6 +28,7 @@ services:
             - REDIS_PORT=${REDIS_PORT:-6379}
             - REDIS_DB=${REDIS_DB:-0}
             - MAX_REQUESTS=500
+            - IP_ADDRESS=${IP_ADDRESS}
         volumes:
             - ./storage:/var/www/storage
             - caddy_data:/data

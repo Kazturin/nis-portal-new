@@ -7,6 +7,8 @@
         }
     }
     order php_server before file_server
+    admin 0.0.0.0:2019
+    metrics
 }
 
 {$REDIRECT_SERVER_NAME:http://localhost-redirect} {
