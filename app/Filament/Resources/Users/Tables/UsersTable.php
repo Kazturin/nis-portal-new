@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TagsColumn;
 
 class UsersTable
 {
@@ -15,13 +16,14 @@ class UsersTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Имя пользователя')
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label('Адрес электронной почты')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                TagsColumn::make('roles.name')
+                    ->label('Роли')
+                    ->badge(),    
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
