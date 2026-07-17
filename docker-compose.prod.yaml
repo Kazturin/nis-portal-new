@@ -129,6 +129,25 @@ services:
                 max-size: "5m"
                 max-file: "3"
 
+    backup:
+        image: fradelg/mysql-cron-backup
+        restart: unless-stopped
+        environment:
+            MYSQL_HOST: db
+            MYSQL_USER: ${DB_USERNAME:-nis_user}
+            MYSQL_PASS: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE:-nis_prod}
+            MAX_BACKUPS: 10
+            INIT_BACKUP: 0
+            CRON_TIME: "0 3 * * *"
+            GZIP_LEVEL: 9
+        volumes:
+            - ./backups:/backup
+        depends_on:
+            - db
+        networks:
+            - backend
+
 networks:
     backend:
         driver: bridge
