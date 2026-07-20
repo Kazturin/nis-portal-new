@@ -95,6 +95,9 @@ class MenuForm
                             ->searchable(),
                         Toggle::make('active')
                             ->default(1),
+                        Toggle::make('is_hidden')
+                            ->label('Скрыть в шапке')
+                            ->default(0),
 
                     ])->columnSpan(8),
 

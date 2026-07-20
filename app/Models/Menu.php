@@ -43,6 +43,7 @@ class Menu extends Model
         'parent_id',
         'sort',
         'active',
+        'is_hidden',
         'banner',
         'open_in_new_tab',
         'position',
@@ -50,6 +51,7 @@ class Menu extends Model
 
     protected $casts = [
         'active' => 'boolean',
+        'is_hidden' => 'boolean',
         'is_external_link' => 'boolean',
         'open_in_new_tab' => 'boolean',
     ];

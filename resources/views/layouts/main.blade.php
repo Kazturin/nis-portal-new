@@ -108,7 +108,7 @@
                         </div>
                         <div class="hidden lg:flex items-start space-x-4 text-base xl:text-xl font-sf">
                             <a href="/"><img src="/img/ornament.png" alt="ornament" class="w-10"></a>
-                            @foreach($menu as $item)
+                            @foreach($menu->where('is_hidden', false) as $item)
                             @if(count($item->children)>0 && !($item->page || $item->{'link_'.app()->getLocale()} || $item->is_external_link))
                             <div class="relative">
                                 <button
@@ -137,7 +137,7 @@
                                     aria-label="submenu">
                                     <div>
                                         <ul class="list-none">
-                                            @foreach($item->children as $child_item)
+                                            @foreach($item->children->where('is_hidden', false) as $child_item)
                                             @if(count($child_item->children)>0 && !($child_item->page || $child_item->{'link_'.app()->getLocale()} || $child_item->is_external_link))
                                             <li class="mb-2" x-data="{ expanded: false }">
                                                 <button id="faqs-title-{{$child_item->id}}" type="button"
@@ -161,7 +161,7 @@
                                                     x-transition:leave-end="opacity-0 translate-y-2">
                                                     <div class="overflow-hidden">
                                                         <ul class="list-none">
-                                                            @foreach($child_item->children as $child)
+                                                            @foreach($child_item->children->where('is_hidden', false) as $child)
                                                             @if(count($child->children)>0 && !($child->page || $child->{'link_'.app()->getLocale()} || $child->is_external_link))
                                                             <li class="mb-2" x-data="{ expanded: false }">
                                                                 <button id="faqs-title-{{$child_item->id}}" type="button"
@@ -185,7 +185,7 @@
                                                                     x-transition:leave-end="opacity-0 translate-y-2">
                                                                     <div class="overflow-hidden">
                                                                         <ul class="list-none">
-                                                                            @foreach($child->children as $last_child)
+                                                                            @foreach($child->children->where('is_hidden', false) as $last_child)
                                                                             <li>
                                                                                 <a
                                                                                     href="{{ $last_child->getUrl() }}"
@@ -276,7 +276,7 @@
                                     </button>
 
                                 </div>
-                                @foreach($menu as $item)
+                                @foreach($menu->where('is_hidden', false) as $item)
                                 @if(count($item->children)>0 && !($item->page || $item->{'link_'.app()->getLocale()} || $item->is_external_link))
                                 <button @click="openMobileMenu === {{ $item->id }} ? openMobileMenu = null : openMobileMenu = {{ $item->id }}" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
                                     {{ $item->{'title_'.app()->getLocale()} }}
@@ -291,7 +291,7 @@
                                     x-transition:leave="transition ease-in duration-200"
                                     x-transition:leave-start="opacity-100 transform translate-y-0"
                                     x-transition:leave-end="opacity-0 transform -translate-y-2" x-show="openMobileMenu === {{ $item->id }}" class="my-2 space-y-2 ml-3 border-primary border-l" id="disclosure-1">
-                                    @foreach($item->children as $child_item)
+                                    @foreach($item->children->where('is_hidden', false) as $child_item)
                                     @if(count($child_item->children)>0 && !($child_item->page || $child_item->{'link_'.app()->getLocale()} || $child_item->is_external_link))
                                     <button @click="openChildMenu === {{ $child_item->id }} ? openChildMenu = null : openChildMenu = {{ $child_item->id }}" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
                                         {{ $child_item->{'title_'.app()->getLocale()} }}
@@ -300,7 +300,7 @@
                                         </svg>
                                     </button>
                                     <div x-data="{ openLlChildMenu: null }" x-show="openChildMenu === {{ $child_item->id }}" class="mt-2 space-y-2 ml-6 pl-6 border-primary border-l" id="disclosure-1">
-                                        @foreach($child_item->children as $child)
+                                        @foreach($child_item->children->where('is_hidden', false) as $child)
                                         @if(count($child->children)>0 && !($child->page || $child->{'link_'.app()->getLocale()} || $child->is_external_link))
                                         <button @click="openLlChildMenu === {{ $child->id }} ? openLlChildMenu = null : openLlChildMenu = {{ $child->id }}" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
                                             {{ $child->{'title_'.app()->getLocale()} }}
@@ -315,7 +315,7 @@
                                             x-transition:leave="transition ease-in duration-200"
                                             x-transition:leave-start="opacity-100 transform translate-y-0"
                                             x-transition:leave-end="opacity-0 transform -translate-y-2" class="my-2 space-y-2 pl-6 border-primary border-l" id="disclosure-1">
-                                            @foreach($child->children as $ll_child)
+                                            @foreach($child->children->where('is_hidden', false) as $ll_child)
                                             <a href="{{ $ll_child->getUrl() }}" {{$ll_child->open_in_new_tab ? 'target="_blank"' : ''}}
                                                 class="block rounded-lg pr-3 text-sm font-semibold leading-7 text-gray-900">
                                                 {{ $ll_child->{'title_'.app()->getLocale()} }}
