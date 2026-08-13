@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/product.css', 'resources/css/filament/admin/theme.css'],
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/product.css', 'resources/css/filament/admin/theme.css', 'resources/js/filament/rich-editor-table-cell-bg.js', 'resources/js/filament/rich-editor-table-header-bg.js'],
             refresh: true,
         }),
         tailwindcss(),

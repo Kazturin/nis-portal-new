@@ -20,9 +20,13 @@
         "laravel/framework": "^13.0",
         "laravel/octane": "^2.17",
         "laravel/tinker": "^3.0",
+        "mmes-design/filament-file-manager": "dev-main",
+        "rap2hpoutre/fast-excel": "^5.13",
+        "setasign/fpdi": "^2.6",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "*",
         "spatie/laravel-sluggable": "^3.8",
-        "mmes-design/filament-file-manager": "dev-main"
+        "tecnickcom/tcpdf": "^6.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

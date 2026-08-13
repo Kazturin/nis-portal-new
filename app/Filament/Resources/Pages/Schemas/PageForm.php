@@ -22,6 +22,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBloc
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TabsBlock;
 
 
 use App\Models\Menu;
@@ -40,6 +41,7 @@ use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Validation\Rules\Unique;
 use MmesDesign\FilamentFileManager\RichEditor\FileManagerRichEditorPlugin;
+use App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin;
 
 class PageForm
 {
@@ -93,16 +95,18 @@ class PageForm
                                                 AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
                                                 IframeBlock::class,
+                                                TabsBlock::class,
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
-                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                                ['table', 'tableCellBgColor', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
                                             ->customTextColors()
                                             ->plugins([
+                                                new TableColorPlugin(),
                                                 FileManagerRichEditorPlugin::make()
                                                     ->multiple(false)
                                                     ->disk('public')
@@ -144,17 +148,19 @@ class PageForm
                                                 AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
                                                 IframeBlock::class,
+                                                TabsBlock::class,
                                             ])
 
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
-                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                                ['table', 'tableCellBgColor', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
                                             ->customTextColors()
                                             ->plugins([
+                                                new TableColorPlugin(),
                                                 FileManagerRichEditorPlugin::make()
                                                     ->multiple(false)
                                                     ->disk('public')
@@ -197,17 +203,19 @@ class PageForm
                                                 AccordionBlock::class,
                                                 PrimaryLinkBlock::class,
                                                 IframeBlock::class,
+                                                TabsBlock::class,
                                             ])
 
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
                                                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
-                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                                                ['table', 'tableCellBgColor', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
                                             ])
                                             ->customTextColors()
                                             ->plugins([
+                                                new TableColorPlugin(),
                                                 FileManagerRichEditorPlugin::make()
                                                     ->multiple(false)
                                                     ->disk('public')

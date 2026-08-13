@@ -17,6 +17,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\HorizontalC
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\OrnamentCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\PrimaryLinkBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TabsBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
@@ -156,6 +157,9 @@ class Page extends Model
     {
         $this->registerRichContent('content_kk')
             ->fileAttachmentsDisk('public')
+            ->plugins([
+                new \App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin(),
+            ])
             ->customBlocks([
                 WorldMapBlock::class,
                 AnimatedNumbersBlock::class,
@@ -176,10 +180,14 @@ class Page extends Model
                 PrimaryLinkBlock::class,
                 AccordionBlock::class,
                 IframeBlock::class,
+                TabsBlock::class,
             ]);
 
         $this->registerRichContent('content_ru')
             ->fileAttachmentsDisk('public')
+            ->plugins([
+                new \App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin(),
+            ])
             ->customBlocks([
                 WorldMapBlock::class,
                 AnimatedNumbersBlock::class,
@@ -200,10 +208,14 @@ class Page extends Model
                 PrimaryLinkBlock::class,
                 AccordionBlock::class,
                 IframeBlock::class,
+                TabsBlock::class,
             ]);
 
         $this->registerRichContent('content_en')
             ->fileAttachmentsDisk('public')
+            ->plugins([
+                new \App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin(),
+            ])
             ->customBlocks([
                 WorldMapBlock::class,
                 AnimatedNumbersBlock::class,
@@ -224,6 +236,7 @@ class Page extends Model
                 PrimaryLinkBlock::class,
                 AccordionBlock::class,
                 IframeBlock::class,
+                TabsBlock::class,
             ]);
     }
 

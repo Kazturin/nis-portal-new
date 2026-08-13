@@ -302,7 +302,7 @@ details img {
     overflow: hidden;
     width: 100% !important;
     position: relative;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
@@ -366,6 +366,10 @@ table th>* {
     font-family: 'Inter' !important;
 }
 
+.prose table {
+    font-size: 16px;
+}
+
 blockquote {
     background-color: #f0f2f5;
     border-radius: 1.5rem;
@@ -413,9 +417,14 @@ blockquote {
     color: var(--dark-color);
 }
 
-.prose h6 {
+.prose h5 {
     font-size: 18px;
     margin-top: 5px;
+}
+
+.prose h6 {
+    font-size: 14px;
+    margin-top: 4px;
 }
 
 .prose h4 {
