@@ -56,9 +56,7 @@ class PageController extends Controller
                 ? $page->menu->parent->{'title_' . $locale} . ' | ' . $page->{'title_' . $locale}
                 : $page->{'title_' . $locale};
 
-            $tabs = $page->tabs;
-
-            return view('page.index', compact('accordion_menu', 'page', 'files', 'list', 'metaTitle', 'tabs', 'locale'))->render();
+            return view('page.index', compact('accordion_menu', 'page', 'files', 'list', 'metaTitle', 'locale'))->render();
         });
 
         return response($html);
