@@ -35,56 +35,18 @@ class TabsBlock extends RichContentCustomBlock
                     ->label('Вкладки')
                     ->schema([
                         Hidden::make('id')->default(fn() => Str::random(8)),
-                        Tabs::make('tabs')
-                            ->tabs([
-                                Tabs\Tab::make('kz')
-                                    ->schema([
-                                        TextInput::make('title_kk')->label('Заголовок (KZ)')->required(),
-                                        RichEditor::make('content_kk')->label('Содержимое (KZ)')->required()
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
-                                                ['h2', 'h3', 'h4', 'h5', 'h6', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
-                                                ['table', 'tableCellBgColor', 'attachFiles', 'grid'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customTextColors()
-                                            ->plugins([
-                                                new TableColorPlugin()
-                                            ]),
-                                    ]),
-                                Tabs\Tab::make('ru')
-                                    ->schema([
-                                        TextInput::make('title_ru')->label('Заголовок (RU)')->required(),
-                                        RichEditor::make('content_ru')->label('Содержимое (RU)')->required()
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
-                                                ['table', 'tableCellBgColor', 'attachFiles', 'grid'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customTextColors()
-                                            ->plugins([
-                                                new TableColorPlugin()
-                                            ]),
-                                    ]),
-                                Tabs\Tab::make('en')
-                                    ->schema([
-                                        TextInput::make('title_en')->label('Заголовок (EN)')->required(),
-                                        RichEditor::make('content_en')->label('Содержимое (EN)')->required()
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
-                                                ['table', 'tableCellBgColor', 'attachFiles', 'grid'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customTextColors()
-                                            ->plugins([
-                                                new TableColorPlugin()
-                                            ]),
-                                    ]),
+                        TextInput::make('title')->label('Заголовок')->required(),
+                        RichEditor::make('content')->label('Содержимое')->required()
+                            ->toolbarButtons([
+                                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
+                                ['h2', 'h3', 'h4', 'h5', 'h6', 'alignStart', 'alignCenter', 'alignEnd'],
+                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                                ['table', 'tableCellBgColor', 'attachFiles', 'grid'],
+                                ['undo', 'redo'],
+                            ])
+                            ->customTextColors()
+                            ->plugins([
+                                new TableColorPlugin()
                             ]),
                     ])
                     ->collapsible()
@@ -104,18 +66,16 @@ class TabsBlock extends RichContentCustomBlock
     public static function toHtml(array $config, array $data): string
     {
         $tabs = array_map(function ($tab) {
-            foreach (['kk', 'ru', 'en'] as $lang) {
-                if (isset($tab['content_' . $lang])) {
-                    $tab['content_' . $lang] = RichContentRenderer::make($tab['content_' . $lang])
-                        ->fileAttachmentsDisk('public')
-                        ->plugins([
-                            new TableColorPlugin(),
-                        ])
-                        ->customBlocks([
-                            PrimaryLinkBlock::class,
-                        ])
-                        ->toUnsafeHtml();
-                }
+            if (isset($tab['content'])) {
+                $tab['content'] = RichContentRenderer::make($tab['content'])
+                    ->fileAttachmentsDisk('public')
+                    ->plugins([
+                        new TableColorPlugin(),
+                    ])
+                    ->customBlocks([
+                        PrimaryLinkBlock::class,
+                    ])
+                    ->toUnsafeHtml();
             }
             if (!isset($tab['id']) || empty($tab['id'])) {
                 $tab['id'] = Str::random(8);

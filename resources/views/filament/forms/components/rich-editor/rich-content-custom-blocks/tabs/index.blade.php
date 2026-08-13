@@ -10,7 +10,7 @@
                             : 'hover:text-gray-800 focus:text-yellow-600 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-400'"
                 class="flex whitespace-nowrap items-center h-8 px-2 md:px-5 font-medium rounded-lg outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-inset"
                 role="tab" type="button" :aria-selected="tab === '{{ $t['id'] }}'">
-                {{ $t['title_' . app()->getLocale()] }}
+                {{ $t['title'] ?? '' }}
             </button>
         @endforeach
     </nav>
@@ -19,7 +19,7 @@
     <div class="mt-4 w-full">
         @foreach($tabs as $t)
             <div x-show="tab === '{{ $t['id'] }}'" class="px-4 rounded-lg">
-                <p class="text-gray-600">{!! $t['content_' . app()->getLocale()] !!}</p>
+                <p class="text-gray-600">{!! $t['content'] ?? '' !!}</p>
             </div>
         @endforeach
     </div>

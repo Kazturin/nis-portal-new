@@ -10,7 +10,7 @@
         @if (isset($tabs) && count($tabs) > 0)
             <ul class="list-disc list-inside text-left inline-block">
                 @foreach($tabs as $tab)
-                    <li>{{ $tab['title_ru'] ?? $tab['title_kk'] ?? $tab['title_en'] ?? 'Без заголовка' }}</li>
+                    <li>{{ $tab['title'] ?? 'Без заголовка' }}</li>
                 @endforeach
             </ul>
         @else
