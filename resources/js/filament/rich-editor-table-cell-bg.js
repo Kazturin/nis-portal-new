@@ -1,6 +1,6 @@
 import TableCell from '@tiptap/extension-table-cell'
 
-export default TableCell.extend({
+const extension = TableCell.extend({
     addAttributes() {
         return {
             ...this.parent?.(),
@@ -21,3 +21,5 @@ export default TableCell.extend({
         }
     },
 })
+
+export default extension;

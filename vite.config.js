@@ -10,6 +10,11 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    build: {
+        rollupOptions: {
+            preserveEntrySignatures: 'allow-extension',
+        },
+    },
     server: {
         host: '0.0.0.0',
         port: 5177,
