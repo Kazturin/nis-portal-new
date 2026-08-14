@@ -28,7 +28,7 @@ class IframeBlock extends RichContentCustomBlock
                     ->required()
                     ->placeholder('https://example.com'),
                 TextInput::make('height')
-                    ->label('Высота (например, 500px или 100%)')
+                    ->label('Высота (px)')
                     ->default('500px')
                     ->required(),
             ]);

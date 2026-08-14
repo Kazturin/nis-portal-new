@@ -260,7 +260,22 @@ class PageForm
                     ])->columnSpanFull(),
 
                 Group::make()
-                    ->relationship('banner')
+                    ->relationship(
+                        name: 'banner',
+                        condition: fn (Get $get): bool => filled($get('banner_kk')) || filled($get('banner_ru')) || filled($get('banner_en'))
+                    )
+                    ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
+                        $data['banner_kk'] = $data['banner_kk'] ?? '';
+                        $data['banner_ru'] = $data['banner_ru'] ?? '';
+                        $data['banner_en'] = $data['banner_en'] ?? '';
+                        return $data;
+                    })
+                    ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
+                        $data['banner_kk'] = $data['banner_kk'] ?? '';
+                        $data['banner_ru'] = $data['banner_ru'] ?? '';
+                        $data['banner_en'] = $data['banner_en'] ?? '';
+                        return $data;
+                    })
                     ->schema([
                         Section::make('Баннеры')
                             ->schema([
