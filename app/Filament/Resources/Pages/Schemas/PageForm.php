@@ -37,6 +37,8 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
 use Filament\Actions\Action;
 use Filament\Schemas\Components\Actions;
+use Filament\Schemas\Components\Group;
+use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Validation\Rules\Unique;
@@ -256,6 +258,29 @@ class PageForm
                         //     ->label('Защищенная страница')
                         //     ->default(0),
                     ])->columnSpanFull(),
+
+                Group::make()
+                    ->relationship('banner')
+                    ->schema([
+                        Section::make('Баннеры')
+                            ->schema([
+                                FileUpload::make('banner_kk')
+                                    ->label('Баннер (kz)')
+                                    ->image()
+                                    ->directory('pages/banners')
+                                    ->disk('public'),
+                                FileUpload::make('banner_ru')
+                                    ->label('Баннер (ru)')
+                                    ->image()
+                                    ->directory('pages/banners')
+                                    ->disk('public'),
+                                FileUpload::make('banner_en')
+                                    ->label('Баннер (en)')
+                                    ->image()
+                                    ->directory('pages/banners')
+                                    ->disk('public'),
+                            ])->columns(3),
+                    ]),
             ]);
     }
 
