@@ -262,7 +262,7 @@ class PageForm
                 Group::make()
                     ->relationship(
                         name: 'banner',
-                        condition: fn (Get $get): bool => filled($get('banner_kk')) || filled($get('banner_ru')) || filled($get('banner_en'))
+                        condition: fn (Get $get): bool => filled($get('banner.banner_kk')) || filled($get('banner.banner_ru')) || filled($get('banner.banner_en'))
                     )
                     ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
                         $data['banner_kk'] = $data['banner_kk'] ?? '';
