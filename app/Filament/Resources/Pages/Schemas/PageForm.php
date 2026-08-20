@@ -101,7 +101,7 @@ class PageForm
                                             ])
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                ['h2', 'h3', 'h4', 'h5', 'h6', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'tableCellBgColor', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
@@ -155,7 +155,7 @@ class PageForm
 
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                ['h2', 'h3', 'h4', 'h5', 'h6', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'tableCellBgColor', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
@@ -210,7 +210,7 @@ class PageForm
 
                                             ->toolbarButtons([
                                                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                                                ['h2', 'h3', 'h4', 'h5', 'h6', 'alignStart', 'alignCenter', 'alignEnd'],
                                                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
                                                 ['table', 'tableCellBgColor', 'attachFiles', 'grid', 'customBlocks'],
                                                 ['undo', 'redo'],
@@ -262,7 +262,7 @@ class PageForm
                 Group::make()
                     ->relationship(
                         name: 'banner',
-                        condition: fn (Get $get): bool => filled($get('banner.banner_kk')) || filled($get('banner.banner_ru')) || filled($get('banner.banner_en'))
+                        condition: fn(Get $get): bool => filled($get('banner.banner_kk')) || filled($get('banner.banner_ru')) || filled($get('banner.banner_en'))
                     )
                     ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
                         $data['banner_kk'] = $data['banner_kk'] ?? '';
