@@ -18,18 +18,21 @@
                         $filesLocale = $file->{'files_' . app()->getLocale()};
                         $hasMultipleFiles = is_array($filesLocale) && count($filesLocale) > 1;
                         $firstFile = $filesLocale[0] ?? null;
+                        $isDownloadable = $link && preg_match('/\.(pdf|docx?|xlsx?|pptx?|zip|rar|txt|csv)$/i', parse_url($link, PHP_URL_PATH) ?? '');
                     @endphp
 
                     @if ($link)
                         <div class="font-sf text-xl my-4">
-                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px] mr-2"
+                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px] {{ $isDownloadable ? 'mr-2' : '' }}"
                                 href="{{ $link }}" target="_blank">
                                 {{ __("View online") }}
                             </a>
-                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
-                                href="{{ $link }}" download>
-                                {{ __("Download") }}
-                            </a>
+                            @if ($isDownloadable)
+                                <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
+                                    href="{{ $link }}" download>
+                                    {{ __("Download") }}
+                                </a>
+                            @endif
                         </div>
                     @elseif ($filesLocale)
                         <div class="font-sf text-xl my-4">
