@@ -1,7 +1,7 @@
 # ==============================================================================
 # Stage 1: Build PHP dependencies (for vendor files)
 # ==============================================================================
-FROM composer:2-alpine AS composer_stage
+FROM composer:2 AS composer_stage
 WORKDIR /app
 
 COPY composer.json composer.lock ./

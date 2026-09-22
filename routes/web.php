@@ -56,11 +56,14 @@ Route::group([
    Route::get('pages/{page:slug?}', [EmptyPageController::class, 'index'])->name('empty.page');
    Route::get('/test', [TestController::class, 'index']);
    Route::get('/check-image', [TestController::class, 'index']);
+   Route::get('/generate-certificate', [\App\Http\Controllers\CertificateController::class, 'generate'])->name('certificate.generate');
+
 
 });
 Route::post('/products/{product}/form', [ProductController::class, 'submitForm'])->name('product.form.submit');
 
- Route::get('/login', function() { return 'login'; })->name('login');
+Route::get('/login', function () {
+   return 'login'; })->name('login');
 // Route::get('/login', [LdapLoginController::class, 'showLoginForm'])->name('login');
 // Route::post('/login', [LdapLoginController::class, 'login']);
 // Route::post('/logout', [LdapLoginController::class, 'logout'])->name('logout');
@@ -69,3 +72,6 @@ Route::get('/modify-link', ModifyLinkController::class)->name('modify.link');
 
 
 Route::post('/check-image/upload', [TestController::class, 'upload'])->name('upload.send');
+
+Route::get('/certificates/bulk', [\App\Http\Controllers\CertificateController::class, 'showBulkForm'])->name('certificate.bulk.form');
+Route::post('/certificates/bulk-generate', [\App\Http\Controllers\CertificateController::class, 'generateBulk'])->name('certificate.bulk.generate');
