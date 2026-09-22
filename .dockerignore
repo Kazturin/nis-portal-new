@@ -25,8 +25,20 @@ storage/app/public/*
 /node_modules
 /vendor
 
-# Frontend
+# Frontend (generated during build)
 /public/build
+
+# Tests, Analysis and Dev files
+/tests
+phpunit.xml
+.phpunit.result.cache
+.phpunit.cache/
+phpstan.neon
+phpstan-*.json
+*.txt
+*.pdf
+test-tiptap.php
+scratch/
 
 # IDE and OS
 .idea/
@@ -34,8 +46,8 @@ storage/app/public/*
 .DS_Store
 Thumbs.db
 *.log
-.phpunit.result.cache
-.phpunit.cache/
+README.md
+.editorconfig
 
 # FrankenPHP / Caddy
 **/caddy
