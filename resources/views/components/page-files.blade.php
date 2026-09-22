@@ -22,9 +22,13 @@
 
                     @if ($link)
                         <div class="font-sf text-xl my-4">
-                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
+                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px] mr-2"
                                 href="{{ $link }}" target="_blank">
                                 {{ __("View online") }}
+                            </a>
+                            <a class="bg-secondary rounded-3xl hover:bg-primary hover:text-white px-6 pt-[13px] pb-[15px]"
+                                href="{{ $link }}" download>
+                                {{ __("Download") }}
                             </a>
                         </div>
                     @elseif ($filesLocale)
