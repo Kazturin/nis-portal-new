@@ -3,20 +3,18 @@
 namespace App\Filament\Resources\Pages\RelationManagers;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\IframeBlock;
-use Filament\Actions\AssociateAction;
+use App\Models\PageList;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\RichEditor\RichContentRenderer;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
@@ -25,8 +23,6 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Schema;
-use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use MmesDesign\FilamentFileManager\RichEditor\FileManagerRichEditorPlugin;
@@ -36,174 +32,159 @@ class PageListRelationManager extends RelationManager
     protected static string $relationship = 'pageList';
 
     protected static ?string $modelLabel = 'Список';
+
     protected static ?string $pluralModelLabel = 'Список';
+
     protected static ?string $title = 'Список';
+
+    private const LANGUAGES = [
+        'kk' => 'Казахский',
+        'ru' => 'Русский',
+        'en' => 'Английский',
+    ];
 
     public function form(Schema $schema): Schema
     {
+        $tabs = [];
+
+        foreach (self::LANGUAGES as $locale => $label) {
+            $tabs[] = Tabs\Tab::make($label)
+                ->schema([
+                    TextInput::make("title_{$locale}")
+                        ->label('Заголовок')
+                        ->required($locale !== 'en')
+                        ->maxLength(255),
+                    $this->descriptionEditor($locale),
+                    $this->contentEditor($locale),
+                ]);
+        }
+
         return $schema
             ->components([
-                Section::make('')
+                Section::make('Содержимое')
                     ->schema([
-                        Tabs::make('Tabs')
-                            ->tabs([
-                                Tabs\Tab::make('kz')
-                                    ->schema([
-                                        TextInput::make('title_kk')
-                                            ->required()
-                                            ->maxLength(255),
-                                        RichEditor::make('description_kk')
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
-                                                ['h4', 'h5', 'h6', 'bulletList', 'orderedList'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customTextColors()
-                                            ->columnSpanFull(),
-                                        RichEditor::make('content_kk')
-                                            ->columnSpanFull()
-                                            ->plugins([
-                                                FileManagerRichEditorPlugin::make()
-                                                    ->multiple(false)
-                                                    ->disk('public')
-                                                    ->directory('pages/list')
-                                            ])
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
-                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customBlocks([
-                                                IframeBlock::class,
-                                            ])
-                                            ->enableToolbarButtons(['fileManager'])
-                                            ->json()
-                                    ]),
-
-                                Tabs\Tab::make('ru')
-                                    ->schema([
-                                        TextInput::make('title_ru')
-                                            ->required()
-                                            ->maxLength(255),
-                                        RichEditor::make('description_ru')
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
-                                                ['h4', 'h5', 'h6', 'bulletList', 'orderedList'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customTextColors()
-                                            ->columnSpanFull(),
-                                        RichEditor::make('content_ru')
-                                            ->columnSpanFull()
-                                            ->plugins([
-                                                FileManagerRichEditorPlugin::make()
-                                                    ->multiple(false)
-                                                    ->disk('public')
-                                                    ->directory('pages/list')
-                                            ])
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
-                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customBlocks([
-                                                IframeBlock::class,
-                                            ])
-                                            ->enableToolbarButtons(['fileManager'])
-                                            ->json(),
-                                    ]),
-
-                                Tabs\Tab::make('en')
-                                    ->schema([
-                                        TextInput::make('title_en')
-                                            ->maxLength(255),
-                                        RichEditor::make('description_en')
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
-                                                ['h4', 'h5', 'h6', 'bulletList', 'orderedList'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customTextColors()
-                                            ->columnSpanFull(),
-                                        RichEditor::make('content_en')
-                                            ->columnSpanFull()
-                                            ->plugins([
-                                                FileManagerRichEditorPlugin::make()
-                                                    ->multiple(false)
-                                                    ->disk('public')
-                                                    ->directory('pages/list')
-                                            ])
-                                            ->toolbarButtons([
-                                                ['bold', 'italic', 'underline', 'link', 'textColor'],
-                                                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
-                                                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
-                                                ['table', 'attachFiles', 'grid', 'customBlocks'],
-                                                ['undo', 'redo'],
-                                            ])
-                                            ->customBlocks([
-                                                IframeBlock::class,
-                                            ])
-                                            ->enableToolbarButtons(['fileManager'])
-                                            ->json(),
-                                    ]),
-
-                            ]),
-
+                        Tabs::make('Языки')
+                            ->tabs($tabs),
+                    ])
+                    ->columnSpanFull(),
+                Section::make('Параметры')
+                    ->schema([
                         TextInput::make('position')
+                            ->label('Порядок сортировки')
                             ->required()
                             ->numeric()
                             ->default(0),
-                        DateTimePicker::make('date'),
+                        DateTimePicker::make('date')
+                            ->label('Дата'),
                         FileUpload::make('image')
+                            ->label('Изображение')
                             ->directory('page_list')
                             ->disk('public')
                             ->image(),
                         Toggle::make('active')
-                            ->default(1),
-                    ])->columnSpanFull(),
+                            ->label('Активен')
+                            ->default(true),
+                    ])
+                    ->columnSpanFull(),
             ]);
+    }
+
+    private function descriptionEditor(string $locale): RichEditor
+    {
+        return RichEditor::make("description_{$locale}")
+            ->label('Краткое описание')
+            ->toolbarButtons([
+                ['bold', 'italic', 'underline', 'link', 'textColor'],
+                ['h4', 'h5', 'h6', 'bulletList', 'orderedList'],
+                ['undo', 'redo'],
+            ])
+            ->customTextColors()
+            ->columnSpanFull();
+    }
+
+    private function contentEditor(string $locale): RichEditor
+    {
+        return RichEditor::make("content_{$locale}")
+            ->label('Содержимое')
+            ->columnSpanFull()
+            ->plugins([
+                FileManagerRichEditorPlugin::make()
+                    ->multiple(false)
+                    ->disk('public')
+                    ->directory('pages/list'),
+            ])
+            ->toolbarButtons([
+                ['bold', 'italic', 'underline', 'link', 'textColor'],
+                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                ['blockquote', 'codeBlock', 'bulletList', 'orderedList', 'horizontalRule'],
+                ['table', 'attachFiles', 'grid', 'customBlocks'],
+                ['undo', 'redo'],
+            ])
+            ->customBlocks([
+                IframeBlock::class,
+            ])
+            ->enableToolbarButtons(['fileManager'])
+            ->json();
     }
 
     public function infolist(Schema $schema): Schema
     {
+        $tabs = [];
+
+        foreach (self::LANGUAGES as $locale => $label) {
+            $tabs[] = Tabs\Tab::make($label)
+                ->schema([
+                    TextEntry::make("title_{$locale}")
+                        ->label('Заголовок')
+                        ->placeholder('-'),
+                    $this->richTextEntry("description_{$locale}", 'Краткое описание'),
+                    $this->richTextEntry("content_{$locale}", 'Содержимое'),
+                ]);
+        }
+
         return $schema
             ->components([
-                TextEntry::make('title_kk'),
-                TextEntry::make('title_ru'),
-                TextEntry::make('title_en')
-                    ->placeholder('-'),
-                TextEntry::make('description_kk')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('description_ru')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('description_en')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('content_kk')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('content_ru')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('content_en')
-                    ->placeholder('-')
+                Tabs::make('Языки')
+                    ->tabs($tabs)
                     ->columnSpanFull(),
                 TextEntry::make('date')
-                    ->dateTime()
+                    ->label('Дата')
+                    ->dateTime('d.m.Y H:i')
                     ->placeholder('-'),
                 TextEntry::make('position')
+                    ->label('Порядок сортировки')
                     ->numeric(),
                 ImageEntry::make('image')
+                    ->label('Изображение')
+                    ->disk('public')
                     ->placeholder('-'),
                 IconEntry::make('active')
+                    ->label('Активен')
                     ->boolean(),
             ]);
+    }
+
+    private function richTextEntry(string $attribute, string $label): TextEntry
+    {
+        return TextEntry::make($attribute)
+            ->label($label)
+            // Convert the entire TipTap document before TextEntry treats arrays as lists.
+            ->getStateUsing(function (PageList $record) use ($attribute): ?string {
+                $content = $record->getAttribute($attribute);
+
+                if (blank($content)) {
+                    return null;
+                }
+
+                return RichContentRenderer::make($content)
+                    ->fileAttachmentsDisk('public')
+                    ->customBlocks([IframeBlock::class])
+                    ->toHtml();
+            })
+            ->html()
+            ->prose()
+            ->placeholder('-')
+            ->columnSpanFull();
     }
 
     public function table(Table $table): Table
@@ -211,19 +192,18 @@ class PageListRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title_kk')
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->label('ID'),
                 TextColumn::make('title_ru')
                     ->label('Заголовок'),
                 TextColumn::make('date')
-                    ->label('Дата'),
-            ])
-            ->filters([
-                //
+                    ->label('Дата')
+                    ->dateTime('d.m.Y H:i')
+                    ->placeholder('-'),
             ])
             ->defaultSort('id', 'desc')
             ->headerActions([
                 CreateAction::make(),
-                // AssociateAction::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
