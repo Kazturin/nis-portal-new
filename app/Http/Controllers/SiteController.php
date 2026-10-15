@@ -37,6 +37,7 @@ class SiteController extends Controller
                 'partners' => $this->dataFetcher->getPartners(),
                 'faq' => $this->dataFetcher->getFaq(),
                 'modal' => $this->dataFetcher->getModal(),
+                'cards' => $this->dataFetcher->getCards(),
             ])->render();
         });
 

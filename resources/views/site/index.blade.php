@@ -2,7 +2,13 @@
     <div>
         @include('partials.home.hero', ['mission' => $mission])
 
-        <div class="container mx-auto my-6">
+        @if ($cards)
+        <div class="container mx-auto mt-10 mb-6">
+            {!! $cards->renderRichContent('content_' . app()->getLocale()) !!}
+        </div>
+        @endif
+
+        <div class="container mx-auto mb-6">
             @include('partials.home.partners', ['partners' => $partners])
             @include('partials.home.news', ['mainNews' => $mainNews, 'sideNews' => $sideNews])
             @include('partials.home.opportunities', ['opportunities_block' => $opportunities_block, 'advantages' => $advantages])

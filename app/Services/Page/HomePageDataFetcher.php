@@ -8,6 +8,7 @@ use App\Models\Ad;
 use App\Models\PhotoGallery;
 use App\Models\OtherResource;
 use App\Models\Partner;
+use App\Models\TextWidget;
 use Illuminate\Support\Facades\DB;
 
 class HomePageDataFetcher
@@ -95,6 +96,16 @@ class HomePageDataFetcher
         });
 
         return $rawData ? (object) $rawData : null;
+    }
+
+    public function getCards(): ?TextWidget
+    {
+        $rawData = Cache::remember("cards", $this->cacheDuration, function () {
+            $data = DB::table('text_widgets')->where('key', 'cards')->first();
+            return $data ? (array) $data : null;
+        });
+
+        return $rawData ? TextWidget::hydrate([$rawData])->first() : null;
     }
 
     public function getStatistics()

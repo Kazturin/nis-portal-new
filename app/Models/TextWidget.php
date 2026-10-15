@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BannerCardBlock;
 use App\Traits\InvalidatesHomepageCache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Filament\Forms\Components\RichEditor\Models\Concerns\InteractsWithRichContent;
 
 class TextWidget extends Model
 {
     use InvalidatesHomepageCache, HasFactory;
+    use InteractsWithRichContent;
     protected $fillable = [
         'key',
         'title_kk',
@@ -23,6 +26,44 @@ class TextWidget extends Model
         'link_en',
         'active'
     ];
+
+     public function renderRichContent(string $attribute): string
+    {
+        $attribute = $this
+            ->getRichContentAttribute($attribute) ?? \Filament\Forms\Components\RichEditor\RichContentAttribute::make($this, $attribute);
+
+        return $attribute->getRenderer()->toUnsafeHtml();
+    }
+
+    public function setUpRichContent(): void
+    {
+        $this->registerRichContent('content_kk')
+            ->fileAttachmentsDisk('public')
+            ->plugins([
+                new \App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin(),
+            ])
+            ->customBlocks([
+                BannerCardBlock::class,
+            ]);
+
+        $this->registerRichContent('content_ru')
+            ->fileAttachmentsDisk('public')
+            ->plugins([
+                new \App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin(),
+            ])
+            ->customBlocks([
+                BannerCardBlock::class,
+            ]);
+
+        $this->registerRichContent('content_en')
+            ->fileAttachmentsDisk('public')
+            ->plugins([
+                new \App\Filament\Forms\Components\RichEditor\Plugins\TableColorPlugin(),
+            ])
+            ->customBlocks([
+                BannerCardBlock::class,
+            ]);
+    }
 
     protected static function boot()
     {

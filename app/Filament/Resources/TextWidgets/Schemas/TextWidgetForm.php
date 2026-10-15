@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\TextWidgets\Schemas;
 
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BannerCardBlock;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -34,6 +35,9 @@ class TextWidgetForm
                                         ['table', 'attachFiles', 'grid', 'customBlocks'],
                                         ['undo', 'redo'],
                                     ])
+                                    ->customBlocks([
+                                                BannerCardBlock::class
+                                            ])
                                     ->customTextColors()
                                     ->required()
                                     ->columnSpanFull(),
@@ -53,6 +57,9 @@ class TextWidgetForm
                                         ['table', 'attachFiles', 'grid', 'customBlocks'],
                                         ['undo', 'redo'],
                                     ])
+                                    ->customBlocks([
+                                                BannerCardBlock::class
+                                            ])
                                     ->customTextColors()
                                     ->required()
                                     ->columnSpanFull(),
@@ -72,6 +79,9 @@ class TextWidgetForm
                                         ['table', 'attachFiles', 'grid', 'customBlocks'],
                                         ['undo', 'redo'],
                                     ])
+                                    ->customBlocks([
+                                                BannerCardBlock::class
+                                            ])
                                     ->customTextColors()
                                     ->required()
                                     ->columnSpanFull(),

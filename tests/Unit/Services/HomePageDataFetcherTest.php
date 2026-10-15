@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\OtherResource;
 use App\Models\Partner;
 use App\Models\PhotoGallery;
+use App\Models\TextWidget;
 use App\Models\User;
 use App\Services\Page\HomePageDataFetcher;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -102,6 +103,51 @@ class HomePageDataFetcherTest extends TestCase
 
         $this->assertNotNull($mission);
         $this->assertEquals('Our Mission', $mission->title_kk);
+    }
+
+    public function test_get_cards_renders_custom_blocks_from_database_and_cache(): void
+    {
+        $attributes = ['key' => 'cards', 'active' => true];
+
+        foreach (['kk', 'ru', 'en'] as $locale) {
+            $attributes["title_{$locale}"] = "Cards {$locale}";
+            $config = htmlspecialchars(json_encode([
+                'title' => "Banner {$locale}",
+                'description' => '<p><strong>Banner description</strong></p>',
+            ]), ENT_QUOTES, 'UTF-8');
+            $attributes["content_{$locale}"] = '<div data-type="customBlock" data-id="banner_card" data-config="' . $config . '"></div>';
+        }
+
+        DB::table('text_widgets')->insert($attributes);
+
+        $cards = $this->fetcher->getCards();
+
+        $this->assertInstanceOf(TextWidget::class, $cards);
+        $this->assertTrue($cards->exists);
+        $this->assertIsArray(Cache::get('cards'));
+
+        // Removing the database row ensures the second fetch uses the cached data.
+        DB::table('text_widgets')->where('key', 'cards')->delete();
+
+        $cachedCards = $this->fetcher->getCards();
+
+        $this->assertInstanceOf(TextWidget::class, $cachedCards);
+
+        foreach ([$cards, $cachedCards] as $widget) {
+            foreach (['kk', 'ru', 'en'] as $locale) {
+                $html = $widget->renderRichContent("content_{$locale}");
+
+                $this->assertStringContainsString('class="banner-card"', $html);
+                $this->assertStringContainsString("Banner {$locale}", $html);
+                $this->assertStringContainsString('<strong>Banner description</strong>', $html);
+                $this->assertStringNotContainsString('data-type="customBlock"', $html);
+            }
+        }
+    }
+
+    public function test_get_cards_returns_null_when_widget_is_missing(): void
+    {
+        $this->assertNull($this->fetcher->getCards());
     }
 
     public function test_get_statistics_returns_collection_of_objects()

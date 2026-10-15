@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Pages\Schemas;
 
 use App\Enums\ListViewType;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AnimatedNumbersBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BannerCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ColoredBackgroundBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ContactBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\CurriculumCardBlock;
@@ -85,6 +86,7 @@ class PageForm
                                                 FullSliderBlock::class,
                                                 GallerySliderBlock::class,
                                                 HorizontalCardBlock::class,
+                                                BannerCardBlock::class,
                                                 VerticalCardBlock::class,
                                                 OrnamentCardBlock::class,
                                                 TextSliderBlock::class,
@@ -138,6 +140,7 @@ class PageForm
                                                 FullSliderBlock::class,
                                                 GallerySliderBlock::class,
                                                 HorizontalCardBlock::class,
+                                                BannerCardBlock::class,
                                                 VerticalCardBlock::class,
                                                 OrnamentCardBlock::class,
                                                 TextSliderBlock::class,
@@ -193,6 +196,7 @@ class PageForm
                                                 FullSliderBlock::class,
                                                 GallerySliderBlock::class,
                                                 HorizontalCardBlock::class,
+                                                BannerCardBlock::class,
                                                 VerticalCardBlock::class,
                                                 OrnamentCardBlock::class,
                                                 TextSliderBlock::class,

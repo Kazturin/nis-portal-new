@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AnimatedNumbersBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BannerCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ColoredBackgroundBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\ContactBlock;
@@ -168,6 +169,7 @@ class Page extends Model
                 FullSliderBlock::class,
                 GallerySliderBlock::class,
                 HorizontalCardBlock::class,
+                BannerCardBlock::class,
                 VerticalCardBlock::class,
                 OrnamentCardBlock::class,
                 TextSliderBlock::class,
@@ -196,6 +198,7 @@ class Page extends Model
                 FullSliderBlock::class,
                 GallerySliderBlock::class,
                 HorizontalCardBlock::class,
+                BannerCardBlock::class,
                 VerticalCardBlock::class,
                 OrnamentCardBlock::class,
                 TextSliderBlock::class,
@@ -224,6 +227,7 @@ class Page extends Model
                 FullSliderBlock::class,
                 GallerySliderBlock::class,
                 HorizontalCardBlock::class,
+                BannerCardBlock::class,
                 VerticalCardBlock::class,
                 OrnamentCardBlock::class,
                 TextSliderBlock::class,
