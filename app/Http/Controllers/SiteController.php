@@ -24,6 +24,7 @@ class SiteController extends Controller
 
             return view("site.index", [
                 'mainNews' => $newsData['mainNews'],
+                'mainBanner' => $this->dataFetcher->getMainBanner(),
                 'sideNews' => $newsData['sideNews'],
                 'advantages' => $this->dataFetcher->getAdvantages(),
                 'ads' => $this->dataFetcher->getAds(),

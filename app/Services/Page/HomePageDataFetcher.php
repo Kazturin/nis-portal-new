@@ -87,6 +87,16 @@ class HomePageDataFetcher
         return $rawData ? (object) $rawData : null;
     }
 
+    public function getMainBanner()
+    {
+        $rawData = Cache::remember("main_banner", $this->cacheDuration, function () {
+            $data = DB::table('text_widgets')->where('key', 'main_banner')->first();
+            return $data ? (array) $data : null;
+        });
+
+        return $rawData ? (object) $rawData : null;
+    }
+
     public function getStatistics()
     {
         $rawData = Cache::remember("statistics_{$this->locale}", $this->cacheDuration, function () {

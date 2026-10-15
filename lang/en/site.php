@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'law_and_order' => 'Law and order',
+    'enlarge_information_banner' => 'Enlarge image',
     'app_title' => 'Nazarbayev Intellectual schools',
     'app_title_display' => 'Nazarbayev <br> Intellectual <br> schools',
     'app_description' => 'Назарбаев Интеллектуальные школы – уникальный образовательный проект на постсоветском пространстве, созданный по личной инициативе Елбасы – Первого Президента Республики Казахстан',
