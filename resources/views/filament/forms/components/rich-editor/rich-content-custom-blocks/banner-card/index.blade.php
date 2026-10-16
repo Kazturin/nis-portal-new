@@ -11,7 +11,7 @@
 
     <div class="banner-card__content">
         @if (!empty($title))
-            <h2 class="banner-card__title text-xl xl:text-3xl font-inter font-semibold mb-2">{{ $title }}</h2>
+            <h2 class="banner-card__title text-xl xl:text-[27px] font-inter font-semibold mb-1 leading-none">{{ $title }}</h2>
         @endif
 
         @if (!empty($description))
