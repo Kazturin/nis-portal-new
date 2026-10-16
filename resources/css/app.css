@@ -480,11 +480,4 @@ blockquote {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.hero-section img {
-    border-radius: 25px;
-    margin: 0 !important;
-}
-.hero-section .grid-layout {
-    margin-top: 14px;
-    gap: 14px !important;
-}
+
