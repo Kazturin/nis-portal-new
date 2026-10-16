@@ -15,7 +15,7 @@
         @endif
 
         @if (!empty($description))
-            <div class="text-lg banner-card__description">{!! $description !!}</div>
+            <div class="text-base banner-card__description">{!! $description !!}</div>
         @endif
     </div>
     @if (!empty($url))
