@@ -1,11 +1,16 @@
+@php
+    $locale = in_array(request()->segment(1), ['ru', 'kk', 'en'], true)
+        ? request()->segment(1)
+        : app()->getLocale();
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', $locale) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Страница не найдена</title>
+    <title>{{ __('site.page_not_found_title', [], $locale) }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -17,14 +22,22 @@
          <div class="w-full px-4">
             <div class="mx-auto text-center">
                <img class="mx-auto w-32 mb-9" src="/img/not-found-icon.png" alt="">
-               <p class="font-inter text-[40px] mb-4">Внимание, создаём нечто крутое!</p>
-               <p class="font-interReg text-2xl mb-7">Страница в разработке — заглядывайте позже!</p>
-               <a
-                  href="{{ url()->previous() }}"
-                  class="inline-block rounded-3xl font-sf text-white bg-primary hover:bg-rich-primary text-center text-xl font-semibold px-6 py-3"
-                  >
-                  Вернуться назад
-               </a>
+               <h1 class="font-inter text-[40px] mb-4">{{ __('site.page_not_found_heading', [], $locale) }}</h1>
+               <p class="font-interReg text-2xl mb-7">{{ __('site.page_not_found_description', [], $locale) }}</p>
+               <div class="flex flex-wrap justify-center gap-4">
+                  <a
+                     href="{{ url('/' . $locale) }}"
+                     class="inline-block rounded-3xl font-sf text-white bg-primary hover:bg-rich-primary text-center text-xl font-semibold px-6 py-3"
+                     >
+                     {{ __('site.go_to_home', [], $locale) }}
+                  </a>
+                  <a
+                     href="{{ url()->previous() }}"
+                     class="inline-block rounded-3xl font-sf text-white bg-primary hover:bg-rich-primary text-center text-xl font-semibold px-6 py-3"
+                     >
+                     {{ __('Go back', [], $locale) }}
+                  </a>
+               </div>
             </div>
          </div>
       </div>

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'page_not_found_title' => 'Страница не найдена',
+    'page_not_found_heading' => 'Извините, страница не найдена',
+    'page_not_found_description' => 'Вы оказались на странице, которая удалена или не существует',
+    'go_to_home' => 'На главную',
     'law_and_order' => 'Закон и порядок',
     'enlarge_information_banner' => 'Увеличить изображение',
     'app_title' => 'Назарбаев Интеллектуальные школы',

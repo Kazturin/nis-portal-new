@@ -26,6 +26,10 @@ class PageController extends Controller
             abort(404);
         }
 
+        if (!$page->active) {
+            abort(404);
+        }
+
         $locale = $locale ?? app()->getLocale();
 
         if ($page->is_protected && !Auth::guard('ldap')->check()) {

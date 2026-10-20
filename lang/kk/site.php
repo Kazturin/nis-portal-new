@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'page_not_found_title' => 'Бет табылмады',
+    'page_not_found_heading' => 'Кешіріңіз, бет табылмады',
+    'page_not_found_description' => 'Сіз жойылған немесе жоқ бетке өттіңіз',
+    'go_to_home' => 'Басты бетке',
     'law_and_order' => 'Заң және тәртіп',
     'enlarge_information_banner' => 'Суретті үлкейту',
     'app_title' => 'Назарбаев Зияткерлік мектептері',
