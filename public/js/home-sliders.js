@@ -108,13 +108,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Statistics slider
-    new Swiper('.statistics-slider', {
-        loop: true,
-        spaceBetween: 10,
-        slidesPerView: 1,
-        navigation: {
-            nextEl: '.statistics-swiper-button-next',
-            prevEl: '.statistics-swiper-button-prev',
-        },
-    });
+    const statisticsSlider = document.querySelector('.statistics-slider');
+
+    if (statisticsSlider) {
+        new Swiper(statisticsSlider, {
+            loop: statisticsSlider.querySelectorAll('.swiper-slide').length > 1,
+            autoHeight: true,
+            spaceBetween: 10,
+            slidesPerView: 1,
+            navigation: {
+                nextEl: '.statistics-swiper-button-next',
+                prevEl: '.statistics-swiper-button-prev',
+            },
+        });
+    }
 });

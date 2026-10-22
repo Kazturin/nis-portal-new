@@ -3,36 +3,33 @@
 namespace App\Models;
 
 use App\Traits\InvalidatesHomepageCache;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Statistic extends Model
 {
-    use InvalidatesHomepageCache, HasFactory;
+    use HasFactory, InvalidatesHomepageCache;
+
     protected $fillable = [
         'description_kk',
         'description_ru',
         'description_en',
         'value',
+        'sort',
     ];
 
-    protected static function boot()
+    protected static function booted(): void
     {
-        parent::boot();
- 
-        static::created(function () {
-            Cache::forget('statistics_kk');
-            Cache::forget('statistics_ru');
-            Cache::forget('statistics_en');
+        $invalidateCache = static function (): void {
+            foreach (['kk', 'ru', 'en'] as $locale) {
+                Cache::forget("statistics_{$locale}");
+            }
+
             self::invalidateHomepageHtml();
-        });
- 
-        static::updated(function () {
-            Cache::forget('statistics_kk');
-            Cache::forget('statistics_ru');
-            Cache::forget('statistics_en');
-            self::invalidateHomepageHtml();
-        });
+        };
+
+        static::saved($invalidateCache);
+        static::deleted($invalidateCache);
     }
 }

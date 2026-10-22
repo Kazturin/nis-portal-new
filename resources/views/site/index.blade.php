@@ -19,7 +19,7 @@
             @include('partials.home.resources', ['resources_block' => $resources_block, 'resources' => $resources])
         </div>
 
-        @include('partials.home.statistics', ['statistics' => $statistics])
+        <x-statistics-slider :statistics="$statistics" />
         @include('partials.home.faq', ['faq' => $faq])
 
         @if ($modal)

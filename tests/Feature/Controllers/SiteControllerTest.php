@@ -47,16 +47,7 @@ class SiteControllerTest extends TestCase
         \App\Models\OtherResource::factory()->count(2)->create(['active' => true]);
         \App\Models\Partner::factory()->count(2)->create();
         
-        // Seed statistics with specific keys expected by the view
-        $statsKeys = ['17 884', '1891 / 11%', '5 985 / 38,4%', '2702', '20 771', '220', '7,0', '348 465', '91,8 %', '22', '1299'];
-        foreach ($statsKeys as $key) {
-            \Illuminate\Support\Facades\DB::table('statistics')->insert([
-                'value' => $key,
-                'description_kk' => "Stats KK $key",
-                'description_ru' => "Stats RU $key",
-                'description_en' => "Stats EN $key",
-            ]);
-        }
+        \App\Models\Statistic::factory()->count(11)->create();
     }
 
     public function test_homepage_returns_successful_response()

@@ -112,9 +112,10 @@ class HomePageDataFetcher
     {
         $rawData = Cache::remember("statistics_{$this->locale}", $this->cacheDuration, function () {
             return DB::table('statistics')
-                ->select(['value', "description_{$this->locale} as description"])
+                ->select(['id', 'value', 'sort', "description_{$this->locale} as description"])
+                ->orderBy('sort')
+                ->orderBy('id')
                 ->get()
-                ->keyBy('value')
                 ->map(fn($item) => (array) $item)
                 ->toArray();
         });
