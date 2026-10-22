@@ -7,7 +7,9 @@
     <div class="h-full">
         @if ($statistic = $statistics->get(0))
             <div class="rounded-3xl shadow-md bg-white px-16 py-9 mb-6">
-                <p class="font-inter text-6xl mb-3">{{ $statistic->value }}</p>
+                @if (filled($statistic->value))
+                    <p class="font-inter text-6xl mb-3">{{ $statistic->value }}</p>
+                @endif
                 <div class="font-sf text-2xl whitespace-pre-line">{!! $statistic->description !!}</div>
             </div>
         @endif
@@ -15,7 +17,9 @@
             <div class="relative rounded-3xl overflow-hidden shadow-md mb-6">
                 <img class="w-full" src="/img/card.png" alt="card">
                 <div class="absolute inset-0 text-white px-16 py-9">
-                    <p class="font-inter text-6xl text-white mb-4">{{ $statistic->value }}</p>
+                    @if (filled($statistic->value))
+                        <p class="font-inter text-6xl text-white mb-4">{{ $statistic->value }}</p>
+                    @endif
                     <div class="font-sf text-lg xl:text-2xl text-white whitespace-pre-line">{!! $statistic->description !!}</div>
                 </div>
             </div>

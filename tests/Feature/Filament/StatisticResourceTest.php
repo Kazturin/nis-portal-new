@@ -95,7 +95,7 @@ class StatisticResourceTest extends TestCase
         $this->assertHomepageCacheWasCleared();
     }
 
-    public function test_form_requires_all_fields_and_limits_value_length(): void
+    public function test_form_requires_descriptions_and_limits_value_length(): void
     {
         $this->signInWithRole('manager');
 
@@ -107,7 +107,6 @@ class StatisticResourceTest extends TestCase
                 'description_en' => '',
             ])
             ->assertHasActionErrors([
-                'value' => 'required',
                 'description_kk',
                 'description_ru',
                 'description_en',
@@ -123,6 +122,31 @@ class StatisticResourceTest extends TestCase
             ->assertHasActionErrors(['value' => 'max']);
 
         $this->assertDatabaseCount('statistics', 0);
+    }
+
+    public function test_value_is_optional_and_clearing_it_stores_null_without_losing_zero(): void
+    {
+        $this->signInWithRole('manager');
+        $data = [
+            'description_kk' => '<p>Көрсеткіш</p>',
+            'description_ru' => '<p>Описание</p>',
+            'description_en' => '<p>Description</p>',
+        ];
+
+        Livewire::test(ManageStatistics::class)
+            ->callAction('create', data: $data)
+            ->assertHasNoActionErrors();
+
+        $statistic = Statistic::query()->sole();
+        $this->assertNull($statistic->value);
+
+        foreach (['0', '', null] as $value) {
+            Livewire::test(ManageStatistics::class)
+                ->callTableAction('edit', $statistic, data: [...$data, 'value' => $value])
+                ->assertHasNoActionErrors();
+
+            $this->assertSame($value === '0' ? '0' : null, $statistic->fresh()->value);
+        }
     }
 
     public function test_order_cannot_be_negative_or_fractional(): void

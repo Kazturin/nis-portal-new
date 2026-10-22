@@ -3,14 +3,18 @@
         @if ($statistic = $statistics->get(0))
             <div class="h-fit rounded-3xl overflow-hidden shadow-md mb-6">
                 <div style="background-image: url('/img/card.png');" class="h-fit text-white px-8 py-4 lg:px-16 lg:py-9">
-                    <p class="font-inter text-4xl lg:text-6xl text-white">{{ $statistic->value }}</p>
+                    @if (filled($statistic->value))
+                        <p class="font-inter text-4xl lg:text-6xl text-white">{{ $statistic->value }}</p>
+                    @endif
                     <div class="text-sf text-lg xl:text-2xl text-white whitespace-pre-line">{!! $statistic->description !!}</div>
                 </div>
             </div>
         @endif
         @if ($statistic = $statistics->get(1))
             <div class="rounded-3xl shadow-md bg-white px-8 py-4 lg:px-16 lg:py-9">
-                <p class="font-inter text-4xl xl:text-6xl mb-3">{{ $statistic->value }}</p>
+                @if (filled($statistic->value))
+                    <p class="font-inter text-4xl xl:text-6xl mb-3">{{ $statistic->value }}</p>
+                @endif
                 {!! $statistic->description !!}
             </div>
         @endif

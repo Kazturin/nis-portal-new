@@ -40,7 +40,8 @@ class StatisticResource extends Resource
             ->components([
                 TextInput::make('value')
                     ->label('Значение')
-                    ->required()
+                    ->nullable()
+                    ->dehydrateStateUsing(fn (?string $state): ?string => filled($state) ? $state : null)
                     ->maxLength(20)
                     ->columnSpanFull(),
                 TextInput::make('sort')
@@ -113,6 +114,7 @@ class StatisticResource extends Resource
                     ->sortable(),
                 TextColumn::make('value')
                     ->label('Значение')
+                    ->placeholder('—')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('description_kk')

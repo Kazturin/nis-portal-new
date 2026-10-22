@@ -52,4 +52,28 @@ class StatisticsSliderTest extends TestCase
         $this->assertStringContainsString('&lt;b&gt;100&lt;/b&gt;', $html);
         $this->assertStringNotContainsString('<b>100</b>', $html);
     }
+
+    #[DataProvider('optionalValues')]
+    public function test_optional_values_keep_descriptions_visible_in_every_layout(?string $value, int $expectedValueCount): void
+    {
+        $statistics = collect(range(1, 11))->map(fn (int $index): object => (object) [
+            'value' => $value,
+            'description' => "<strong>description-{$index}</strong>",
+        ]);
+
+        $html = Blade::render('<x-statistics-slider :statistics="$statistics" />', compact('statistics'));
+
+        $this->assertSame($expectedValueCount, preg_match_all('/<p(?:\s|>)/', $html));
+
+        foreach ($statistics as $statistic) {
+            $this->assertStringContainsString($statistic->description, $html);
+        }
+    }
+
+    public static function optionalValues(): iterable
+    {
+        yield 'null' => [null, 0];
+        yield 'empty string' => ['', 0];
+        yield 'zero' => ['0', 11];
+    }
 }

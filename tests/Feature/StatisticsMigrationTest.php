@@ -9,6 +9,41 @@ use Tests\TestCase;
 
 class StatisticsMigrationTest extends TestCase
 {
+    public function test_nullable_value_migration_and_rollback_preserve_records(): void
+    {
+        $originalConnection = DB::getDefaultConnection();
+        config(['database.connections.statistics_migration' => ['driver' => 'sqlite', 'database' => ':memory:']]);
+        DB::setDefaultConnection('statistics_migration');
+
+        try {
+            $originalMigration = require database_path('migrations/2026_03_22_163744_create_statistics_table.php');
+            $originalMigration->up();
+
+            $migration = require database_path('migrations/2026_10_22_000001_make_statistics_value_nullable.php');
+            $migration->up();
+
+            foreach (['100', null] as $value) {
+                DB::table('statistics')->insert([
+                    'value' => $value,
+                    'description_kk' => 'KK',
+                    'description_ru' => 'RU',
+                    'description_en' => 'EN',
+                ]);
+            }
+
+            $this->assertSame(['100', null], DB::table('statistics')->orderBy('id')->pluck('value')->all());
+
+            $migration->down();
+
+            $this->assertSame(['100', ''], DB::table('statistics')->orderBy('id')->pluck('value')->all());
+            $column = collect(Schema::getColumns('statistics'))->firstWhere('name', 'value');
+            $this->assertFalse($column['nullable']);
+        } finally {
+            DB::purge('statistics_migration');
+            DB::setDefaultConnection($originalConnection);
+        }
+    }
+
     public function test_migration_preserves_existing_display_order_and_clears_old_caches(): void
     {
         $originalConnection = DB::getDefaultConnection();

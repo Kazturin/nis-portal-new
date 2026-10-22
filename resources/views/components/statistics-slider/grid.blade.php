@@ -3,20 +3,26 @@
         <div class="relative rounded-3xl overflow-hidden shadow-md">
             <img class="w-full" src="/img/card.png" alt="card">
             <div class="absolute inset-0 text-white px-8 py-4 lg:px-16 lg:py-9">
-                <p class="font-inter text-4xl lg:text-6xl text-white mb-4">{{ $statistic->value }}</p>
+                @if (filled($statistic->value))
+                    <p class="font-inter text-4xl lg:text-6xl text-white mb-4">{{ $statistic->value }}</p>
+                @endif
                 <div class="font-sf text-lg lg:text-2xl text-white whitespace-pre-line">{!! $statistic->description !!}</div>
             </div>
         </div>
     @endif
     @if ($statistic = $statistics->get(1))
         <div class="rounded-3xl shadow-md bg-white px-8 py-4 lg:px-16 lg:py-9">
-            <p class="font-inter text-3xl lg:text-6xl mb-3">{{ $statistic->value }}</p>
+            @if (filled($statistic->value))
+                <p class="font-inter text-3xl lg:text-6xl mb-3">{{ $statistic->value }}</p>
+            @endif
             <div class="font-sf text-2xl whitespace-pre-line">{!! $statistic->description !!}</div>
         </div>
     @endif
     @if ($statistic = $statistics->get(2))
         <div class="rounded-3xl shadow-md bg-white px-8 py-4 lg:px-16 lg:py-9">
-            <p class="font-inter text-4xl lg:text-6xl mb-3">{{ $statistic->value }}</p>
+            @if (filled($statistic->value))
+                <p class="font-inter text-4xl lg:text-6xl mb-3">{{ $statistic->value }}</p>
+            @endif
             <div class="font-sf text-xl lg:text-2xl whitespace-pre-line">{!! $statistic->description !!}</div>
         </div>
     @endif

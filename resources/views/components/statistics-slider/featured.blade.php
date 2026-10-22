@@ -11,11 +11,13 @@
                         'mb-6 lg:mb-14' => $loop->first && ! $loop->last,
                         'mb-3 xl:mb-6' => ! $loop->first && ! $loop->last,
                     ])>
-                        <p @class([
-                            'font-inter text-nowrap',
-                            'text-3xl xl:text-6xl' => $loop->first,
-                            'text-2xl xl:text-4xl' => ! $loop->first,
-                        ])>{{ $statistic->value }}</p>
+                        @if (filled($statistic->value))
+                            <p @class([
+                                'font-inter text-nowrap',
+                                'text-3xl xl:text-6xl' => $loop->first,
+                                'text-2xl xl:text-4xl' => ! $loop->first,
+                            ])>{{ $statistic->value }}</p>
+                        @endif
                         <div @class([
                             'text-sf text-lg xl:text-2xl' => $loop->first,
                             'font-sf text-xl' => ! $loop->first,
@@ -28,7 +30,9 @@
     @if ($statistic = $statistics->get(3))
         <div>
             <div class="bg-white p-6 lg:p-12 rounded-3xl shadow-md h-full">
-                <p class="font-inter text-4xl xl:text-6xl mb-2 lg:mb-6">{{ $statistic->value }}</p>
+                @if (filled($statistic->value))
+                    <p class="font-inter text-4xl xl:text-6xl mb-2 lg:mb-6">{{ $statistic->value }}</p>
+                @endif
                 <div class="text-sf text-base xl:text-2xl leading-7">{!! $statistic->description !!}</div>
             </div>
         </div>
