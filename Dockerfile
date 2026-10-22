@@ -34,7 +34,7 @@ RUN npm run build
 # ==============================================================================
 # Stage 3: Production image with FrankenPHP
 # ==============================================================================
-FROM dunglas/frankenphp:1.4-php8.4-alpine AS production
+FROM dunglas/frankenphp:1.13.2-php8.4.27-alpine AS production
 
 ENV OS_LOCAL=linux \
     PHP_INI_DIR=/usr/local/etc/php
