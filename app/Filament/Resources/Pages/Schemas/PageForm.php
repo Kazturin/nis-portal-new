@@ -19,6 +19,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\PrimaryLink
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\RecognitionMapBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\BookAccordionBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\AccordionBlock;
@@ -77,9 +78,11 @@ class PageForm
                                             ->reactive()
                                             ->debounce(500),
                                         RichEditor::make('content_kk')
+                                            ->rule(static fn (): \Closure => RecognitionMapBlock::editorValidationRule())
                                             ->label("Содержимое")
                                             ->customBlocks([
                                                 WorldMapBlock::class,
+                                                RecognitionMapBlock::class,
                                                 YoutubeBlock::class,
                                                 AnimatedNumbersBlock::class,
                                                 ContactBlock::class,
@@ -131,9 +134,11 @@ class PageForm
                                             ->required()
                                             ->maxLength(255),
                                         RichEditor::make("content_ru")
+                                            ->rule(static fn (): \Closure => RecognitionMapBlock::editorValidationRule())
                                             ->label("Содержимое")
                                             ->customBlocks([
                                                 WorldMapBlock::class,
+                                                RecognitionMapBlock::class,
                                                 YoutubeBlock::class,
                                                 AnimatedNumbersBlock::class,
                                                 ContactBlock::class,
@@ -187,9 +192,11 @@ class PageForm
                                             ->required()
                                             ->maxLength(255),
                                         RichEditor::make('content_en')
+                                            ->rule(static fn (): \Closure => RecognitionMapBlock::editorValidationRule())
                                             ->label("Содержимое")
                                             ->customBlocks([
                                                 WorldMapBlock::class,
+                                                RecognitionMapBlock::class,
                                                 YoutubeBlock::class,
                                                 AnimatedNumbersBlock::class,
                                                 ContactBlock::class,

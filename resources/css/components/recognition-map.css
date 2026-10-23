@@ -1,0 +1,98 @@
+.nis-recognition-map {
+    --recognition-ink: #142033;
+    --recognition-muted: #718097;
+    --recognition-purple: #6046df;
+    --recognition-border: #e1e8f2;
+    min-width: 0;
+    padding: clamp(16px, 3vw, 32px);
+    border-radius: 22px;
+    background: #f5f7fb;
+    color: var(--recognition-ink);
+    font: 16px/1.5 'SF-Pro-Display-Regular', Arial, sans-serif;
+}
+.nis-recognition-map *, .nis-recognition-map *::before, .nis-recognition-map *::after { box-sizing: border-box; }
+.nis-recognition-map [x-cloak] { display: none !important; }
+.nis-recognition-map .nis-recognition-map__title {
+    margin: 0 0 14px;
+    color: var(--recognition-ink);
+    font: 700 clamp(27px, 3vw, 42px)/1.13 Georgia, 'Times New Roman', serif !important;
+    text-wrap: balance;
+}
+.nis-recognition-map .nis-recognition-map__intro {
+    max-width: 760px;
+    margin: 0 !important;
+    color: var(--recognition-muted);
+    font-size: 18px;
+    line-height: 1.5;
+    white-space: normal;
+}
+.nis-recognition-map__stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 22px; }
+.nis-recognition-map__stat { min-width: 112px; padding: 13px 18px; border: 1px solid var(--recognition-border); border-radius: 15px; background: #fff; }
+.nis-recognition-map__stat strong { display: block; font: 700 32px/1.1 Georgia, 'Times New Roman', serif; font-variant-numeric: tabular-nums; }
+.nis-recognition-map__stat span { display: block; margin-top: 3px; color: var(--recognition-muted); }
+.nis-recognition-map__panel { overflow: hidden; border: 1px solid var(--recognition-border); border-radius: 20px; background: #fff; }
+.nis-recognition-map__scroll { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.nis-recognition-map__canvas { position: relative; min-width: 720px; aspect-ratio: 1100/450; margin: 8px 8px 0; }
+.nis-recognition-map .nis-recognition-map__image { display: block; width: 100%; height: 100%; margin: 0 !important; border-radius: 0; }
+.nis-recognition-map__marker {
+    position: absolute; display: flex; align-items: center; justify-content: center;
+    width: var(--marker-size); height: var(--marker-size); padding: 0; transform: translate(-50%, -50%);
+    border: 2px solid white; border-radius: 50%; background: var(--recognition-purple); color: #fff;
+    font: 700 15px/1 Arial, sans-serif; box-shadow: 0 0 0 1px rgb(96 70 223 / 6%); cursor: pointer;
+    transition: opacity .18s, box-shadow .18s;
+}
+.nis-recognition-map__marker.is-muted { opacity: .3; }
+.nis-recognition-map__marker:hover, .nis-recognition-map__marker.is-selected { z-index: 2; opacity: 1; box-shadow: 0 0 0 5px rgb(96 70 223 / 15%); }
+.nis-recognition-map__legend { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 20px; padding: 12px 18px; border-top: 1px solid var(--recognition-border); color: var(--recognition-muted); font-size: 14px; }
+.nis-recognition-map__legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.nis-recognition-map__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--recognition-purple); }
+.nis-recognition-map__controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; margin: 20px 0; }
+.nis-recognition-map__filters { display: flex; flex: 1 1 100%; flex-wrap: wrap; gap: 8px; }
+.nis-recognition-map__chip { display: inline-flex; align-items: center; gap: 5px; padding: 8px 13px; border: 1px solid var(--recognition-border); border-radius: 999px; background: #eaf0f7; color: #263b56; font: inherit; font-size: 14px; cursor: pointer; }
+.nis-recognition-map__chip > span { color: #7a8798; }
+.nis-recognition-map__chip:hover { background: #dfe6f3; }
+.nis-recognition-map__chip.is-active { border-color: var(--recognition-ink); background: var(--recognition-ink); color: #fff; }
+.nis-recognition-map__chip.is-active > span { color: #b5c0d0; }
+.nis-recognition-map__search { display: flex; align-items: center; gap: 10px; width: 260px; max-width: 100%; margin-left: auto; padding: 11px 14px; border: 1px solid var(--recognition-border); border-radius: 13px; background: #fff; color: var(--recognition-muted); }
+.nis-recognition-map__search svg { flex: 0 0 19px; width: 19px; height: 19px; }
+.nis-recognition-map__search input { min-width: 0; width: 100%; border: 0; padding: 0; outline: 0; background: transparent; color: var(--recognition-ink); font: inherit; }
+.nis-recognition-map__search:focus-within { outline: 2px solid var(--recognition-purple); outline-offset: 2px; }
+.nis-recognition-map__results { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; outline: none; }
+.nis-recognition-map__institution { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding: 20px; border: 1px solid var(--recognition-border); border-radius: 16px; background: #fff; color: var(--recognition-ink); font: inherit; text-align: left; cursor: pointer; transition: border-color .18s, box-shadow .18s; }
+.nis-recognition-map__institution:disabled { cursor: default; }
+.nis-recognition-map__institution:not(:disabled):hover { border-color: #c3b8f3; box-shadow: 0 6px 20px rgb(29 44 75 / 5%); }
+.nis-recognition-map__logo { display: flex; align-items: center; justify-content: center; width: 100%; height: 65px; margin-bottom: 18px; color: var(--recognition-purple); font: 700 32px Georgia, serif; }
+.nis-recognition-map .nis-recognition-map__logo img { width: auto; max-width: 100%; height: auto; max-height: 65px; margin: 0 !important; border-radius: 0; object-fit: contain; }
+.nis-recognition-map__institution-country { margin-bottom: 5px; color: var(--recognition-muted); font-size: 13px; }
+.nis-recognition-map__institution-name { overflow-wrap: anywhere; font-size: 17px; font-weight: 600; line-height: 1.35; }
+.nis-recognition-map__details { display: flex; justify-content: space-between; gap: 16px; width: 100%; margin-top: auto; padding-top: 20px; color: var(--recognition-purple); font-size: 14px; }
+.nis-recognition-map__empty { grid-column: 1/-1; padding: 28px 16px; color: var(--recognition-muted); text-align: center; }
+.nis-recognition-map__reset { margin-top: 12px; color: var(--recognition-purple); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.nis-recognition-map__dialog { position: fixed; inset: 0; width: min(540px, calc(100% - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; overflow-y: auto; border: 1px solid var(--recognition-border); border-radius: 22px; background: #fff; color: var(--recognition-ink); box-shadow: 0 24px 80px rgb(16 30 52 / 20%); }
+.nis-recognition-map__dialog::backdrop { background: rgb(13 24 43 / 45%); backdrop-filter: blur(3px); }
+.nis-recognition-map__dialog-content { position: relative; padding: 34px; }
+.nis-recognition-map__close { position: absolute; right: 14px; top: 12px; display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; background: #f0f3f8; color: #51617a; font-size: 26px; line-height: 1; cursor: pointer; }
+.nis-recognition-map .nis-recognition-map__dialog-logo { display: block; max-width: 160px; max-height: 80px; margin: 0 0 24px !important; border-radius: 0; object-fit: contain; }
+.nis-recognition-map__eyebrow { display: block; padding-right: 20px; color: var(--recognition-muted); font-size: 14px; }
+.nis-recognition-map .nis-recognition-map__dialog h2 { margin: 8px 0 24px; color: var(--recognition-ink); font: 700 27px/1.2 Georgia, serif; }
+.nis-recognition-map__dialog dl > div { margin: 20px 0; }
+.nis-recognition-map__dialog dt { margin-bottom: 6px; color: var(--recognition-muted); font-size: 14px; }
+.nis-recognition-map__dialog dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.nis-recognition-map .nis-recognition-map__source { display: inline-flex; gap: 12px; align-items: center; padding: 11px 16px; border-radius: 10px; background: #f0edfc; color: var(--recognition-purple); font-size: 15px; font-weight: 500; text-decoration: none; }
+.nis-recognition-map button:focus-visible, .nis-recognition-map a:focus-visible, .nis-recognition-map__scroll:focus-visible { outline: 2px solid var(--recognition-purple); outline-offset: 3px; }
+.nis-recognition-map__sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.nis-recognition-map .nis-recognition-map__preview-image { display: block; width: 100%; height: auto; margin: 12px 0 !important; border-radius: 12px; background: #fff; }
+@media (max-width: 600px) {
+    .nis-recognition-map { padding: 16px; border-radius: 16px; }
+    .nis-recognition-map__stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .nis-recognition-map__stat { min-width: 0; padding: 12px; }
+    .nis-recognition-map__stat:last-child:nth-child(odd) { grid-column: 1/-1; }
+    .nis-recognition-map__search { width: 100%; }
+    .nis-recognition-map__results { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .nis-recognition-map__institution { padding: 14px; }
+    .nis-recognition-map__institution-name { font-size: 15px; }
+    .nis-recognition-map__dialog-content { padding: 28px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .nis-recognition-map * { transition: none !important; scroll-behavior: auto !important; }
+}

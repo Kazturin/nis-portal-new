@@ -22,6 +22,7 @@ use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TabsBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\TextSliderBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\VerticalCardBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\WorldMapBlock;
+use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\RecognitionMapBlock;
 use App\Filament\Forms\Components\RichEditor\RichContentCustomBlocks\YoutubeBlock;
 use App\Models\Alumni\AlumniNews;
 use App\Traits\InvalidatesHomepageCache;
@@ -163,6 +164,7 @@ class Page extends Model
             ])
             ->customBlocks([
                 WorldMapBlock::class,
+                RecognitionMapBlock::class,
                 AnimatedNumbersBlock::class,
                 ContactBlock::class,
                 YoutubeBlock::class,
@@ -192,6 +194,7 @@ class Page extends Model
             ])
             ->customBlocks([
                 WorldMapBlock::class,
+                RecognitionMapBlock::class,
                 AnimatedNumbersBlock::class,
                 ContactBlock::class,
                 YoutubeBlock::class,
@@ -221,6 +224,7 @@ class Page extends Model
             ])
             ->customBlocks([
                 WorldMapBlock::class,
+                RecognitionMapBlock::class,
                 AnimatedNumbersBlock::class,
                 ContactBlock::class,
                 YoutubeBlock::class,
