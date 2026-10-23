@@ -9,8 +9,10 @@ class RecognitionMapImporter
 {
     private const COUNTRY_CODES = [
         'AU' => ['Австралия', 'Australia'],
+        'AE' => ['Объединённые Арабские Эмираты', 'Объединенные Арабские Эмираты', 'ОАЭ', 'Біріккен Араб Әмірліктері', 'БАӘ', 'United Arab Emirates', 'UAE'],
         'US' => ['США', 'АҚШ', 'USA'],
         'BE' => ['Бельгия', 'Belgium'],
+        'GD' => ['Гренада', 'Grenada'],
         'DK' => ['Дания', 'Denmark'],
         'JP' => ['Япония', 'Жапония', 'Japan'],
         'IT' => ['Италия', 'Italy'],
